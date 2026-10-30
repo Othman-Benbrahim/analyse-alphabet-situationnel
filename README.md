@@ -10,7 +10,7 @@ licence MIT), version **0.7.4**, au 29 octobre 2026.
 
 | Fichier | Objet |
 |---|---|
-| [`analyse-alphabet-situationnel-0.7.4.md`](analyse-alphabet-situationnel-0.7.4.md) | la note : état des lieux, fonctionnement, axiome, littérature, comparaison, bilan, ce qui reste |
+| [`analyse-alphabet-situationnel-0.7.4.md`](analyse-alphabet-situationnel.md) | la note : état des lieux, fonctionnement, axiome, littérature, comparaison, bilan, ce qui reste |
 
 Un seul document, volontairement. Il n'y a pas de code ici : le moteur, les références et les bases
 restent dans le dépôt analysé.
