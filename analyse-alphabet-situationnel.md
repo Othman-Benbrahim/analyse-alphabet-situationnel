@@ -2,28 +2,37 @@
 
 ### Ce que la science a déjà essayé — et où se situe l'Alphabet situationnel
 
-**Note de synthèse · version 0.7.4 · 29 octobre 2026**
+**Note de synthèse · version 0.7.7 · révision 1 · 30 octobre 2026**
 
-Dépôt analysé : `Othman-Benbrahim/alphabet-situationnel` · version 0.7.4 · licence MIT
-Vérifications exécutées le 29/10/2026 : `audit` conforme · **115 autotests** · `bilan` de la feuille de route
+Dépôt analysé : `Othman-Benbrahim/alphabet-situationnel` · version 0.7.7 · licence MIT
+Vérifications exécutées le 30/10/2026 : `audit` conforme · **126 autotests** · `bilan` de la feuille de route
 
-> **Comment lire cette note.** Elle porte sur l'état du dépôt au 29 octobre 2026, après les versions
-> 0.7.3 et 0.7.4. Elle suit le plan de la note du 28 octobre (état des lieux, fonctionnement, axiome,
-> littérature, comparaison, bilan, recommandations) et signale en annexe B ce qui a changé entre les
-> deux. Les chiffres de démonstration viennent d'une base **entièrement fictive** : ils illustrent une
-> mécanique, jamais une performance. Aucune performance prédictive n'est acquise.
+> **Comment lire cette note.** Elle porte sur l'état du dépôt au 30 octobre 2026, après les versions
+> 0.7.3 à 0.7.7. Elle suit le plan de la note du 28 octobre (état des lieux, fonctionnement, axiome,
+> littérature, comparaison, bilan, recommandations) et signale en annexe B ce qui a changé depuis sa
+> révision du 29 octobre. Les chiffres de démonstration viennent d'une base **entièrement fictive** :
+> ils illustrent une mécanique, jamais une performance. Aucune performance prédictive n'est acquise.
+
+> **Versionnement.** La version de cette note suit celle du dépôt analysé ; la révision compte les
+> réécritures à version constante du dépôt. Les règles de numérotation, le journal des versions et les
+> empreintes sont décrits dans `README.md` et `CHANGELOG.md`. Une note ne cite jamais le commit qui la
+> contient, créé après elle : une version livrée se retrouve par son étiquette `vX.Y.Z`.
 
 ---
 
 ## L'essentiel en sept points
 
 1. **Un protocole complet, toujours zéro cas actif.** 16 cartes, 13 strates, 208 cases, 66 transitions,
-   50 fichiers, 49 au manifeste. L'audit passe, les 115 autotests passent ; l'audit vérifie la forme et
-   le recoupement interne, pas la vérité du contenu.
-2. **Les versions 0.7.3 et 0.7.4 ont changé la nature de l'objet.** La lecture qui produit le chiffre
-   est désormais contrôlée par le moteur **avant** lui, scellée, et exigée pour compter dans le jalon de
-   validation. Ce n'est pas une fonctionnalité de plus : c'est la théorie de la preuve du dépôt qui
-   devient exécutable dans le seul mode où elle était absente.
+   50 fichiers, 49 au manifeste. L'audit passe ; sur les 126 autotests, 120 passent sous ce bac à sable
+   et six échouent parce qu'il refuse l'écriture du dossier temporaire (annexe A). L'audit vérifie la
+   forme et le recoupement interne, pas la vérité du contenu. Le tableau des statuts a bougé pour la
+   première fois depuis longtemps : 181 « Proposé », 14 « Vide », 13 « Documenté », 0 « Attesté ».
+2. **Les cinq dernières versions ont changé la nature de l'objet, sans changer un seul `p`.** 0.7.3
+   contrôle et scelle la lecture qui produit le chiffre ; 0.7.4 l'exige pour compter dans le jalon de
+   validation ; 0.7.5 confronte la matrice aux observations et teste les écarts de score ; 0.7.6 sonde
+   les paramètres contre le hasard ; 0.7.7 sépare publication et ancrage, rend V4 absolu et son effectif
+   calculé. Ce n'est pas une fonctionnalité de plus : c'est la théorie de la preuve du dépôt qui devient
+   exécutable, puis mesurable, puis paramétrée avant les données.
 3. **L'axiome reste plus fort que celui de CAMEO.** CAMEO dit « les actes se suivent » ; l'alphabet dit
    « les structures se ressemblent, donc les avenirs se ressemblent ». C'est une hypothèse d'homologie,
    pas une chaîne de Markov.
@@ -34,15 +43,18 @@ Vérifications exécutées le 29/10/2026 : `audit` conforme · **115 autotests**
 5. **Les deux résultats les plus proches de la méthode sont ambigus.** La similarité de séquences
    distingue bien la paix, mal l'escalade (D'Orazio & Yonamine, 2015) ; l'autorégression égale ou bat
    souvent les modèles structurels (Chadefaux & Schincariol, 2025).
-6. **Nouveau, et le plus important : le dépôt peut désormais mesurer sa propre hypothèse.** Un placebo
-   d'homologie tire au hasard autant de cas que la classe retenue et refait le calcul. Sur la base de
-   démonstration — fictive — les cartes déplacent la probabilité de **+10,0 points** sur l'événement
-   phare, mais le choix des cas n'en apporte que **+1,8** ; sur cinq événements, **+0,9** et **+0,7**.
-   Autrement dit : l'écart à l'inertie vient du multiplicateur a priori, non de l'analogie. Ce n'est pas
-   un résultat sur l'axiome, c'est un instrument qui fonctionne — et qui, pour la première fois, pourrait
-   le contredire.
+6. **Le dépôt peut désormais mesurer sa propre hypothèse, et il le fait à trois étages.** Un placebo
+   d'homologie tire au hasard autant de cas que la classe retenue et refait le calcul ; une sonde
+   remplace les arêtes ou les intensités par des tirages et compare ; `confronter` classe chaque
+   apparition observée selon la règle même du moteur. Sur la base de démonstration — fictive — le
+   placebo donne **+1,8 point** d'apport à l'homologie, et la matrice réelle se situe au **98ᵉ centile**
+   de 200 matrices tirées au hasard (+3,2 points aux cas, médiane des sondes +0,0). Ce ne sont pas des
+   résultats sur le monde : ce sont des instruments qui fonctionnent, et qui, pour la première fois,
+   pourraient contredire l'axiome.
 7. **Le prochain pas n'est pas une 17<sup>e</sup> carte.** C'est un second codeur, vingt cas, et un test
-   contre l'inertie — auquel s'ajoute maintenant le placebo, qui doit précéder la vue des résultats.
+   contre l'inertie — auquel s'ajoutent le placebo, qui doit précéder la vue des résultats, et un
+   effectif V4 qui se calcule désormais à partir de l'écart-type observé : 50 épisodes ne suffisent que
+   si σ̂(d) ne dépasse pas 0,063, valeur encore inconnue.
 
 ---
 
@@ -54,17 +66,17 @@ Vérifications exécutées le 29/10/2026 : `audit` conforme · **115 autotests**
 
 L'Alphabet situationnel n'est ni un modèle statistique ni un essai : c'est un **protocole de lecture et
 de prévision**, écrit comme un skill pour modèle de langue, doublé d'un moteur Python autonome
-(bibliothèque standard seulement, 251 Ko, 3 494 lignes). Le paquet compte 50 fichiers : le moteur, 19
-références principales, 13 fichiers d'équivalents (un par strate), des bases JSONL, un journal
-d'exemple, un dossier de lecture d'exemple, un manifeste SHA-256 de 49 fichiers et une intégration
-continue qui rejoue l'audit et les tests à chaque push.
+(bibliothèque standard seulement, 296 Ko, 4 052 lignes). Le paquet compte 50 fichiers suivis : le
+moteur, 19 références principales, 13 fichiers d'équivalents (un par strate), des bases JSONL, un
+journal d'exemple, un dossier de lecture d'exemple, un manifeste SHA-256 de 49 fichiers et une
+intégration continue qui rejoue l'audit et les tests à chaque push.
 
 ```
 moteur.py audit    → conforme — 208 statuts, paramètres exhaustifs (chacun référencé par le code),
                       JSONL et dossier d'exemple validés, manifeste 49 fichiers, matrice et inerties,
-                      131 renvois §, voisines A6, incompatibilités G6, schéma de fiche validé
-moteur.py autotest → 115 tests
-moteur.py bilan    → 0 cas actif · 13/16 équivalents en strate 7 · aucun journal · V4 non commencé
+                      176 renvois §, voisines A6, incompatibilités G6, schéma de fiche validé
+moteur.py autotest → 126 tests (120 passent sous ce bac à sable ; 6 exigent le dossier temporaire)
+moteur.py bilan    → 0 cas actif · 13/16 Documentés en strate 7, 1/14 cases Vides closes · V4 non commencé
 ```
 
 Cette solidité formelle est réelle, et rare pour un projet de recherche indépendant. Mais il faut lire
@@ -92,12 +104,12 @@ appliquée.
 
 Ce que les versions récentes ont déplacé, mode par mode :
 
-| Mode | Avant 0.7.3 | Depuis 0.7.4 |
+| Mode | Avant 0.7.3 | Depuis 0.7.7 |
 |---|---|---|
 | LIRE | sortie libre, contrôlée par relecture humaine | inchangé — le mode reste sans calcul |
-| PRÉVOIR | A6, A7, garantie, passage, questions : obligations **narratives**, sans contrôle ni trace | dossier de lecture validé **avant** le chiffre, sceau publié, placebo et deux bandes de sensibilité dans la sortie |
-| CODER | fiche validée par `valider_base` | idem, plus `usage_fige_le` et `codage.debut` recoupés avec un registre daté |
-| SCORER | Brier, comparateurs, abstentions, difficulté | idem, plus `p_placebo`, `apport_homologie`, et l'exigence de `preuve_dossier` pour compter dans V4 |
+| PRÉVOIR | A6, A7, garantie, passage, questions : obligations **narratives**, sans contrôle ni trace | dossier de lecture validé **avant** le chiffre, sceau publié, placebo, deux bandes de sensibilité, sources du calcul, et depuis 0.7.7 la distinction entre **publier** un comparateur et dire l'a priori **ancré** |
+| CODER | fiche validée par `valider_base` | idem, plus `usage_fige_le`, `codage.debut`, `classe_source`, un registre daté, et le recoupement `valider --registre` |
+| SCORER | Brier, comparateurs, abstentions, difficulté | idem, plus `p_placebo`, `apport_homologie`, tests exacts du signe et de Wilcoxon, score logarithmique, `v4_discriminant`, et l'exigence de `preuve_dossier` pour compter dans V4 |
 
 ### 1.3 · Seize cartes, treize strates
 
@@ -125,7 +137,7 @@ d'une transition**. Seule la seconde produit un multiplicateur λ. Le glossaire 
 notions ; ce qui manquait, et que 0.7.3 a écrit dans `SKILL.md` et `graphe.md`, est la conséquence : un
 ancrage F ne rend pas un λ plus fort.
 
-### 1.4 · Le moteur : deux formules, quatre garde-fous
+### 1.4 · Le moteur : deux formules, six instruments
 
 Tout chiffre sort du moteur ; le modèle choisit les événements et contrôle le sens des preuves.
 
@@ -139,22 +151,36 @@ P  = (n_E + k × p₀) / (n_A + k)     k = 2
 
 Les multiplicateurs sont des hypothèses de travail, pas des rapports de vraisemblance mesurés :
 λ = 3,0 pour une transition forte, 1,8 moyenne, 1,2 faible. La fréquence par défaut est de 5 % sur trois
-mois ; les inerties vont de 0,40 (INCERTITUDE) à 0,97 (SEUIL). La fréquence de base est lissée vers la
-référence par `k₀ = 20`, et n'est dite **ancrée** qu'au-delà d'un effectif pondéré de 10 cas.
+mois ; les inerties vont de 0,40 (INCERTITUDE) à 0,97 (SEUIL) ; le produit des λ est plafonné à 10 et
+`p₀` à 95 %. La fréquence de base est lissée vers la référence par `k₀ = 20` pseudo-observations.
 
-Quatre garde-fous entourent ce calcul, et c'est là que le dépôt est le plus original :
+Depuis 0.7.7, deux seuils distincts remplacent l'ancien `n_min_frequence`, qui mélangeait deux
+questions. Le comparateur `f` est **publié** dès un cas pondéré (`n_min_publication = 1`) ; l'a priori
+n'est dit **ancré** qu'à partir de 20 observations pondérées (`n_min_ancrage = k₀`), c'est-à-dire
+lorsque les données pèsent autant que la référence. Seul un a priori ancré ouvre le niveau ρ3. La
+conséquence se lit dans chaque sortie : l'écart aux cartes est publié plus souvent, et explicitement
+déclaré **non interprétable** quand l'ancrage manque. C'est une correction de vocabulaire autant que de
+calcul : « publié » ne veut pas dire « fondé ».
 
-| Garde-fou | Ce qu'il mesure | Depuis |
+Six instruments entourent ce calcul, et c'est là que le dépôt est le plus original :
+
+| Instrument | Ce qu'il mesure | Depuis |
 |---|---|---|
 | **Comparateur inertiel** (`p_sans_cartes`) | ce que les cartes ajoutent au statu quo | 0.5.0 |
 | **Bande de modèle** | six variantes de λ, inerties, fréquence par défaut | 0.6.0 |
 | **Bande de classe** | huit variantes du choix des cas : Jaccard ± 0,1, k et k₀ × ½ et × 2, demi-vie × ½ et × 2 | **0.7.3** |
 | **Placebo d'homologie** (`p_placebo`) | ce que la sélection des homologues ajoute à des cas tirés au hasard, en même nombre | **0.7.4** |
+| **Confrontation de la matrice** (`confronter`) | où chaque apparition observée est atteignable par la règle du moteur, et quelles arêtes ont été éprouvées | **0.7.5** |
+| **Sonde de paramètres** (`sonde`) | ce que la matrice, les intensités ou les inerties valent contre des tirages au hasard | **0.7.6** |
 
-S'y ajoutent deux diagnostics : la **fragilité de niveau** (0.7.3), qui publie l'écart entre les `p`
-calculés sur chaque niveau d'homologie non vide — le seuil `c_min_rho1 = 3` décide seul du niveau
-retenu — et la **sonde de force**, qui chiffre ce que F/f change (uniquement par la sélection des
-homologues).
+S'y ajoutent cinq diagnostics : la **fragilité de niveau** (0.7.3), qui publie l'écart entre les `p`
+calculés sur chaque niveau d'homologie non vide ; le **seuil de niveau**, désormais séparé du seuil
+d'ancrage (`c_min_niveau = 3`, `c_min_rho1 = 3`) et laissé à sa valeur de statu quo parce que le passer
+à 2 déplace un calcul de démonstration de 52,0 % à 51,7 % ; la **sonde de force**, qui chiffre ce que
+F/f change par la seule sélection des homologues (+0,7 point sur la démonstration) ; la **taille
+effective de Kish**, qui dit combien de cas réels pèsent derrière un compte de dix (9,3 pour 10, le cas
+le plus lourd comptant 16 %) ; et la **couverture des arêtes**, qui compte les occasions d'éprouver
+chaque transition (25/66 au moins une fois sur les cas archivés, aucune dix fois).
 
 ```
 Sortie d'une démonstration — base fictive, --demo
@@ -163,16 +189,34 @@ Sortie d'une démonstration — base fictive, --demo
 Événement          SEUIL@7 apparait
 Probabilité        22,0 % [5,2–43,1]        intervalle bêta conditionnel, approximatif
 Sans les cartes    12,1 %                   comparateur inertiel
-Apport des cartes  +10,0 points
-Placebo            20,2 % (200 tirages de 10 cas parmi 28 ; 90 % entre 10 et 34 %)
+Apport des cartes  +10,0 points             non interprétable : l'a priori n'est pas ancré
+Placebo            20,2 % (200 tirages de 10 cas parmi 28 ; 90 % entre 9,8 et 34,3 %)
 Apport de l'homologie  +1,8 points
 Sensibilité modèle 19–28 % · classe 21–23 % (stable) · force +0,7 pt
-Niveau             ρ1 · H1 · 10 cas · n_A 4,8 · part de l'a priori dans f 54 %
+Fragilité de niveau 0,7 pt (H1 22,0 · H1.5 22,7 · H2 22,7)
+Niveau             ρ1 · H1 · 10 cas · n_A 4,8 · Kish 9,3 · part de l'a priori dans f 54 %
 Barreau            A (association)
 ```
 
 La base est entièrement fictive : ces chiffres illustrent la mécanique, ils ne constituent ni une
 prévision réelle ni une preuve de calibration. Le moteur l'écrit lui-même dans ses drapeaux.
+
+**Le jalon V4, désormais paramétré (0.7.7).** Jusqu'à 0.7.6, « V4 atteint » signifiait un gain relatif
+de 10 % sur le Brier, sur 50 épisodes. La règle est maintenant absolue et testée : la perte moyenne par
+épisode doit baisser d'au moins **2,5 points** (`v4_gain_abs = 0,025`), le test exact du signe doit être
+significatif à 5 %, et le nombre d'épisodes doit atteindre **max(50, ⌈((z₁₋α/₂ + z_puissance)·σ̂(d) /
+0,025)²⌉)**. Sur un Brier de référence de 0,25, 10 % valaient déjà 2,5 points ; sur un événement rare
+(Brier 0,10), la cible absolue est bien plus exigeante que l'ancienne. Le gain relatif reste publié, à
+titre descriptif seulement. Le plancher de 50 a été conservé parce que, sans lui, un σ̂ sous-estimé sur
+quelques épisodes suffisait à déclarer le jalon franchi — le genre de correction qui distingue une règle
+d'une envie.
+
+**Les questions discriminantes (0.7.7).** Une question est dite discriminante si son `p` s'écarte d'au
+moins 2 points de probabilité de `p_sans_cartes` ou de `p_placebo`, **calculé avant l'issue**. `scorer`
+publie alors deux rapports V4 : le premier sur tout le journal, le second sur ces questions seules, avec
+leur part. Le premier dit ce que vaut le protocole ; le second, ce que l'alphabet apporte là où il peut
+s'exprimer. Ne publier que le second serait choisir ses questions après coup ; c'est pourquoi le second
+ne filtre jamais le premier.
 
 **Comment lire la ligne « placebo ».** Elle compare le chiffre obtenu avec les cas choisis par le motif
 structurel à celui obtenu avec autant de cas tirés au hasard dans la même strate et la même fenêtre, sous
@@ -193,17 +237,20 @@ Les 16 cartes × 13 strates font 208 cases. Voici comment elles sont remplies.
 |---|---|---|
 | Attesté | 0 | 0 % |
 | Documenté | 13 | 6,25 % |
-| Proposé | 182 | 87,5 % |
-| Vide | 13 | 6,25 % |
+| Proposé | 181 | 87,0 % |
+| Vide | 14 | 6,73 % |
 | Hors domaine | 0 | 0 % |
 
 Les 13 « Documenté » sont tous en strate 7 (géopolitique), la strate pilote. Aucune case n'est
-« Attesté » : aucune n'a été recodée sur un cas réel sous les règles courantes. Et le bilan est sans
-ambiguïté :
+« Attesté » : aucune n'a été recodée sur un cas réel sous les règles courantes. Mais 0.7.7 a fait
+bouger le tableau pour la première fois depuis la révision précédente : CROISSANCE@7 est passée en Vide
+après deux lectures (Choucri, Altman), RÉSONANCE@7 a été close au terme d'une troisième recherche faite
+sur résumés consultés, non de mémoire, et PÉRIODICITÉ@7 garde « Cycles électoraux ». La strate pilote
+compte donc 13 Documentés, 1 Proposé, 2 Vides — 14 cases traitées sur 16. Le bilan reste sans ambiguïté :
 
 ```
 Étape 2 · cas réels          : 0 actifs · 0 propositions · 4 archives
-Étape 3 · strate pilote      : 13/16 Documentés · 0 strate complète · 0/13 cases Vides closes
+Étape 3 · strate pilote      : 13/16 Documentés · 0 strate complète · 1/14 cases Vides closes
 Étape 4 · références externes: aucun fichier fourni
 Étape 5 · base réelle        : aucun cas actif · κ non calculé
 Test à l'aveugle             : aucun journal fourni (0/50)
@@ -240,29 +287,39 @@ Un contrôle de calibration spécifique à SEUIL reste donc nécessaire, distinc
 50 épisodes du test à l'aveugle, comparer la fréquence observée des seuils à la fréquence prédite. Un
 modèle qui sur-prédit les ruptures peut avoir un Brier correct et une lecture fausse.
 
-**Ce que 0.7.3 ajoute à cette section.** La fragilité de niveau chiffre ce que le § 1.4 appelait un
-« compromis raisonnable ». Mesuré sur une base synthétique de 2 cas stricts positifs et 3 cas plus larges
-négatifs : le seuil `c_min_rho1 = 3` écarte les deux cas H1 parfaitement comparables, retient les cinq
-cas H1.5, et `p` passe de **53 % à 33 %**. Vingt points d'écart, décidés par un compte de cas. Le moteur
-publie désormais cet écart ; avant 0.7.3, il ne publiait que les effectifs.
+**Ce que 0.7.3 ajoute à cette section, et ce que 0.7.7 sépare.** La fragilité de niveau chiffre ce que
+le § 1.4 appelait un « compromis raisonnable ». Mesuré sur une base synthétique de 2 cas stricts
+positifs et 3 cas plus larges négatifs : le seuil `c_min_rho1 = 3` écarte les deux cas H1 parfaitement
+comparables, retient les cinq cas H1.5, et `p` passe de **53 % à 33 %**. Vingt points d'écart, décidés
+par un compte de cas. Le moteur publie cet écart ; avant 0.7.3, il ne publiait que les effectifs.
+
+Depuis 0.7.7, le seuil qui choisit le **niveau d'homologie** (`c_min_niveau`) est distinct de celui qui
+ouvre le **niveau ρ3** (`c_min_rho1`), tous deux à 3. La décision d'auteur proposait de descendre le
+premier à 2 ; la vérification a montré qu'il changeait un calcul de démonstration (52,0 % → 51,7 %,
+ρ1 → ρ4), contrairement à ce qu'annonçait la fiche. Par la règle de l'auteur — une version qui change un
+`p` est séparée — le passage à 2 attend une version dédiée. C'est un exemple rare de décision retirée
+par sa propre vérification, et c'est exactement ce que le paramétrage avant mesure doit produire.
 
 ### 1.7 · Où en est le dépôt
 
 | Étape | Objet | État mesuré |
 |---|---|---|
-| 0 | Installer la version courante | **fait** — 0.7.4 |
+| 0 | Installer la version courante | **fait** — 0.7.7 |
 | 1 | Trois décisions d'auteur | **prises** — strate 12 conservée · cartes à agents universelles · MIT |
 | 2 | Premiers cas réels sous les règles courantes | **0 actif** — 4 archives exclues |
-| 3 | Sourcer une strate pilote | **13/16** — strate 7, 0 strate complète |
+| 3 | Sourcer une strate pilote | **14/16 traitées** — strate 7, 1 Vide close, 0 strate complète |
 | 4 | Bibliothèque de fréquences externes | **aucune** |
 | 5 | Base réelle et second codeur | **aucune** — κ non calculé |
-| — | Test à l'aveugle (jalon V4) | **non commencé** — 0/50 |
+| — | Test à l'aveugle (jalon V4) | **non commencé** — 0/50, cible recalculée par σ̂(d) |
 
 Depuis le 29 octobre 2026, quatre décisions d'auteur sont appliquées (sceau de dossier exigé pour V4,
-partage apprentissage/test daté, placebo d'homologie, plancher de recherche A7). Une cinquième est
-réservée à une version séparée : l'atténuation des multiplicateurs par la qualité de l'ancrage. Le
-diagnostic du dépôt reste donc juste, et il faut lui rendre cet hommage : le cadre est complet, ce qui
-manque est empirique ou relève de l'auteur.
+partage apprentissage/test daté, placebo d'homologie, plancher de recherche A7). La cinquième —
+l'atténuation des multiplicateurs par la qualité de l'ancrage — est désormais **mesurée hors du `p`**
+comme variante de sensibilité, avec une règle de promotion figée d'avance (7.3). Six décisions
+supplémentaires, toutes sans effet sur un `p`, ont été appliquées en 0.7.7 : seuil d'ancrage dédoublé,
+V4 absolu et testé, effectif calculé avec plancher, questions discriminantes, seuil de niveau séparé,
+âge mesuré dans `confronter`. Le diagnostic du dépôt reste donc juste, et il faut lui rendre cet
+hommage : le cadre est complet, ce qui manque est empirique ou relève de l'auteur.
 
 Le risque n'est pas l'erreur ; c'est que le protocole reste indéfiniment un chef-d'œuvre de méthode sans
 jamais rencontrer un cas.
@@ -342,11 +399,21 @@ depuis 0.7.3 et qui relève de « À vérifier ».
    d'une pièce qui n'existait pas : le **dossier de lecture**, validé par les mêmes fonctions qu'une
    fiche, qui rend un sceau. Le moteur refuse un état différent, un événement non déclaré, une sémantique
    ou une temporalité divergentes, des pièces postérieures à la date d'information. Puis il produit `p`,
-   l'intervalle, les deux bandes, le comparateur sans cartes, le placebo, et les empreintes. À l'échéance,
-   on score au Brier — sans jamais réécrire l'ancien pari. Une mise à jour est un nouvel identifiant.
+   l'intervalle, les deux bandes, le comparateur sans cartes, le placebo, la sonde de force, les sources
+   du calcul, et les empreintes. Depuis 0.7.7, il dit en plus si le comparateur est seulement publié ou
+   réellement ancré. À l'échéance, on score au Brier — sans jamais réécrire l'ancien pari. Une mise à
+   jour est un nouvel identifiant.
 
 > « Un pari non scoré n'est pas un risque, c'est une affirmation. »
 > — Constitution, P6 · Falsifiabilité
+
+**Ce que les versions 0.7.5 à 0.7.7 ne changent pas.** Aucun des sept gestes de lecture n'a bougé : on
+lit, on ancre, on cherche la contradiction, on écrit l'état, on scelle, on calcule, on score comme en
+0.7.4. Les trois dernières versions ont ajouté des instruments de mesure **après** le geste, pas des
+règles de lecture. C'est un point d'axiome, pas un détail de version : le dépôt paramètre désormais la
+manière de juger sa lecture, sans toucher à la manière de lire. Une théorie qui modifierait ses règles de
+lecture en même temps que ses seuils de preuve rendrait tout résultat ininterprétable ; celle-ci évite
+soigneusement ce mélange, et le revendique comme une contrainte.
 
 ### 2.3 · Le lexique minimum
 
@@ -357,14 +424,19 @@ depuis 0.7.3 et qui relève de « À vérifier ».
 | **Équivalent** | La traduction locale d'une carte dans une strate, avec ses marqueurs observables. Une case peut être vide : c'est une information. |
 | **Ancrage** | Le fait précis qui remplit un marqueur. La force F/f dit la qualité de cet ancrage, jamais l'intensité physique du phénomène. |
 | **Homologue** | Un cas passé qui s'écrit avec les mêmes cartes (H1), ou avec un recouvrement suffisant (H1.5, Jaccard pondéré ≥ 0,7). |
-| **ρ** | Le niveau de risque d'une prévision (ρ0 à ρ4). Il dit d'où vient le chiffre, pas sa fiabilité. |
+| **ρ** | Le niveau de risque d'une prévision (ρ0 à ρ4). Il dit d'où vient le chiffre, pas sa fiabilité. Depuis 0.7.7, ρ3 exige un a priori **ancré** (20 observations pondérées, `n_min_ancrage`), et non plus seulement un comparateur publié. |
 | **Brier** | La moyenne des carrés des écarts entre probabilité annoncée et issue (0 = parfait, 0,25 = hasard sur une binaire à 50 %). |
 | **Barreau A** | Le premier barreau de l'échelle de Pearl : association. Le moteur ne répond ni à « que produirait telle action ? » ni à « que se serait-il passé autrement ? ». |
 | **Dossier de lecture** | Depuis 0.7.3 : l'ensemble contrôlé des pièces d'une lecture (état, candidates, rejets, A6, A7, test, garantie, option, corroboration, passage, questions, requêtes, événements), scellé avant le calcul. |
 | **Bande de modèle** | L'étendue de `p` quand les hypothèses non calibrées varient (λ, inerties, fréquence par défaut). |
 | **Bande de classe** | L'étendue de `p` quand le **choix des cas** varie (Jaccard, lissages, demi-vie). Mesure l'incertitude sur la classe de référence, que la bande de modèle ignorait. |
-| **Fragilité de niveau** | L'écart entre les `p` calculés sur chaque niveau d'homologie non vide. Il dit ce que le seuil `c_min_rho1` décide à lui seul. |
+| **Fragilité de niveau** | L'écart entre les `p` calculés sur chaque niveau d'homologie non vide. Il dit ce que le seuil `c_min_niveau` décide à lui seul. |
 | **Placebo d'homologie** | `p` recalculé sur autant de cas tirés au hasard, dans la même strate et la même fenêtre. `p − p_placebo` = apport du **choix** des cas. |
+| **A priori ancré** | Depuis 0.7.7 : un `f` dont les données pèsent au moins autant que la référence (`n_min_ancrage = 20`). En dessous, le comparateur est publié mais l'écart aux cartes est déclaré non interprétable. |
+| **Confrontation** | `confronter` : classe chaque apparition observée selon la règle même du moteur (atteignable, propagation, transfert, arête abaissée, non atteignable) et compte les arêtes éprouvées. |
+| **Sonde** | `sonde` : remplace les arêtes, les intensités ou les inerties par des tirages au hasard, et situe le calcul réel dans la distribution des tirages. Ne dit rien du monde, seulement du contenu propre de la matrice. |
+| **Kish** | La taille effective d'un échantillon pondéré. Dix cas peuvent valoir 9,3 observations ; le cas le plus lourd compte pour 16 %. |
+| **Question discriminante** | Depuis 0.7.7 : une question dont `p` s'écarte d'au moins 2 points de `p_sans_cartes` ou de `p_placebo`, mesuré avant l'issue. Sert à un second rapport V4, jamais à filtrer le premier. |
 
 ### 2.4 · Ce que l'outil ne fait pas
 
@@ -411,6 +483,12 @@ postulent leur universalité ; celle-ci la traite comme une hypothèse à tester
 intellectuellement plus honnête — mais cela a un coût : tant que le test n'est pas fait, l'axiome n'est
 ni vrai ni faux, il est en attente.
 
+0.7.7 ajoute une précision qui n'est pas cosmétique : tant qu'aucun cas réel actif n'éprouve une arête,
+sa valeur n'est pas seulement non présumée, elle est **non estimable** (P8, `graphe.md` §3.4). Ce n'est
+pas la même chose. « Non présumé » laisse ouvert ; « non estimable » dit qu'aucune donnée ne peut
+répondre, et que le chiffre qui sortirait quand même serait une reconstruction de la théorie par
+elle-même. L'universalité n'est donc pas seulement en attente : elle est, pour l'instant, sans mesure.
+
 ### 3.2 · D'où vient cet axiome
 
 Le dépôt n'invente pas l'idée de prévoir par analogie. Il l'inscrit dans une famille ancienne et
@@ -453,47 +531,67 @@ Trois conséquences, déjà identifiables avant toute donnée :
 3. **Les dimensions omises peuvent être exactement celles qui comptent** : qui est l'acteur, quelle est
    la position de chacun, quel lien unit les cartes.
 
-**Ce que les versions 0.7.3 et 0.7.4 changent ici — et c'est le cœur de cette note.** Le problème de la
-classe de référence cesse d'être une objection de principe : il devient mesuré à chaque calcul, par trois
+**Ce que les versions 0.7.3 à 0.7.7 changent ici — et c'est le cœur de cette note.** Le problème de la
+classe de référence cesse d'être une objection de principe : il devient mesuré à chaque calcul, par cinq
 instruments distincts.
 
 | Instrument | Ce qu'il fait varier | Ce qu'il révèle |
 |---|---|---|
 | Bande de classe (0.7.3) | Jaccard ± 0,1 ; k et k₀ × ½ et × 2 ; demi-vie × ½ et × 2 | la sensibilité de `p` au **paramétrage** du choix des cas |
-| Fragilité de niveau (0.7.3) | le niveau d'homologie retenu (H1, H1.5, H2) | l'écart que le seuil `c_min_rho1` décide seul |
+| Fragilité de niveau (0.7.3) | le niveau d'homologie retenu (H1, H1.5, H2) | l'écart que le seuil `c_min_niveau` décide seul |
 | Placebo (0.7.4) | les cas eux-mêmes, tirés au hasard à effectif égal | l'apport du **contenu** du choix, au-delà de l'effectif |
+| Confrontation (0.7.5) | les apparitions observées, classées par la règle du moteur | ce que la matrice peut atteindre, et les arêtes qu'aucun cas n'éprouve |
+| Sonde (0.7.6) | arêtes, intensités ou inerties tirées au hasard | le contenu structurel **propre** de la matrice, contre le hasard |
 
-Les deux premiers mesurent la robustesse du réglage. Le troisième mesure l'hypothèse elle-même. C'est
-la distinction décisive : une bande étroite pouvait auparavant se lire « ma prévision est robuste »,
-alors qu'elle ne disait rien sur le fait que les **bons** cas aient été retenus.
+Les quatre premiers mesurent la robustesse du réglage et du choix des cas. Le cinquième mesure la
+matrice elle-même. C'est la distinction décisive : une bande étroite pouvait auparavant se lire « ma
+prévision est robuste », alors qu'elle ne disait rien sur le fait que les **bons** cas aient été retenus ;
+et un placebo favorable ne dit rien sur le fait que les **bonnes arêtes** aient été postulées.
 
 **Ce que la démonstration montre, et ce qu'elle ne montre pas.** Sur la base fictive du dépôt, pour
-l'événement phare : `p = 22,0 %`, sans cartes `12,1 %`, placebo `20,2 %`. Les cartes déplacent donc la
-probabilité de 10,0 points, mais le choix des cas n'en explique que 1,8 — environ 18 %. Sur cinq
-événements de la même démonstration, l'apport moyen des cartes est de **+0,9 point** et celui de
-l'homologie de **+0,7**, soit environ 79 % de l'effet. Le rapport s'inverse parce que l'effet des cartes
-est très hétérogène : fortement positif sur un événement, légèrement négatif sur les quatre autres. La
-moyenne écrase le premier et laisse l'homologie seule, faiblement, en positif.
+l'événement phare : `p = 22,0 %`, sans cartes `12,1 %`, placebo `20,2 %`. Le choix des cas apporte donc
+**+1,8 point**. L'écart aux cartes, lui, vaut 10,0 points — mais le moteur le déclare depuis 0.7.7
+**non interprétable**, parce que l'a priori n'est pas ancré : il mesure la distance au défaut de 5 %, pas
+ce que les cartes ajoutent. C'est un progrès de lecture considérable : la phrase la plus citée de la note
+précédente est désormais refusée par l'outil qui la produisait.
 
-Trois choses à ne pas conclure :
+La sonde complète ce tableau. Sur 200 tirages d'arêtes, la matrice réelle se situe au **98ᵉ centile** ;
+elle ajoute **+3,2 points** aux cas, la sonde médiane **+0,0**, et la révision par les cas +6,8. Autrement
+dit : la matrice a un contenu propre par rapport au hasard, sur cet événement et cet état. Cela ne dit pas
+qu'elle est vraie ; cela dit qu'elle n'est pas interchangeable avec du bruit.
+
+Les mesures sur cinq événements, faites en 0.7.4 et non recalculées depuis (les probabilités sont
+identiques de 0.7.4 à 0.7.7, vérifié par le dépôt), donnaient +0,9 point pour les cartes et +0,7 pour
+l'homologie. Le rapport s'inversait parce que l'effet des cartes était très hétérogène : fortement
+positif sur un événement, légèrement négatif sur les quatre autres. La moyenne écrase le premier et
+laisse l'homologie seule, faiblement, en positif. Avec la règle de 0.7.7, il faudrait d'abord vérifier
+l'ancrage avant de lire ces +0,9 comme un effet des cartes ; c'est précisément le genre de phrase que la
+version courante interdit d'écrire sans condition.
+
+Quatre choses à ne pas conclure :
 
 - **Ce n'est pas un résultat sur l'axiome.** La base est inventée. Un chiffre sur une base inventée mesure
   la mécanique du moteur, pas le monde.
-- **Ce n'est pas non plus un non-résultat.** L'instrument sépare désormais deux causes qui étaient
-  confondues : le multiplicateur a priori et la sélection des cas. Avant 0.7.4, « les cartes apportent
-  10 points » était la seule phrase disponible, et elle était ambiguë.
+- **Ce n'est pas non plus un non-résultat.** L'instrument sépare désormais trois causes qui étaient
+  confondues : le multiplicateur a priori, la sélection des cas, et le contenu de la matrice. Avant
+  0.7.4, « les cartes apportent 10 points » était la seule phrase disponible ; depuis 0.7.7, elle est
+  conditionnelle à l'ancrage, et l'outil le dit.
 - **Ce qui est inquiétant n'est pas la taille de l'apport, c'est sa distribution.** L'effet des cartes est
   très hétérogène selon l'événement : fortement positif sur l'événement phare, légèrement négatif sur
   quatre autres. Si ce profil se reproduit sur des cas réels, il signifiera que le dispositif fonctionne
   pour certains types de questions et dégrade pour d'autres — ce qui est une information utile, et non un
   échec.
+- **Le contenu de la matrice n'est établi que sur un événement, un état, une base fictive.** La sonde le
+  dit elle-même : « un seul événement, un seul état ». Un 98ᵉ centile sur 200 tirages n'est pas une
+  calibration ; c'est la preuve que le test a un sens et qu'il faudra le répéter sur plusieurs cibles.
 
-**Ce qu'il faudrait tester.** Trois choses, dans cet ordre : (1) la **stabilité de la classe** — le même
+**Ce qu'il faudrait tester.** Quatre choses, dans cet ordre : (1) la **stabilité de la classe** — le même
 cas, à ± 0,1 de seuil, donne-t-il le même avenir ? (2) la **pertinence** — les homologues retenus
 ressemblent-ils au cas sur des dimensions que l'on n'a pas utilisées pour les choisir ? (3) le
 **placebo** — des cas choisis au hasard dans la même strate donnent-ils une meilleure ou une pire
-prévision ? Le point (1) est désormais calculé à chaque prévision, le point (3) aussi ; le point (2)
-reste entièrement à faire, et c'est le seul qui exige des cas réels.
+prévision ? (4) le **contenu de la matrice** — la sonde reste-t-elle au-dessus du hasard sur d'autres
+cibles et d'autres états ? Les points (1) et (3) sont calculés à chaque prévision, le point (4) depuis
+0.7.6 ; le point (2) reste entièrement à faire, et c'est le seul qui exige des cas réels.
 
 ### 3.4 · Ce que l'axiome ne dit pas
 
@@ -503,7 +601,10 @@ reste entièrement à faire, et c'est le seul qui exige des cas réels.
 | « la même structure a les mêmes dynamiques partout » | L'emprunt entre strates (T4) est fermé tant que les équivalents des deux strates ne sont pas Documentés ou Attestés. Le transfert n'est pas acquis. |
 | « l'alphabet couvre tout » | P8 : la couverture n'est pas présumée. Un motif non décrit va au journal des lacunes ; c'est la seule entrée vers une nouvelle carte (A2). |
 | « la probabilité est calibrée » | P5 et les niveaux ρ : le chiffre dit d'où il vient, pas quelle confiance lui accorder. Aucune calibration prospective n'est acquise. |
-| « l'apport des cartes mesure l'analogie » | Depuis 0.7.4, non : l'apport des cartes mesure l'effet conjoint du prior et de l'homologie ; seul l'écart au placebo mesure la seconde. |
+| « l'apport des cartes mesure l'analogie » | Depuis 0.7.4, non : l'apport des cartes mesure l'effet conjoint du prior et de l'homologie ; seul l'écart au placebo mesure la seconde. Depuis 0.7.7, il est en plus déclaré non interprétable quand l'a priori n'est pas ancré. |
+| « un ancrage F rend le chiffre plus fort » | Non : F/f n'entre pas dans λ. Il entre dans `p` par la sélection des homologues (H1, H1.5), et l'atténuation de λ par la force reste une variante de sensibilité, hors du `p` publié. |
+| « une arête non éprouvée a une valeur, même provisoire » | Non depuis 0.7.7 : tant qu'aucun cas réel actif ne l'éprouve, sa valeur est **non estimable**, pas seulement non présumée (P8, `graphe.md` §3.4). |
+| « V4 est un gain relatif de 10 % sur 50 épisodes » | Non depuis 0.7.7 : le jalon est un gain **absolu** de 2,5 points, testé par le signe, sur un effectif calculé à partir de σ̂(d), avec un plancher de 50. |
 
 ---
 
@@ -779,13 +880,20 @@ classe construite peut passer, et il transforme une faiblesse structurelle en in
 littérature ne fournit pas de précédent direct ; la logique est celle des essais contrôlés, transposée à
 la sélection des cas.
 
+Depuis 0.7.7, un second dispositif compare les questions entre elles plutôt que les moteurs : le rapport
+V4 restreint aux questions **discriminantes**, c'est-à-dire celles où le motif s'écarte d'au moins 2
+points du comparateur ou du placebo. La distinction est celle de l'intention et de la capacité : le
+rapport complet dit ce que vaut le protocole sur tout ce qu'on lui a demandé ; le rapport restreint dit
+ce qu'il vaut là où l'alphabet avait quelque chose à dire. Publier les deux, dans cet ordre, interdit de
+se raconter une histoire avec le second.
+
 ---
 
 ## 06 · Ce que ça dit du dépôt
 
-> Trois forces que la littérature n'a pas, trois faiblesses qu'elle corrige, et un mur à regarder en face.
+> Cinq forces que la littérature n'a pas, trois faiblesses qu'elle corrige, et un mur à regarder en face.
 
-### 6.1 · Quatre forces que la littérature n'a pas
+### 6.1 · Cinq forces que la littérature n'a pas
 
 **Un protocole falsifiable.** Pré-enregistrement, jugement scellé avant le moteur, dossier de lecture
 scellé avant le calcul, Brier, décomposition de Murphy, abstentions, difficulté des questions, deux
@@ -805,12 +913,20 @@ ce que le dépôt présentait comme sa force principale.
 présenté comme un apport quand l'a priori n'est pas ancré. Et la sortie dit ce qu'elle n'a pas contrôlé.
 
 **Une architecture qui sépare les causes d'un score.** C'est la force la plus discrète et la plus utile.
-Quatre diagnostics distincts — inertie, modèle, classe, homologie — permettent de savoir *pourquoi* un
-chiffre est ce qu'il est. Aucun des dix travaux cités ne fournit cette décomposition. C'est ce qui rendra
-un éventuel résultat nul interprétable : « la structure n'ajoute rien » cessera d'être un échec indistinct
-pour devenir un diagnostic localisé.
+Cinq diagnostics distincts — inertie, modèle, classe, homologie, matrice — permettent de savoir
+*pourquoi* un chiffre est ce qu'il est. Aucun des dix travaux cités ne fournit cette décomposition. C'est
+ce qui rendra un éventuel résultat nul interprétable : « la structure n'ajoute rien » cessera d'être un
+échec indistinct pour devenir un diagnostic localisé.
 
-Ces quatre choses sont publiables en soi. Un article de méthode qui n'a pas encore de résultat peut être
+**Un paramétrage fait avant la mesure, et révisable par elle.** C'est la force la plus récente, et la
+plus rare. Les seuils, les règles de promotion et les motifs de refus sont écrits avant les données :
+2,5 points de gain absolu, un test du signe, un effectif qui dépend de σ̂(d), une variante d'atténuation
+promue seulement si son différentiel est significatif, un refus de circularité conditionné à un taux de
+faux positifs. Et quand une décision annoncée sans effet se révèle changer un calcul — le niveau
+d'homologie à 2 cas —, elle est retirée et renvoyée à une version dédiée. Un protocole qui documente ses
+propres corrections est plus crédible qu'un protocole qui n'en a pas.
+
+Ces cinq choses sont publiables en soi. Un article de méthode qui n'a pas encore de résultat peut être
 plus utile que dix articles à +0,02 d'AUC. Et il a un avantage stratégique : il ne peut pas être réfuté
 par un mauvais score.
 
@@ -819,8 +935,8 @@ par un mauvais score.
 | Fait | Conséquence | Remède |
 |---|---|---|
 | **0 cas actif** | Aucune performance hors échantillon. Le dépôt ne peut revendiquer aucune prédiction. | Coder 20 cas rétrospectifs sous les règles courantes, puis 5 à 10 prospectifs avant l'issue. |
-| **1 codeur, κ absent** | La fiabilité du codage n'est pas mesurée. Un lecteur ne peut pas distinguer une lecture reproductible d'un art personnel. | Second codeur à l'aveugle (modèle + humain), κ par carte, désaccords conservés. |
-| **182/208 « Proposé »** | L'ontologie est majoritairement non vérifiée. Les 13 « Documenté » sont tous en strate 7. | Finir la strate 7 (16/16), puis ouvrir une seconde strate. |
+| **1 codeur, κ absent** | La fiabilité du codage n'est pas mesurée. Un lecteur ne peut pas distinguer une lecture reproductible d'un art personnel. Depuis 0.7.5, les seuils existent (κ 0,67 exigible, 0,80 rapportable) et la puissance est calculée : 20 cas peuvent suffire ou non selon le nombre de décisions codées par cas. | Second codeur à l'aveugle (modèle + humain), κ par carte, désaccords conservés. |
+| **181/208 « Proposé »** | L'ontologie est majoritairement non vérifiée. Les 13 « Documenté » sont tous en strate 7 ; 14 cases y sont traitées sur 16. | Finir la strate 7 (les 2 cases restantes), puis ouvrir une seconde strate. |
 
 Ce ne sont pas des défauts de conception : ce sont des dettes. Mais une dette non payée finit par être un
 défaut. Et le temps joue contre le dépôt : plus l'ontologie reste « Proposé », plus elle ressemble à une
@@ -831,7 +947,8 @@ Une remarque sur la troisième ligne : le remède est souvent formulé comme « 
 motivés. Une strate « complète » n'est pas une strate où les 16 cartes sont Documentées : c'est une
 strate où les 16 cases sont *traitées*, y compris par un constat d'absence. C'est plus honnête et plus
 atteignable — et cela devrait être dit plus tôt au lecteur, parce que c'est la seule façon d'avoir une
-strate pilote réellement close.
+strate pilote réellement close. La strate 7 en est à 14/16 : 13 Documentés, 1 Proposé, 2 Vides dont une
+close après trois recherches. Deux cases la séparent de l'objectif, et elles sont nommées.
 
 ### 6.3 · Le mur
 
@@ -841,11 +958,13 @@ strate pilote réellement close.
 | L'autorégression égale ou bat les modèles structurels (Chadefaux & Schincariol, 2025) | Les cartes doivent battre `p_sans_cartes`, sinon elles n'ajoutent rien à la prévision. Le comparateur est le bon juge ; il faut le publier à chaque prévision. |
 | Les mesures textuelles dérivent hors échantillon (GFT, Bollen) | Une ontologie « lente » est moins exposée à la dérive. Mais elle peut se tromper de façon stable : un biais de codebook ne se corrige pas avec plus de données. |
 | **La sélection des homologues peut n'ajouter presque rien** (placebo, 0.7.4 — base fictive) | Si l'écart au placebo reste marginal sur des cas réels, le moteur mesure surtout son a priori et la fréquence de la strate, pas l'analogie structurelle. C'est testable, et désormais testé à chaque calcul. |
+| **Deux transitions archivées sur trois ne sont pas atteignables** (`confronter`, 0.7.5) | Sur les quatre cas réels archivés, deux apparitions ne peuvent pas être produites par la matrice depuis l'état codé. Ce sont des divergences à examiner (journal des lacunes, A2), pas des réfutations : les cas ont été codés après leur issue, sous d'anciennes règles. Mais c'est le premier contact de la matrice avec des observations, et il n'est pas flatteur. |
+| **La matrice ne se distingue du hasard que sur un événement** (sonde, 0.7.6) | 98ᵉ centile de 200 tirages, +3,2 points aux cas : le contenu structurel existe. Sur un seul état et une seule cible, cela ne prouve ni sa vérité ni sa généralité. Le test doit être répété avant d'être cité. |
 
-La quatrième ligne est nouvelle, et elle est de nature différente des trois autres : ce n'est pas un
-résultat de la littérature, c'est le dépôt qui se mesure. Il faut la traiter avec la même prudence — la
-base est fictive — mais aussi avec la même sérieux, parce qu'elle porte directement sur l'axiome et
-qu'elle vient de l'intérieur.
+Les trois dernières lignes sont nouvelles, et de nature différente des trois premières : ce n'est pas un
+résultat de la littérature, c'est le dépôt qui se mesure. Il faut les traiter avec la même prudence — les
+unes portent sur une base fictive, l'autre sur des archives codées hors règles — mais avec le même
+sérieux, parce qu'elles portent directement sur l'axiome et qu'elles viennent de l'intérieur.
 
 **La conclusion honnête.** Le meilleur produit du dépôt n'est peut-être pas « prévoir des événements »,
 mais « caractériser des situations, estimer leur persistance, et savoir ce que le chiffre doit à quoi ».
@@ -873,9 +992,9 @@ l'hypothèse d'universalité est falsifiée — et c'est encore un résultat.
 
 ## 07 · Ce qui reste
 
-> Six actions, classées par priorité. La première vaut plus que les cinq autres réunies.
+> Huit actions, classées par priorité. La première vaut plus que les sept autres réunies.
 
-### 7.1 · Ce que les versions 0.7.3 et 0.7.4 ont fermé
+### 7.1 · Ce que les versions 0.7.3 à 0.7.7 ont fermé
 
 | Point | État |
 |---|---|
@@ -890,7 +1009,14 @@ l'hypothèse d'universalité est falsifiée — et c'est encore un résultat.
 | Le partage apprentissage/test n'était pas daté | **fermé** — registre daté, `usage_fige_le`, `codage.debut`, recoupement par `valider --registre` |
 | A7 n'avait pas de plancher vérifiable | **fermé** — requêtes consignées, trois familles par carte, discrimination par paire de candidates |
 | L'homologie n'était pas testable | **fermé** — placebo moyenné sur 200 tirages, graine dérivée de la question |
-| F/f absent des multiplicateurs | **documenté, non corrigé** — décision réservée (voir 7.3) |
+| La matrice n'était jamais confrontée aux observations | **fermé** — `confronter` classe chaque apparition par la règle du moteur, compte les arêtes éprouvées et le maintien selon l'âge (0.7.5) |
+| Un écart de score n'était ni testé ni accompagné de son erreur-type | **fermé** — différentiel par épisode, σ(d), autocorrélation, tests exacts du signe et de Wilcoxon, score logarithmique (0.7.5) |
+| Les paramètres n'étaient pas éprouvables sans cas réel | **fermé** — `sonde` (arêtes, intensités, inerties), couverture des arêtes, taille effective de Kish (0.7.6) |
+| Le seuil d'ancrage mélangeait publication et preuve | **fermé** — `n_min_publication` 1, `n_min_ancrage` 20 = k₀, ρ3 réservé à l'ancrage (0.7.7) |
+| V4 se déclarait sur un gain relatif non testé | **fermé** — gain absolu de 2,5 points, test du signe, effectif calculé par σ̂(d) avec plancher de 50 (0.7.7) |
+| Rien ne distinguait les questions où l'alphabet peut s'exprimer | **fermé** — seuil discriminant de 2 points, double rapport V4, jamais filtre du premier (0.7.7) |
+| Les règles d'atténuation, de Weibull et de circularité restaient implicites | **fermées** — écrites avant les données, avec leur condition de bascule (0.7.7) |
+| F/f absent des multiplicateurs | **mesuré hors du `p`** — variante `attenuation_w_f` (0.7.6), règle de promotion figée (0.7.7) ; voir 7.3 |
 
 Trois écarts à la lettre des décisions valent d'être notés, parce qu'ils sont bien motivés et qu'ils
 disent quelque chose de la maturité du projet : le partage se compare à `codage.debut` et non au premier
@@ -899,13 +1025,24 @@ dossier de travail et non dans `assets/`, puisqu'il est remplacé à chaque inst
 moyenné sur 200 tirages plutôt qu'un tirage unique, trop bruité pour être lu. Chacun de ces écarts
 remplace une règle littérale par une règle qui fait ce que la règle voulait faire.
 
+0.7.7 en ajoute un quatrième, d'une autre nature : une décision **retirée** après vérification. Le
+passage du seuil de niveau à 2 cas devait être sans effet ; il changeait un calcul de démonstration.
+L'auteur ne l'a pas appliquée et l'a renvoyée à une version dédiée, alors que la fiche était déjà écrite.
+C'est le comportement qu'on demande à un paramétrage : non pas d'avoir raison, mais de ne pas passer en
+force quand la vérification contredit la fiche.
+
 ### 7.2 · Ce qui reste
 
 **P0 · Un second codeur, maintenant.** Prendre 20 cas, donner au second codeur uniquement les faits et
-les dates de disponibilité, jamais le premier codage. Coder indépendamment. Calculer κ par carte. Si
-κ < 0,6, réviser les marqueurs de la carte avant de continuer. Un modèle peut être ce second codeur — le
-dépôt le prévoit (`role: modele`) — mais il faut au moins un humain. C'est ce qui débloque A4, la base, et
-la crédibilité de tout le reste. **Le dossier scellé de 0.7.3 est exactement la pièce dont ce second
+les dates de disponibilité, jamais le premier codage. Coder indépendamment. Déclarer, **avant** de
+coder, ce qui fait un signe suffisant (`signe_suffisant` : déclaration, exécution, trace) — c'est le
+champ ajouté en 0.7.6, et il sert à expliquer les désaccords systématiques, pas à les excuser. Calculer
+κ par carte. Si κ < 0,67, réviser les marqueurs de la carte avant de continuer. Attention à l'effectif :
+la puissance calculée en 0.7.5 porte sur les **décisions codées** (carte × strate × état), pas sur les
+cas ; 20 cas peuvent suffire ou non selon leur densité, et 0.7.5 montre qu'avec pₑ = 0,5, distinguer
+κ = 0,80 de 0,60 demande environ 83 décisions. Un modèle peut être ce second codeur — le dépôt le
+prévoit (`role: modele`) — mais il faut au moins un humain. C'est ce qui débloque A4, la base, et la
+crédibilité de tout le reste. **Le dossier scellé de 0.7.3 est exactement la pièce dont ce second
 codeur a besoin** : il peut relire une lecture complète sans avoir assisté au calcul. C'est le meilleur
 retour sur investissement des quatre décisions prises, et il était gratuit.
 
@@ -914,19 +1051,27 @@ depuis 0.7.4. Il en manque un troisième : une prévision LLM zero-shot ou avec 
 trois écarts pour chaque question. Une prévision qui ne bat pas le meilleur comparateur est un
 comparateur, pas un résultat.
 
+**P1 · Promouvoir une seule variante d'atténuation, sur mesure.** À 20 cas double-codés, choisir entre
+l'atténuation par la force et celle par la corroboration et le passage, celle dont le différentiel de
+Brier contre le `p` par défaut est négatif et significatif au test du signe à 5 % sur les mêmes
+épisodes ; si les deux, la plus grande ; si aucune, aucune. C'est la règle figée en 0.7.7, et elle
+transforme une décision de principe en décision mesurée. D'ici là, les deux variantes restent publiées
+hors du `p`, ce qui permet de les comparer sans contaminer le chiffre.
+
 **P1 · GDELT/ICEWS comme flux de faits, pas comme modèle.** Pour la strate 7, utiliser le flux
 d'événements pour dater et sourcer les faits (A5), pas pour remplacer la lecture. On gagne en
 reproductibilité et en coût sans abdiquer l'ontologie. C'est le pont le plus concret vers la littérature
 CAMEO.
 
-**P1 · Réduire la revendication.** Une strate (7), un type d'événement (`SEUIL@7 apparait`), 50 épisodes
-pré-enregistrés. La revendication trans-domaines est un chapitre ultérieur, pas le premier article. Un
+**P1 · Réduire la revendication.** Une strate (7), un type d'événement (`SEUIL@7 apparait`), et un
+nombre d'épisodes pré-enregistrés qui vaut désormais **max(50, n(σ̂))** : 50 ne suffisent que si
+σ̂(d) ≲ 0,063. La revendication trans-domaines est un chapitre ultérieur, pas le premier article. Un
 résultat étroit et solide vaut mieux qu'un résultat large et fragile.
 
 **P2 · Publier le protocole et le résultat nul.** Le protocole est une contribution ; le résultat nul en
-est une autre. Ouvrir la base, le journal et le registre de partage. Un dépôt public avec 50 épisodes,
-des empreintes, des dossiers scellés et un Brier comparable à l'inertie et au placebo sera plus
-convaincant qu'un article qui revendique 0,02 d'AUC sans preuve de prépublication.
+est une autre. Ouvrir la base, le journal et le registre de partage. Un dépôt public avec un lot
+d'épisodes pré-enregistrés, des empreintes, des dossiers scellés et un Brier comparable à l'inertie et
+au placebo sera plus convaincant qu'un article qui revendique 0,02 d'AUC sans preuve de prépublication.
 
 **P2 · Tester le transfert entre strates, séparément.** Mêmes cartes, deux strates éloignées (1 ou 11
 contre 7), même type d'événement. Si les dynamiques ne se transportent pas, P1 est falsifié — et c'est un
@@ -938,8 +1083,10 @@ obligé de 14 liens entrants sur 66 ; un modèle peut sur-prédire les ruptures 
 
 ### 7.3 · La décision réservée : atténuer λ par la qualité de l'ancrage
 
-C'est la seule des cinq décisions du 29 octobre qui n'est pas appliquée, et le dépôt a eu raison de la
-réserver à une version séparée. Elle mérite une explication, parce qu'elle est la plus lourde.
+C'est la seule des cinq décisions du 29 octobre qui n'est pas appliquée **au défaut du calcul**, et le
+dépôt a eu raison de la réserver à une version séparée. Elle mérite une explication, parce qu'elle est
+la plus lourde. Depuis 0.7.6, elle n'est plus une idée en attente : elle est calculée comme variante,
+publiée hors du `p`, et sa promotion obéit à une règle écrite d'avance.
 
 **La question.** Aujourd'hui, le moteur demande « cette carte mène-t-elle à cet événement ? » et répond
 par un nombre fixe de la matrice. Il ne demande jamais « quelle est la solidité de l'ancrage de cette
@@ -961,10 +1108,18 @@ saurait pas lequel fait le travail, et le risque est de compter deux fois la mê
 la qualité de la preuve doit-elle atténuer l'inférence ? C'est une décision de conception, qui peut être
 prise sans donnée. (b) la **valeur** de w — c'est empirique, et il n'y a pas encore de données.
 
-**Recommandation.** Oui au principe ; pas encore à la valeur. Implémenter l'atténuation comme variante
-déclarée dans la bande de sensibilité, sans effet sur le `p` par défaut, mesurer, puis promouvoir au
-défaut quand la base comptera une vingtaine de cas et que les deux canaux pourront être distingués. Cette
-position respecte l'axiome : F/f n'est pas une intensité, mais une mesure peu fiable justifie une
+**Recommandation, et ce qu'il en est advenu.** Oui au principe ; pas encore à la valeur. Implémenter
+l'atténuation comme variante déclarée dans la bande de sensibilité, sans effet sur le `p` par défaut,
+mesurer, puis promouvoir au défaut quand la base comptera une vingtaine de cas et que les deux canaux
+pourront être distingués. C'est exactement ce que 0.7.6 a fait (`attenuation_w_f`, publiée hors du `p`),
+et 0.7.7 a ajouté ce qui manquait : la règle de promotion, écrite avant les données. Sur ≥ 20 cas
+double-codés, une seule variante passe au défaut — celle dont le différentiel de Brier contre le `p` par
+défaut est négatif et significatif au test du signe à 5 % sur les mêmes épisodes ; si les deux, la plus
+grande ; si aucune, aucune. La formulation initiale, « dont l'effet dépasse celui du placebo », a été
+corrigée : les deux effets ne mesurent pas la même chose, et comparer deux grandeurs non commensurables
+n'est pas une règle.
+
+Cette position respecte l'axiome : F/f n'est pas une intensité, mais une mesure peu fiable justifie une
 inférence moins appuyée. C'est de l'atténuation pour erreur de mesure, pas une grandeur physique.
 
 ### 7.4 · Si une seule chose devait être gardée
@@ -986,20 +1141,27 @@ qui manque n'est plus de la méthode. Ce sont des faits, un deuxième lecteur et
 
 ### Le dépôt et ses vérifications
 
-`Othman-Benbrahim/alphabet-situationnel`, version 0.7.4, licence MIT. Fichiers lus : `README.md`,
+`Othman-Benbrahim/alphabet-situationnel`, version 0.7.7, licence MIT. Fichiers lus : `README.md`,
 `SKILL.md`, `references/` (constitution, protocole, grammaire, graphe, dynamiques, validation,
 feuille-de-route, glossaire, angles-morts, apports-théoriques, 13 fichiers d'équivalents),
-`assets/parametres.json`, `assets/base-de-cas.exemple.jsonl`, `assets/dossier.exemple.json`,
-`CHANGELOG.md`, `scripts/moteur.py`.
+`assets/parametres.json`, `assets/base-de-cas.exemple.jsonl`, `assets/cas-reels.jsonl`,
+`assets/dossier.exemple.json`, `CHANGELOG.md`, `scripts/moteur.py`.
 
-Commandes exécutées le 29/10/2026 :
+Commandes exécutées le 30/10/2026 :
 
 ```
-python3 scripts/moteur.py audit      → conforme
-python3 scripts/moteur.py autotest   → 115 tests
-python3 scripts/moteur.py bilan      → 0 cas actif · 13/16 en strate 7 · aucun journal
+python3 scripts/moteur.py audit      → conforme — 176 renvois §, 49 fichiers au manifeste
+python3 scripts/moteur.py autotest   → 126 tests (120 passent sous ce bac à sable ; 6 refus d'écriture)
+python3 scripts/moteur.py bilan      → 0 cas actif · 13/16 en strate 7 · 1/14 Vides closes · aucun journal
 python3 scripts/moteur.py calculer … --demo    → p 22,0 % [5,2–43,1] · sans cartes 12,1 %
                                                  placebo 20,2 % · apport homologie +1,8 pt
+                                                 apport cartes +10,0 pt, non interprétable
+python3 scripts/moteur.py sonde … --demo --tirages 200
+                                     → p réel 22 % · sans multiplicateurs 19 % · sans cartes 12 %
+                                       matrice réelle au 98ᵉ centile · +3,2 pt aux cas, médiane +0,0
+python3 scripts/moteur.py confronter assets/cas-reels.jsonl
+                                     → 3 apparitions · 1 atteignable · 2 non atteignables
+                                       25/66 arêtes éprouvées au moins une fois
 ```
 
 ### Codage des événements
@@ -1051,10 +1213,11 @@ python3 scripts/moteur.py calculer … --demo    → p 22,0 % [5,2–43,1] · sa
   EPJ Data Science.
 - Murphy, A. H. (1973). *A New Vector Partition of the Probability Score.* J. Appl. Meteor. 12, 595-600.
 
-*Note préparée le 29 octobre 2026, révisée pour la version 0.7.4. Les chiffres de la démonstration
-proviennent d'une base entièrement fictive (`--demo`) : ils illustrent la mécanique, pas une performance.
-Les axiomes sont des reformulations vulgarisées, pas des citations des auteurs. Les positions et les
-nombres de la matrice sont lus directement dans `assets/parametres.json`.*
+*Note préparée le 29 octobre 2026, révisée pour la version 0.7.7 le 30 octobre 2026. Les chiffres de la
+démonstration proviennent d'une base entièrement fictive (`--demo`) : ils illustrent la mécanique, pas
+une performance. Les axiomes sont des reformulations vulgarisées, pas des citations des auteurs. Les
+positions et les nombres de la matrice sont lus directement dans `assets/parametres.json`, identique de
+0.7.4 à 0.7.7 (vérifié).*
 
 ---
 
@@ -1062,38 +1225,48 @@ nombres de la matrice sont lus directement dans `assets/parametres.json`.*
 
 | Vérification | Commande | Résultat |
 |---|---|---|
-| Intégrité | `moteur.py audit` | conforme — 208 statuts, 49 fichiers au manifeste, 131 renvois §, matrice et inerties |
-| Régressions | `moteur.py autotest` | 115 tests |
-| Avancement | `moteur.py bilan` | 0 cas actif, 13/16 en strate 7, 0/13 cases Vides closes, aucun journal |
+| Intégrité | `moteur.py audit` | conforme — 208 statuts, 49 fichiers au manifeste, 176 renvois §, matrice et inerties |
+| Régressions | `moteur.py autotest` | 126 tests — 120 passent, 6 échouent sur refus d'écriture du dossier temporaire |
+| Avancement | `moteur.py bilan` | 0 cas actif, 13/16 en strate 7, 1/14 cases Vides closes, aucun journal |
+| Statuts | lecture des 13 fichiers d'équivalents | 181 Proposé · 14 Vide · 13 Documenté · 0 Attesté |
 | Placebo, événement phare | `calculer … --demo` | `p` 22,0 % · sans cartes 12,1 % · placebo 20,2 % · homologie +1,8 pt |
-| Placebo, cinq événements | appels directs au moteur, base `--demo`, date d'information 2026-09 | cartes **+0,9 pt** en moyenne · homologie **+0,7 pt** · part de l'homologie 79 % |
-| Fragilité de niveau | appels directs, base synthétique 2 cas H1 / 3 cas H1.5 | 53 % contre 33 %, soit 20 points décidés par `c_min_rho1` |
+| Apport des cartes | `calculer … --demo` | +10,0 pt, **non interprétable** : a priori non ancré (17,1 observations pondérées < 20) |
+| Placebo, cinq événements | appels directs au moteur, base `--demo`, date d'information 2026-09 | cartes **+0,9 pt** en moyenne · homologie **+0,7 pt** · part de l'homologie 79 % (mesuré en 0.7.4) |
+| Fragilité de niveau | appels directs, base synthétique 2 cas H1 / 3 cas H1.5 | 53 % contre 33 %, soit 20 points décidés par `c_min_niveau` |
+| Fragilité de niveau, démonstration | `calculer … --demo` | 0,7 pt (H1 22,0 · H1.5 22,7 · H2 22,7) |
 | Sonde de force | `calculer … --demo` | F → f : +0,7 pt, par la seule sélection des homologues |
+| Sonde de paramètres | `sonde … --demo --tirages 200` | matrice réelle 98ᵉ centile · +3,2 pt aux cas · médiane +0,0 · révision par les cas +6,8 |
+| Confrontation | `confronter assets/cas-reels.jsonl` | 3 apparitions · 1 atteignable · 2 non atteignables · 25/66 arêtes éprouvées · maintien 12/12 à l'âge 0 |
 | Matrice | lecture de `parametres.json` | 66/240 liens · 3 F · 27 M · 36 f · SEUIL 14 entrants, poids 21,6 |
+| Kish | `calculer … --demo` | 9,3 pour 10 cas · cas le plus lourd 16 % |
 
 *Les tests de fichiers temporaires (`test_repetitions`, `test_renvoi_detection`, `test_scorer_csv`,
 `test_dossier_calculer`, `test_compose_sans_semantique`, `test_partage_date`) échouent sous un bac à sable
 qui refuse l'écriture et le `chmod` dans le dossier temporaire du système. Ils n'échouent pas sur un
-environnement non confiné ; ce n'est pas un défaut du code.*
+environnement non confiné ; ce n'est pas un défaut du code. Le sixième, `test_partage_date`, échoue en
+outre sur une assertion (2 ≠ 0) : il attend un registre absent, conséquence du même refus d'écriture.*
 
-## Annexe B · Ce qui a changé depuis la note du 28 octobre
+## Annexe B · Ce qui a changé depuis la note du 29 octobre
 
-| Point de la note du 28 octobre | État au 29 octobre 2026 |
+| Point de la note du 29 octobre (version 0.7.4) | État au 30 octobre 2026 (version 0.7.7) |
 |---|---|
-| « 103 autotests » | **115** |
-| « manifeste 48 fichiers » | **49** (dossier d'exemple ajouté) |
-| « 127 renvois § » | **131** |
-| « 182/208 Proposé, 0 Attesté » | inchangé |
-| « 66 liens, 3 F, 27 M, 36 f » | inchangé |
-| « le moteur ne teste pas la lecture » | **corrigé** — dossier scellé, 0.7.3 |
-| « la bande de sensibilité ne bouge qu'un cran de λ » | **corrigé** — bande de classe, 0.7.3 |
-| « le niveau d'homologie peut basculer sans que rien ne le signale » | **corrigé** — `fragilite_niveau`, 0.7.3 |
-| « λ vient de la matrice, pas de F/f » | **écrit** dans `SKILL.md` et `graphe.md` §2.3, 0.7.3 |
-| « l'apport des cartes n'a pas de sens sans ancrage » | **corrigé**, 0.7.3 |
-| « propagation inter-strates invisible » | **affichée**, 0.7.3 |
-| « le partage apprentissage/test n'est pas daté » | **corrigé** — registre daté, 0.7.4 |
-| « A7 n'a pas de budget défini » | **corrigé** — plancher de familles, 0.7.4 |
-| « aucun test de la sélection des homologues » | **corrigé** — placebo, 0.7.4 |
-| « la revendication trans-domaines n'est pas testée » | inchangé — P2 |
-| « un seul codeur, κ absent » | **inchangé — la dette principale** |
+| « 115 autotests » | **126** |
+| « manifeste 49 fichiers » | inchangé — 49 au manifeste, 50 fichiers suivis |
+| « 131 renvois § » | **176** |
+| « 182/208 Proposé, 13 Vide » | **181 Proposé, 14 Vide** — CROISSANCE@7 rétrogradée, RÉSONANCE@7 close |
+| « 13/16 Documentés, 0/13 Vides closes » | **13/16, 1/14 Vides closes** — 14 cases traitées sur 16 |
+| « 66 liens, 3 F, 27 M, 36 f » | inchangé (matrice identique, vérifié) |
+| « les cartes déplacent `p` de +10,0 points » | **non interprétable** — l'a priori n'est pas ancré ; le chiffre est publié avec son motif de refus |
+| « l'écart au placebo est +1,8 » | inchangé |
+| « aucun test de la matrice contre les observations » | **corrigé** — `confronter`, 0.7.5 : 2 apparitions sur 3 non atteignables |
+| « aucun test des paramètres sans cas » | **corrigé** — `sonde`, 0.7.6 : 98ᵉ centile, +3,2 points |
+| « V4 : gain relatif de 10 %, 50 épisodes » | **remplacé** — gain absolu de 2,5 points, test du signe, effectif max(50, n(σ̂)) |
+| « le seuil d'ancrage vaut 10 » | **remplacé** — publication à 1, ancrage à 20 (= k₀), ρ3 sur ancrage |
+| « l'atténuation λ est réservée » | **variante mesurée hors du `p`** (0.7.6), règle de promotion figée (0.7.7) |
+| « κ absent » | **inchangé — la dette principale** ; seuils 0,67 / 0,80 et puissance désormais écrits |
 | « 0 cas actif » | **inchangé — la dette principale** |
+| « la revendication trans-domaines n'est pas testée » | inchangé — P2 |
+
+**Historique des versions de cette note.** 0.7.2 (27 octobre, note initiale) · 0.7.3 (29 octobre,
+lecture contrôlée) · 0.7.4 (29 octobre, version de preuve) · **0.7.7 (30 octobre, paramétrage avant
+mesure)**. Les règles de numérotation et le détail des révisions sont dans `CHANGELOG.md`.
