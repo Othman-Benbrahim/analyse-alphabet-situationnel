@@ -2,10 +2,10 @@
 
 Note de synthèse critique sur le protocole **Alphabet situationnel** (dépôt
 [`Othman-Benbrahim/alphabet-situationnel`](https://github.com/Othman-Benbrahim/alphabet-situationnel),
-licence MIT), version **0.7.7**, au 30 octobre 2026.
+licence MIT), version **0.7.15**, au 31 octobre 2026.
 
-**Version de la note : 0.7.7 · révision 1 · 30 octobre 2026.**
-Les trois documents d'analyse portent la même version ; la révision compte les réécritures à version
+**Version de la note : 0.7.15 · révision 1 · 31 octobre 2026.**
+Les quatre documents d'analyse portent la même version ; la révision compte les réécritures à version
 constante du dépôt analysé. **Intégrité** : `SHA256SUMS` donne l'empreinte de chaque fichier livré ;
 `sha256sum -c SHA256SUMS` (ou `Get-FileHash` sous Windows) refuse un fichier modifié, ajouté ou retiré.
 Une version livrée se retrouve par son étiquette `vX.Y.Z` ; aucun document ne cite le commit qui le
@@ -18,6 +18,7 @@ contient, créé après lui.
 | Fichier | Objet |
 |---|---|
 | [`analyse-alphabet-situationnel.md`](analyse-alphabet-situationnel.md) | la note : état des lieux, fonctionnement, axiome, littérature, comparaison, bilan, ce qui reste |
+| [`concurrents-directs.md`](concurrents-directs.md) | les seize concurrents directs, ce qu'ils promettent, ce qu'ils prouvent, et huit protocoles de départage |
 | [`comprendre-l-alphabet-situationnel.md`](comprendre-l-alphabet-situationnel.md) | la vulgarisation : la moitié sémiotique, la moitié mathématique, et comment l'une conditionne l'autre |
 | [`CHANGELOG.md`](CHANGELOG.md) | le journal des versions de la note, révision par révision |
 | `SHA256SUMS` | l'empreinte des fichiers livrés |
@@ -34,8 +35,8 @@ plutôt que d'inventer une numérotation concurrente. Trois règles suffisent :
 
 | Changement | Effet sur la note | Exemple |
 |---|---|---|
-| **Correctif** — un chiffre, une coquille, une référence corrigés sans changer une conclusion | révision +1, version inchangée | 0.7.7 · révision 1 → 0.7.7 · révision 2 |
-| **Mineur** — le dépôt analysé change de version mineure | version alignée, révision remise à 1 | 0.7.4 → 0.7.7 |
+| **Correctif** — un chiffre, une coquille, une référence corrigés sans changer une conclusion | révision +1, version inchangée | 0.7.15 · révision 1 → 0.7.15 · révision 2 |
+| **Mineur** — le dépôt analysé change de version mineure | version alignée, révision remise à 1 | 0.7.7 → 0.7.15 |
 | **Majeur** — le plan, le verdict ou la thèse de la note changent | version majeure de la note, indépendante du dépôt | 1.0.0 |
 
 Deux conséquences pratiques. D'abord, une note ne peut pas être « à jour » d'une version qu'elle ne
@@ -47,6 +48,8 @@ le journal du dépôt analysé conserve ses propres erreurs.
 le franchissement du jalon V4, ou une décision d'auteur qui change un `p`. En dehors de ces cas, les
 chiffres de structure — 208 cases, 66 transitions, 181 « Proposé » — changent peu et la note reste
 valable. Une révision purement documentaire reste possible, mais elle ne prétend pas mesurer autre chose.
+La révision 0.7.15 en est une : elle met à jour huit versions d'instruments sans qu'un seul `p` ni un
+seul statut de case ait bougé, et elle ajoute le document sur les concurrents.
 
 ---
 
@@ -55,14 +58,32 @@ valable. Une révision purement documentaire reste possible, mais elle ne préte
 1. **État des lieux** — ce que le dépôt est, ce qu'il contient, ce qu'il sait faire, ce qu'il ne sait pas.
 2. **Fonctionnement** — sept gestes, un exemple fil rouge, un lexique, ce que l'outil ne fait pas.
 3. **L'axiome** — les quatre sous-axiomes, leur origine dans la littérature, et le problème central de la
-   classe de référence, instrumenté depuis 0.7.3.
+   classe de référence, instrumenté depuis 0.7.3 et mesuré sur sept instruments.
 4. **Dix expériences abouties** — du codage des actes au modèle de langue, avec ce que chacune prouve et
    ne prouve pas.
 5. **Comparaison** — même chaîne, deux ontologies ; ce que chaque famille peut apporter.
-6. **Ce que ça dit du dépôt** — cinq forces, trois faiblesses, un mur.
-7. **Ce qui reste** — ce que les versions 0.7.3 à 0.7.7 ont fermé, ce qui reste ouvert, par priorité.
+6. **Ce que ça dit du dépôt** — six forces, quatre faiblesses, un mur.
+7. **Ce qui reste** — ce que les versions 0.7.3 à 0.7.15 ont fermé, ce qui reste ouvert, par priorité.
 8. **Sources**, puis deux annexes : le journal des vérifications exécutées, et le tableau des changements
    depuis la révision précédente.
+
+## Ce que contient le document sur les concurrents
+
+Seize rivaux et sept instruments, en quatre cercles, et pour chacun : ce qu'il promet, ce qu'il produit, ce qui le prouve,
+et l'écart décisif avec l'Alphabet.
+
+- **Rivaux de même promesse** — Wardley, Cynefin, MACTOR, ACH, analyse morphologique, scénarios,
+  Bueno de Mesquita.
+- **Rivaux disciplinaires** — cliodynamique, panarchie, théorie des catastrophes, *Dynamics of
+  Contention*. C'est là que se trouve le concurrent le plus proche, et le seul qui ait déjà publié une
+  prédiction datée et réévaluée.
+- **Concurrents de la chaîne de prévision** — CAMEO/GDELT/POLECAT, ViEWS, superforecasters, marchés de
+  prédiction, prévisionnistes LLM.
+- **Cadres de calcul et instruments** — PyCIB, CIB, FCMpy, pgmpy, EMA Workbench, QCA, inférence
+  séquentielle.
+
+Il se termine par huit protocoles de départage, classés par coût, dont deux qui coûtent moins d'une
+journée et n'ont jamais été joués.
 
 ## Ce que contient la vulgarisation
 
@@ -71,7 +92,7 @@ sémiotique** — ce qui compte comme signe, comment un fait ancre une carte, po
 intensité —, puis la **partie mathématique** — ce qui est calculé, avec quels nombres et quelles
 garanties —, et enfin le **conditionnement de l'une par l'autre** : sans signe, pas de lettre ; sans
 lettre, pas d'état ; sans état, le moteur ne calcule qu'une fréquence par défaut. Il termine par un
-exemple complet et par les trois confusions les plus fréquentes.
+exemple complet et par les cinq confusions les plus fréquentes.
 
 ---
 
@@ -82,38 +103,50 @@ exemple complet et par les trois confusions les plus fréquentes.
 - **Ce n'est pas un audit d'intégrité.** L'audit et les autotests du dépôt vérifient la forme et le
   recoupement interne ; ils ne certifient ni la vérité des faits ni l'utilité scientifique de l'alphabet.
 - **Ce n'est pas une revue de littérature exhaustive.** Les dix expériences citées sont celles qui
-  éclairent le choix ontologique du dépôt, pas l'ensemble du champ.
+  éclairent le choix ontologique du dépôt, pas l'ensemble du champ ; les seize concurrents sont ceux
+  qui prétendent occuper la même place, pas tous ceux qui touchent à la prévision.
 - **Les chiffres de démonstration ne mesurent rien.** Ils proviennent d'une base **entièrement fictive**
   (`--demo`) : ils illustrent une mécanique de calcul, jamais une performance.
 - **Le versionnement n'est pas une preuve de fraîcheur.** Un numéro identique ne garantit pas que le
   dépôt n'a pas changé sous le même numéro ; `SHA256SUMS` et l'étiquette de version le garantissent,
   pas la lecture de ce fichier.
+- **Une partie de la comparaison vient d'un document de l'auteur** du dépôt analysé, l'audit V34 du
+  31 octobre 2026. Ses constats vérifiables ont été recoupés ; ses jugements sont cités comme tels.
 
 ---
 
 ## Comment les chiffres ont été obtenus
 
-Toutes les valeurs citées ont été produites par le moteur du dépôt, à sa version 0.7.7 :
+Toutes les valeurs citées ont été produites par le moteur du dépôt, à sa version 0.7.15 :
 
 ```
-python3 scripts/moteur.py audit      # intégrité du paquet
-python3 scripts/moteur.py autotest   # 126 tests de régression
-python3 scripts/moteur.py bilan      # avancement mesuré sur la feuille de route
-python3 scripts/moteur.py calculer … --demo   # démonstration, base fictive
-python3 scripts/moteur.py sonde … --demo --tirages 200   # paramètres contre le hasard
-python3 scripts/moteur.py confronter assets/cas-reels.jsonl   # matrice contre observations
+python scripts/moteur.py audit      # intégrité du paquet — 47 fichiers, 248 renvois §
+python scripts/moteur.py autotest   # 149 tests de régression
+python scripts/moteur.py bilan      # avancement mesuré sur la feuille de route
+python scripts/moteur.py calculer … --demo   # démonstration, base fictive
+python scripts/moteur.py sonde … --demo --tirages 200   # paramètres contre le hasard
+python scripts/moteur.py confronter assets/cas-reels.jsonl   # matrice contre observations
+python scripts/moteur.py noyau … --evenement A --evenement B # loi jointe d'un pas
+python scripts/moteur.py conservativite --base assets/base-de-cas.exemple.jsonl  # clôture
 ```
 
-Deux mesures ne figurent pas telles quelles dans la sortie standard et ont été recalculées par appel
-direct des fonctions publiques du moteur : l'effet des cartes et de l'homologie sur cinq événements de
-démonstration (mesuré en 0.7.4, probabilités inchangées depuis), et la fragilité de niveau sur une base
-synthétique de deux cas stricts et trois cas larges. Les valeurs figurent en annexe A de la note, avec la
-commande ou la construction correspondante.
+Quatre mesures ne figurent pas telles quelles dans la sortie standard et ont été recalculées par appel
+direct des fonctions publiques du moteur ou par comparaison de deux versions : l'effet des cartes et de
+l'homologie sur cinq événements de démonstration (mesuré en 0.7.4, probabilités inchangées depuis), la
+fragilité de niveau sur une base synthétique de deux cas stricts et trois cas larges, le déterminisme de
+la clôture (deux exécutions, même empreinte), et la conservation des 2 790 conséquences entre les moteurs
+0.7.7 et 0.7.15 (0 conséquence changée). Les valeurs figurent en annexe A de la note, avec la commande
+ou la construction correspondante.
 
 Une réserve d'environnement : six autotests du dépôt écrivent dans le dossier temporaire du système. Sous
 un bac à sable qui refuse l'écriture et le `chmod` à cet endroit, ils échouent ; ils ne signalent pas un
-défaut du code. C'est le cas de l'exécution qui a produit cette révision : 120 tests passent, 6 échouent
+défaut du code. C'est le cas de l'exécution qui a produit cette révision : 143 tests passent, 6 échouent
 sur `PermissionError`. La note le précise en annexe A plutôt que de le taire.
+
+Une réserve de traçabilité, ajoutée par cette révision : l'empreinte de clôture publiée dans le journal du
+dépôt depuis la 0.7.9 (`b1a592c8…`) ne se reproduit pas avec la 0.7.15 (`b8d346ea…`), alors que le
+calcul est déterministe et qu'aucune conséquence n'a changé. L'annexe A le dit et explique pourquoi la
+vérification par comparaison directe est plus forte que la vérification par empreinte.
 
 ---
 
@@ -124,13 +157,18 @@ sur `PermissionError`. La note le précise en annexe A plutôt que de le taire.
 | 0.7.2 | 27 octobre 2026 | 103 | 1 | note initiale |
 | 0.7.3 | 29 octobre 2026 | 111 | 1 | audit d'ingénierie : la lecture contrôlée avant le chiffre |
 | 0.7.4 | 29 octobre 2026 | 115 | 1 | version de preuve : sceau de dossier, partage daté, placebo, plancher A7 |
-| **0.7.7** | **30 octobre 2026** | **126** | **1** | paramétrer avant de mesurer : seuils séparés, V4 absolu et testé, confrontation et sonde |
+| 0.7.7 | 30 octobre 2026 | 126 | 1 | paramétrer avant de mesurer : seuils séparés, V4 absolu et testé, confrontation et sonde |
+| **0.7.15** | **31 octobre 2026** | **149** | **1** | ce que le lecteur voit, et le concurrent nommé : paire de résultats, bande d'horizon, homologie indiscernable, clôture, noyau joint, comparateur externe |
 
-Les versions 0.7.5 et 0.7.6 ne sont pas couvertes par une révision séparée : la présente révision les
-traite ensemble, parce qu'elles ne changent aucune probabilité et que leurs apports — confrontation,
-tests d'écart, sonde — se lisent mieux comme un seul mouvement. Le détail figure au `CHANGELOG.md`.
-La mention « révision 1 » des versions antérieures est rétroactive : elle désigne la première rédaction
-à cette version, le compteur de révision n'ayant été introduit qu'avec la 0.7.7.
+Les versions 0.7.5 et 0.7.6 sont traitées avec la 0.7.7 : elles ne changent aucune probabilité et leurs
+apports se lisent mieux comme un seul mouvement. Les versions 0.7.8 à 0.7.15 sont traitées ensemble par
+la présente révision, pour la même raison, et parce qu'elles partagent un effet unique : elles changent ce
+qu'un lecteur peut voir et opposer, pas ce que le dépôt sait du monde. Le détail figure au
+`CHANGELOG.md`.
+
+**Ce que la 0.7.15 ne change pas.** Aucun `p`, aucun statut de case, aucune entrée de la matrice. Les
+181 « Proposé », 14 « Vide », 13 « Documenté », 0 « Attesté » sont identiques à la 0.7.7. Le dépôt a
+fermé trente-deux défauts de méthode et zéro défaut empirique.
 
 ---
 
@@ -138,7 +176,7 @@ La mention « révision 1 » des versions antérieures est rétroactive : elle d
 
 Cinq gestes, dans cet ordre, pour que la livraison soit vérifiable comme celle du dépôt analysé :
 
-1. **Mettre à jour les en-têtes** des trois documents : version, révision, date.
+1. **Mettre à jour les en-têtes** des quatre documents : version, révision, date.
 2. **Rejouer les commandes** de la section précédente et reporter les valeurs obtenues en annexe A ;
    aucune valeur n'est recopiée d'une révision antérieure sans être marquée comme telle.
 3. **Ajouter l'entrée** correspondante dans `CHANGELOG.md`, sans réécrire les entrées passées.
@@ -163,6 +201,8 @@ d'assurance est celui du compte qui publie.
 - **`p` n'est pas une probabilité calibrée.** C'est une fréquence conditionnelle expérimentale, dont le
   niveau ρ dit la provenance, pas la fiabilité. La vulgarisation explique pourquoi cette distinction
   n'est pas une coquetterie de vocabulaire.
+- Les concurrents sont cités par leur nom d'usage, avec une source datée en §10 du document de
+  comparaison. Aucun de leurs chiffres n'entre dans les références du dépôt analysé.
 
 ---
 
@@ -174,4 +214,4 @@ réutilisation avec attribution sont souhaitées.
 
 ## Citation
 
-> Analyse de l'Alphabet situationnel, version 0.7.7, révision 1, 30 octobre 2026.
+> Analyse de l'Alphabet situationnel, version 0.7.15, révision 1, 31 octobre 2026.

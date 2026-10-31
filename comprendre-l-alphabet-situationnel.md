@@ -2,11 +2,16 @@
 
 ### Un mode d'emploi en deux moitiés — et le fil qui les noue
 
-**Document de vulgarisation · version 0.7.7 · révision 1 · 30 octobre 2026**
+**Document de vulgarisation · version 0.7.15 · révision 1 · 31 octobre 2026**
 
 Ce texte accompagne la note [`analyse-alphabet-situationnel.md`](analyse-alphabet-situationnel.md). Il
 ne la remplace pas : il explique, avec des mots ordinaires, ce que la note démontre avec des chiffres.
 Il ne suppose aucune connaissance en mathématiques, en statistique ni en sémiotique.
+
+Les concurrents directs de l'outil — Wardley, Cynefin, la panarchie, la théorie des catastrophes,
+*Dynamics of Contention*, les superforecasters, les modèles de langue — sont décrits dans
+[`concurrents-directs.md`](concurrents-directs.md). Ce document-ci ne les traite pas : il explique
+comment l'outil fonctionne, pas à qui il s'oppose.
 
 ---
 
@@ -270,6 +275,11 @@ Le résultat n'est pas un chiffre unique. C'est un **chiffre avec un intervalle*
 démonstration, 22,0 % [5,2–43,1]. L'intervalle est large, et il doit l'être : peu de cas, beaucoup
 d'incertitude.
 
+Et ce chiffre n'a de sens qu'avec **l'horizon** auquel il répond. Le même état, la même matrice, la même
+base donnent 22 % à trois mois, 52 % à neuf mois et 76 % à dix-huit. Ce n'est pas une variante du calcul :
+c'est une autre question. Depuis 0.7.12, le moteur publie les trois côte à côte, précisément pour
+qu'aucun lecteur ne prenne 22 % pour « la probabilité que cela arrive » sans savoir sur quelle durée.
+
 À quoi s'ajoute un **niveau** ρ0 à ρ4, qui ne dit pas la fiabilité mais **la provenance** :
 
 | Niveau | D'où vient le chiffre |
@@ -283,7 +293,7 @@ d'incertitude.
 Un chiffre ρ1 peut être excellent ; un chiffre ρ3 peut être juste. Mais le lecteur doit savoir que le
 second ne repose sur aucun cas. C'est une échelle de **traçabilité**, pas de qualité.
 
-## 6. Les garde-fous : six façons de ne pas se mentir
+## 6. Les garde-fous : dix façons de ne pas se mentir
 
 C'est la partie la plus originale de l'outil, et la plus facile à sous-estimer. À chaque prévision
 s'ajoutent des calculs qui ne servent pas à prévoir, mais à savoir **ce que le chiffre doit à quoi**.
@@ -294,13 +304,35 @@ s'ajoutent des calculs qui ne servent pas à prévoir, mais à savoir **ce que l
 | **Bande de modèle** | combien le chiffre bouge si les multiplicateurs, les inerties ou la fréquence par défaut varient d'un cran ? |
 | **Bande de classe** | combien il bouge si l'on change le seuil de similarité, le lissage ou la demi-vie des cas ? |
 | **Placebo d'homologie** | combien il bouge si l'on remplace les cas choisis par autant de cas tirés au hasard ? |
+| **Homologie discernable** | ce chiffre tombe-t-il **dans** la plage du hasard, oui ou non ? |
+| **Bande d'horizon** | combien il change si l'on demande une, trois ou six fenêtres ? |
+| **Variantes de codage** | combien il change si chaque mot faible était absent, ou tous ? |
 | **Confrontation** | les transitions observées sont-elles seulement **atteignables** par la matrice ? |
 | **Sonde** | la matrice réelle fait-elle mieux que des matrices tirées au hasard ? |
+| **Clôture** | quelles conséquences changent, sur **tous** les états et pas seulement sur des témoins ? |
 
-Les quatre premiers mesurent la **robustesse du réglage et du choix des cas**. Les deux derniers mesurent
-le **contenu de la matrice**. La distinction est décisive : une bande étroite dit « mon réglage est
-stable », pas « mes catégories sont bonnes ». Et un placebo favorable dit « mes cas ressemblent à quelque
-chose », pas « mes arêtes sont vraies ».
+Les sept premiers mesurent la **robustesse du réglage, du choix des cas et de la question posée**. Les
+deux suivants mesurent le **contenu de la matrice**. Le dernier mesure la **stabilité du logiciel**. La
+distinction est décisive : une bande étroite dit « mon réglage est stable », pas « mes catégories sont
+bonnes ». Et un placebo favorable dit « mes cas ressemblent à quelque chose », pas « mes arêtes sont
+vraies ».
+
+Deux de ces garde-fous méritent qu'on s'y arrête, parce qu'ils ont été ajoutés en 0.7.12 et qu'ils
+changent la lecture plus que les autres.
+
+**L'homologie discernable.** Le placebo ne dit pas seulement combien le choix des cas apporte ; il dit
+aussi si le chiffre obtenu pourrait être obtenu par hasard. Si `p` tombe dans la plage à 90 % des
+tirages aléatoires, le moteur écrit noir sur blanc que la sélection des homologues ne fait pas mieux que
+le hasard. Sur la démonstration, c'est le cas : 22 % tombe entre 9,8 et 34,3 %. Ce n'est pas un détail
+technique : c'est l'outil qui dit que, sur son propre exemple, son idée centrale ne se distingue pas du
+bruit.
+
+**La bande d'horizon.** La fenêtre de temps est le levier le plus puissant de tout le calcul. Demander
+« d'ici trois mois » ou « d'ici un an » ne change pas une variante : cela change la question. Le moteur
+publie donc `p` à une, trois et six fenêtres — sur la démonstration, 22 %, 52 % et 76 %. Un lecteur qui
+voit « 22 % [5–43] » comprend « entre 5 et 43 » ; il devrait comprendre « 22 % si vous parlez de trois
+mois, 52 % si vous parlez de neuf ». L'un des deux chiffres est le bon, et c'est le lecteur qui choisit
+sa question.
 
 ## 7. Le score, et le jalon V4
 
@@ -320,6 +352,14 @@ La dernière ligne est la plus importante. Cinquante épisodes ne suffisent que 
 ne dépasse pas 0,063. Au-delà, il en faut davantage — parfois beaucoup plus. Une règle qui calcule son
 propre effectif ne peut pas être franchie avec trois épisodes favorables : elle oblige à accumuler les
 cas avant de conclure.
+
+**Et un défaut qu'il fallait corriger (0.7.12).** Un test du signe classique suppose qu'on décide **à
+l'avance** combien d'épisodes on va regarder. Or on regarde son journal tous les mois. Si l'on s'arrête
+au premier mois où le test « passe », on se trompe plus souvent qu'annoncé : c'est l'effet des
+inspections répétées. La correction s'appelle un **processus e** : une façon de suivre le gain cumulé qui
+reste valable **à tout instant**, même si l'on décide de s'arrêter parce qu'on a vu un bon résultat. Le
+moteur le publie à côté du statut V4, sans changer le statut. C'est le genre de correction qui ne rend
+pas le résultat plus favorable ; elle le rend seulement honnête.
 
 ## 8. Ce que les mathématiques ne font pas
 
@@ -412,13 +452,17 @@ mathématique répond « d'accord, mais prouve-le, et pas deux fois ».
 C'est le conditionnement inverse, et c'est celui qui rend l'outil falsifiable.
 
 - Le **placebo** demande : « vos cas choisis font-ils mieux que des cas tirés au hasard ? ». Si non, le
-  chiffre vient de l'a priori et du domaine, pas de l'analogie.
+  chiffre vient de l'a priori et du domaine, pas de l'analogie. Depuis 0.7.12, la question est posée
+  jusqu'au bout : si le chiffre tombe **dans** la plage du hasard, l'outil écrit que l'analogie ne se
+  distingue pas du bruit. Sur son propre exemple, c'est ce qu'il écrit.
 - La **sonde** demande : « votre matrice fait-elle mieux que des matrices aléatoires ? ». Si non, elle
   n'a pas de contenu propre à défendre.
 - La **confrontation** demande : « vos transitions observées sont-elles seulement atteignables par la
   matrice ? ». Sur les cas archivés, deux apparitions sur trois ne le sont pas.
 - **V4** demande : « vos prévisions battent-elles l'inertie, de manière significative, sur assez
-  d'épisodes ? ».
+  d'épisodes ? ». Et depuis 0.7.12, la question est posée d'une façon qui résiste au fait qu'on regarde
+  son journal tous les mois : un processus e valable à tout instant, pas un test qu'on relit jusqu'à ce
+  qu'il passe.
 
 Chacun de ces dispositifs peut dire non. Et un non n'est pas un échec : c'est une information qui
 renvoie à la lecture — réviser un marqueur, changer une carte, documenter une lacune.
@@ -474,21 +518,24 @@ Reprenons le fil rouge, en marquant à chaque étape quelle moitié travaille.
 | 6 | Le dossier est scellé ; la probabilité personnelle est écrite avant le moteur. | sémiotique |
 | 7 | Le moteur cherche 10 cas homologues (H1) et calcule `p = 22,0 %`. | mathématique |
 | 8 | Il publie l'intervalle [5,2–43,1], le niveau ρ1, la bande de modèle 19–28 %, la bande de classe 21–23 %. | mathématique |
-| 9 | Il publie le placebo 20,2 % et l'apport de l'homologie +1,8 point. | mathématique |
+| 9 | Il publie le placebo 20,2 % et l'apport de l'homologie +1,8 point — puis le drapeau : ce `p` tombe dans la plage du hasard. | mathématique |
 | 10 | Il refuse de lire l'écart aux cartes (+10 points) comme un effet : l'a priori n'est pas ancré. | mathématique, qui déclare la limite |
-| 11 | À l'échéance, le Brier est calculé ; le pari est conservé, jamais réécrit. | mathématique |
-| 12 | Si V4 échoue, la lecture des cartes sera révisée. | retour à la sémiotique |
+| 11 | Il publie la même question à une, trois et six fenêtres : 22 %, 52 %, 76 %. | mathématique, qui rend la question visible |
+| 12 | À l'échéance, le Brier est calculé ; le pari est conservé, jamais réécrit. | mathématique |
+| 13 | Si V4 échoue, la lecture des cartes sera révisée. | retour à la sémiotique |
 
 Ce tableau est le résumé de tout le document. Les étapes 1 à 6 sont des jugements sur des signes ; les
-étapes 7 à 11 sont des calculs ; l'étape 12 est le retour du calcul vers les signes.
+étapes 7 à 12 sont des calculs ; l'étape 13 est le retour du calcul vers les signes.
 
 ---
 
-## Quatre confusions à éviter
+## Cinq confusions à éviter
 
 **1. « F veut dire fort. »** Non. `F` veut dire « la preuve de l'ancrage est suffisante ». Un fait
 `F` peut concerner un phénomène modeste. La force d'un phénomène n'est pas mesurée par l'outil ; elle
-n'est même pas une grandeur qu'il prétend représenter.
+n'est même pas une grandeur qu'il prétend représenter. Et depuis 0.7.13, on sait que `F` et `f` ont le
+même effet numérique sur les multiplicateurs : sans base, 10,2079 % dans les deux cas. La nuance de
+preuve ne pèse donc pas sur l'inférence, seulement sur la sélection des cas.
 
 **2. « 22 %, c'est la probabilité que ça arrive. »** Non. C'est une fréquence conditionnelle
 expérimentale, calculée à partir d'une matrice postulée et de cas choisis. Le niveau ρ1 dit qu'elle
@@ -502,6 +549,11 @@ où la lecture doit progresser.
 **4. « Publié, c'est ancré. »** Non, depuis 0.7.7 précisément. Un comparateur peut être publié dès un
 cas et rester non ancré : il est alors affiché, mais l'écart qu'il produit n'est pas interprétable. La
 distinction entre « disponible » et « fondé » est l'une des corrections les plus utiles de la version.
+
+**5. « Un chiffre au-dessus du hasard est un résultat. »** Non. Un chiffre peut être au-dessus du
+hasard et rester dans la plage de ce que le hasard produirait neuf fois sur dix. Depuis 0.7.12, le
+moteur le dit lui-même : sur la démonstration, la sélection des homologues ne fait pas mieux que des
+cas tirés au hasard. Un résultat commence quand on a exclu cette lecture, pas avant.
 
 ---
 
@@ -521,9 +573,16 @@ Aujourd'hui, l'outil a une méthode complète et **zéro cas réel actif**. Sa v
 pas dans ses prédictions : elle est dans sa capacité à dire ce qu'un chiffre doit à quoi, et à refuser
 de conclure quand il ne le peut pas. C'est peu spectaculaire. C'est rare.
 
+Et une chose qu'il faut ajouter, parce qu'elle est nouvelle et qu'elle est désagréable : sur son propre
+exemple, l'outil **ne distingue pas son idée centrale du hasard**. Ce n'est pas une réfutation — la base
+est inventée — mais ce n'est pas rien non plus. C'est un instrument qui, mis devant un test qu'il a
+lui-même construit, refuse de se déclarer vainqueur. Il faut le lire comme un signe de sérieux, et comme
+un avertissement : tant qu'aucun cas réel n'aura été codé, ce que l'outil démontre est sa rigueur, pas sa
+justesse.
+
 ---
 
-*Document de vulgarisation de la note « Lire le langage, prévoir l'événement », version 0.7.7,
-révision 1, 30 octobre 2026. Les chiffres cités proviennent de la base de démonstration
+*Document de vulgarisation de la note « Lire le langage, prévoir l'événement », version 0.7.15,
+révision 1, 31 octobre 2026. Les chiffres cités proviennent de la base de démonstration
 **entièrement fictive** du dépôt analysé : ils illustrent une mécanique, jamais une performance. Aucune
 performance prédictive n'est acquise.*
