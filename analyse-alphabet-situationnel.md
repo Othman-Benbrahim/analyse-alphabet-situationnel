@@ -990,9 +990,9 @@ l'on compare. Le dépôt est original sur les deux, et c'est précisément là q
 
 Ce tableau ne couvre que les concurrents de la **chaîne** de prévision. Les rivaux qui prétendent
 occuper la même place — une grammaire transversale pour lire une situation et en tirer une conséquence —
-sont traités dans un document séparé, [`concurrents-directs.md`](concurrents-directs.md), qui en
-recense seize rivaux, sept instruments, et propose huit protocoles de départage. Trois de ses résultats méritent d'être ici
-parce qu'ils portent sur l'axiome :
+sont traités dans un document séparé, [`concurrents-directs.md`](concurrents-directs.md), qui
+recense seize rivaux, neuf instruments et méthodes, et propose neuf protocoles de départage. Quatre de ses
+résultats méritent d'être ici parce qu'ils portent sur l'axiome :
 
 - **La cliodynamique a fait ce que le dépôt n'a pas fait.** Turchin a publié en 2010, dans *Nature*, une
   prédiction datée d'instabilité politique pour les années 2020, et l'a réévaluée en 2020 — par ses
@@ -1007,6 +1007,15 @@ parce qu'ils portent sur l'axiome :
   2001) est un alphabet de mécanismes transposables, avec dix-huit épisodes comparés. Une table de
   correspondance 16 cartes ↔ ~20 mécanismes coûte une heure et trancherait entre « l'Alphabet redécrit
   DoC » et « l'Alphabet ajoute la strate ». Le dépôt l'a inscrit en attente et ne l'a pas fait.
+- **SenseMaker attaque le repli, pas la prévision.** L'instrument de Snowden fait signifier les acteurs
+  eux-mêmes, par des micro-récits situés dans un cadre de signification, et refuse par principe
+  l'asymétrie qui veut que celui qui collecte soit aussi celui qui interprète. Il ne dit pas « votre
+  probabilité est fausse » : il dit « la lecture n'est pas votre travail ». Or c'est exactement sur la
+  lecture que la note propose de se replier quand elle conclut que le meilleur produit du dépôt est de
+  « caractériser des situations ». Le repli ne protège donc pas — et comme SenseMaker ne publie aucune
+  mesure de sa propre fiabilité, aucun des deux ne peut trancher par un chiffre. Le dépôt l'avait
+  repéré d'une ligne au §14.3 de ses apports théoriques ; cette note en fait la seule objection
+  **de légitimité** de tout le corpus.
 
 ### 5.1 · Ce que chaque famille peut apporter
 
@@ -1205,7 +1214,7 @@ dans le dépôt depuis la 0.7.12.
 
 ## 07 · Ce qui reste
 
-> Huit actions, classées par priorité. La première vaut plus que les sept autres réunies.
+> Douze actions, classées par priorité. La première vaut plus que les onze autres réunies.
 
 ### 7.1 · Ce que les versions 0.7.3 à 0.7.15 ont fermé
 
@@ -1298,6 +1307,15 @@ chaque règle « état → événement » et sa couverture. Les ingrédients son
 issue, des cas. Il manque les deux nombres. Cela rendrait l'artefact lisible par une communauté entière,
 sans changer un seul `p`.
 
+**P1 · Une seule carte par SenseMaker, et c'est INCERTITUDE.** Sa définition parle des acteurs pour qui
+« plusieurs états futurs ou cachés restent possibles, et cette indétermination organise leurs conduites ».
+Aucun autre instrument du corpus ne mesure cela ; l'Alphabet le code aujourd'hui en le devinant de
+l'extérieur, sur documents. Une micro-enquête auto-signifiée, sur un seul champ et sans triade brevetée,
+donnerait à cet ancrage une source directe. Ce que cela teste vraiment n'est pas un κ — les deux
+instruments ne mesurent pas la même fiabilité — mais la **divergence de contenu** : le lecteur extérieur
+et les acteurs désignent-ils la même indétermination ? C'est l'objet du protocole 9 de
+[`concurrents-directs.md`](concurrents-directs.md) §7.
+
 **P1 · GDELT/POLECAT comme flux de faits, pas comme modèle.** Pour la strate 7, utiliser le flux
 d'événements pour dater et sourcer les faits (A5), pas pour remplacer la lecture. On gagne en
 reproductibilité et en coût sans abdiquer l'ontologie. C'est le pont le plus concret vers la littérature
@@ -1310,11 +1328,6 @@ Brier contre le `p` par défaut est négatif et significatif au test du signe à
 épisodes ; si les deux, la plus grande ; si aucune, aucune. C'est la règle figée en 0.7.7, et elle
 transforme une décision de principe en décision mesurée. D'ici là, les deux variantes restent publiées
 hors du `p`, ce qui permet de les comparer sans contaminer le chiffre.
-
-**P1 · GDELT/POLECAT comme flux de faits, pas comme modèle.** Pour la strate 7, utiliser le flux
-d'événements pour dater et sourcer les faits (A5), pas pour remplacer la lecture. On gagne en
-reproductibilité et en coût sans abdiquer l'ontologie. C'est le pont le plus concret vers la littérature
-CAMEO.
 
 **P1 · Réduire la revendication.** Une strate (7), un type d'événement (`SEUIL@7 apparait`), et un
 nombre d'épisodes pré-enregistrés qui vaut désormais **max(50, n(σ̂))** : 50 ne suffisent que si
@@ -1388,6 +1401,16 @@ apprentissage/test ne soit pas négociable, un placebo pour que l'apport de l'an
 confondu avec celui du prior, un plancher de recherche pour que « j'ai cherché » soit constatable. Ce
 qui manque n'est plus de la méthode. Ce sont des faits, un deuxième lecteur et une issue.
 
+**Et une objection qu'il faut avoir entendue.** Ce second codeur, c'est un **étranger à la situation**
+qu'on charge de dire ce qu'elle signifie. SenseMaker, l'instrument de Snowden, soutient que c'est
+précisément là que naît le biais — et que la signification appartient à ceux qui vivent la situation.
+La réponse de l'Alphabet est cohérente : il ne prétend pas dire ce que la situation signifie **pour ses
+acteurs**, il prétend écrire un état comparable entre situations, et cette comparabilité exige un
+vocabulaire imposé de l'extérieur. Mais c'est une réponse **par l'usage**, pas une réponse **par la
+preuve** : elle justifie le choix de l'observateur, elle ne démontre pas qu'il lit mieux. Tant que la
+base est vide, l'objection reste ouverte — et elle porte sur la moitié du dépôt que cette note
+considérait comme acquise.
+
 ---
 
 ## 08 · Sources
@@ -1435,7 +1458,7 @@ Deux vérifications supplémentaires, faites hors des commandes standard :
 ### Concurrents
 
 Voir [`concurrents-directs.md`](concurrents-directs.md) §10 pour les seize rivaux, leurs sources
-datées et les huit protocoles de départage. Les quatre rivaux disciplinaires ajoutés à cette révision
+datées et les neuf protocoles de départage. Les quatre rivaux disciplinaires ajoutés à cette révision
 sont : Turchin, « Political instability may be a contributor in the coming decade », *Nature* 463, 608,
 2010 ; Sundstrom & Allen, « The adaptive cycle: More than a metaphor », *Ecological Complexity* 39,
 2019 ; Sussmann & Zahler, « Catastrophe theory as applied to the social and biological sciences: A
@@ -1487,6 +1510,17 @@ critique », *Synthese* 37, 1978 ; McAdam, Tarrow & Tilly, *Dynamics of Contenti
   [metaculus.com](https://www.metaculus.com/notebooks/45373/spring-2026-futureeval-analysis/).
 - Good Judgment, track record des superforecasters :
   [goodjudgment.com](https://goodjudgment.com/resources/the-superforecasters-track-record/).
+
+### Récits et signification
+
+- Snowden, D. *Naturalising sense-making*, 2011 :
+  [PDF](https://ttdr.net/wp-content/uploads/2020/12/Snowden-2011-Naturalising-sense-making.pdf).
+- Mager, F. et al. « Making Sense of Complexity: Using SenseMaker as a Research Tool », *Systems* 7(2),
+  25, 2019 : [doi:10.3390/systems7020025](https://doi.org/10.3390/systems7020025).
+- « Sensemaking: a complexity perspective », *Ecology and Society* 20(1), 2015 — limites analytiques
+  documentées : [doi:10.5751/ES-07410-200165](https://doi.org/10.5751/ES-07410-200165).
+- Snowden, D. « Twelfthtide 24:12 — Scaffolding for serendipity » :
+  [thecynefin.co](https://thecynefin.co/twelvetide-2412-scaffolding-for-serendipity/).
 
 ### Analogies, cas et limites
 
@@ -1579,7 +1613,7 @@ Les 143 autres passent, y compris les tests qui ont été ajoutés de 0.7.8 à 0
 | « le troisième comparateur manque » | **outillé** — `sceller-comparateur`, `v4_comparateur` (0.7.8) ; **non joué** |
 | « κ absent » | **inchangé — la dette principale** ; `accord` existe depuis 0.7.9 et n'a pas servi |
 | « 0 cas actif » | **inchangé — la dette principale** |
-| « les concurrents sont ceux de la stratégie » | **corrigé** — quatre rivaux disciplinaires ajoutés (cliodynamique, panarchie, catastrophes, DoC) et deux instruments (QCA, inférence séquentielle) ; voir `concurrents-directs.md` |
+| « les concurrents sont ceux de la stratégie » | **corrigé** — quatre rivaux disciplinaires ajoutés (cliodynamique, panarchie, catastrophes, DoC), deux instruments (QCA, inférence séquentielle) et **SenseMaker**, dont l'objection porte sur la légitimité du codeur extérieur ; voir `concurrents-directs.md` |
 
 **Historique des versions de cette note.** 0.7.2 (27 octobre, note initiale) · 0.7.3 (29 octobre,
 lecture contrôlée) · 0.7.4 (29 octobre, version de preuve) · 0.7.7 (30 octobre, paramétrage avant

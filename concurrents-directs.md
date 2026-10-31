@@ -44,15 +44,15 @@ pas un concurrent. Une méthode qui remplit la troisième mais pas la première 
 mesure**, pas un concurrent. C'est cette distinction qui permet de ne pas confondre Wardley avec
 pgmpy, ou Cynefin avec un tableur.
 
-Le champ s'organise alors en quatre cercles de concurrents — **seize rivaux, plus sept instruments de
-calcul** — et un cercle d'alliés dont aucun ne prétend occuper la même place :
+Le champ s'organise alors en quatre cercles de concurrents — **seize rivaux, plus neuf instruments et
+méthodes** — et un cercle d'alliés dont aucun ne prétend occuper la même place :
 
 | Cercle | Ce qu'on y trouve | Rapport à l'Alphabet |
 |---|---|---|
 | **Rivaux de même promesse** | Wardley, Cynefin, MACTOR, ACH, analyse morphologique, scénarios, Bueno de Mesquita | désaccord sur ce qui est prévisible, sur ce qu'on a le droit de nommer, ou sur la forme de la preuve |
 | **Rivaux disciplinaires** | cliodynamique (Turchin), panarchie (Holling), théorie des catastrophes (Thom, Zeeman), *Dynamics of Contention* (McAdam, Tarrow, Tilly) | même objet, même ambition transversale, mais dans une discipline constituée — et, pour l'un d'eux, une prédiction datée déjà publiée |
 | **Concurrents de la chaîne de prévision** | CAMEO/GDELT/POLECAT, ViEWS, superforecasters, marchés de prédiction, prévisionnistes LLM | même chaîne texte → état → pari, autre unité de codage et autre classe de référence |
-| **Cadres de calcul et instruments** | PyCIB, FCMpy, pgmpy, EMA Workbench, `forecasting-tools`, QCA (Ragin), CIB (Weimer-Jehle) | ne prétendent pas lire la situation ; ils calculent ce qu'on leur donne, ou mesurent la qualité d'une règle |
+| **Instruments et méthodes** | PyCIB, CIB, FCMpy, pgmpy, EMA Workbench, `forecasting-tools`, QCA (Ragin), inférence séquentielle, **SenseMaker** | ne prétendent pas dire quelle est la bonne ontologie ; ils calculent ce qu'on leur donne, ou mesurent une règle — **sauf SenseMaker**, qui conteste l'autorité du codeur (§5.2) |
 | **Alliés et contradicteurs théoriques** | Green & Armstrong, Tetlock, Toulmin, Gentner, Sood & Gelman, Howard & Ramdas | apportent des contrôles ou une objection précise, pas une ontologie concurrente |
 
 ---
@@ -79,6 +79,7 @@ calcul** — et un cercle d'alliés dont aucun ne prétend occuper la même plac
 | ***Dynamics of Contention*** (McAdam, Tarrow, Tilly) | des **mécanismes transposables** entre épisodes | courtage, formation de catégories, défection des élites, etc. | 18 épisodes comparés ; communauté empirique large | l'Alphabet ajoute la **dimension de strate** et un chiffre ; DoC ajoute la comparabilité inter-épisodes |
 | **QCA** (Ragin) | la **consistance et la couverture** d'une règle configuration → issue | table de vérité, paramètres d'ajustement | méthode établie, logiciels mûrs | l'Alphabet a des configurations et des issues, mais aucun équivalent de *consistency* ni de *coverage* |
 | **Inférence séquentielle** (Howard, Ramdas) | des intervalles **valides à tout instant** | suites de confiance, e-processus, p-processus | statistique publiée, non asymptotique | l'Alphabet teste à effectif fixe sur un journal croissant : le remplacement est en place depuis 0.7.12 (`e_processus`) |
+| **SenseMaker** (Snowden, Cognitive Edge) | la **signification par les acteurs eux-mêmes** | micro-récits auto-signifiés, triades, dyades, amas de récits | pratique de terrain étendue ; littérature académique critique ; pas de mesure de fiabilité publiée | l'Alphabet fait coder par un **lecteur extérieur** et mesure son κ ; SenseMaker fait signifier par le **narrateur** et ne mesure rien de tel — désaccord sur l'autorité, pas sur la performance (§5.2) |
 | **PyCIB / FCMpy / pgmpy / EMA** | calculer les **conséquences** d'un modèle | scénarios cohérents, simulations, inférence | bibliothèques logicielles, tests, publications | ils ne disent rien de la vérité du modèle ; l'Alphabet est un modèle, pas un solveur |
 
 ---
@@ -547,7 +548,7 @@ de la 0.7.11 supposait.
 
 ---
 
-## 5. Les cadres de calcul ne sont pas des rivaux
+## 5. Les instruments ne sont pas des rivaux — sauf sur un axe
 
 PyCIB (Cross-Impact Balance), FCMpy (cartes cognitives floues), pgmpy (réseaux bayésiens), EMA
 Workbench (exploration sous incertitude profonde) et `forecasting-tools` de Metaculus sont des
@@ -602,6 +603,125 @@ Le dépôt a intégré ce correctif en 0.7.12 (`e_processus` dans chaque différ
 du statut). C'est l'exemple le plus net d'un audit qui a produit une correction réelle, et il faut le
 créditer : peu de projets de cette taille corrigent un défaut de test en une version.
 
+### 5.2 SenseMaker — le rival qui conteste qui a le droit de coder
+
+C'est le cas le plus intéressant de tout ce document, et il ne rentre dans aucune des quatre cases
+précédentes. SenseMaker® n'est pas un rival de même promesse : il ne propose pas de grammaire
+transversale de structures avec des transitions, il ne produit pas de probabilité sur un événement daté,
+il ne se score pas. Ce n'est pas non plus un cadre de calcul. C'est un **instrument de collecte et de
+cartographie de significations** — et il attaque l'Alphabet sur le seul axe où les deux sont réellement
+incomparables : **l'autorité de dire ce qu'un fait signifie.**
+
+**L'appareil.** SenseMaker, développé par Cognitive Edge (aujourd'hui The Cynefin Co) à partir de la
+gestion des connaissances, sert à recueillir des **micro-récits** — de courtes histoires personnelles
+répondant à une question amorce — puis à laisser **le narrateur lui-même** situer son récit dans un
+**cadre de signification** (*signification framework*). Ce cadre est fait de questions de suivi
+(*signifiers*) de quatre types : curseurs (*dyads*), curseurs avec jetons, **triades** et canevas avec
+jetons. La triade demande au répondant de placer son expérience dans un triangle selon l'importance
+relative de trois éléments — « charge de travail, autonomie, soutien », par exemple — et le logiciel
+convertit ce placement en coordonnées numériques. Sur des milliers de récits, des **amas** apparaissent,
+et les points isolés sont lus comme des **signaux faibles**
+([Mager et al., *Systems* 7(2), 25, 2019](https://doi.org/10.3390/systems7020025) ;
+[manuel Pulse](https://cdn.cognitive-edge.com/wp-content/uploads/sites/7/2020/03/30092143/Pulse_Handbook_Introductory-1.pdf)).
+
+**La thèse, et elle est explicite.** Snowden la formule ainsi : « la personne qui a vécu l'expérience
+l'interprète à l'aide de métadonnées de haute abstraction, délibérément conçues pour ne pas imposer une
+structure conceptuelle prédéterminée. **L'analyste voit le motif de signification à travers beaucoup
+d'expériences, non son interprétation de chacune.** » Et il ajoute que ce n'est pas une coquetterie
+méthodologique : c'est « un refus de principe de l'asymétrie de pouvoir » qui veut que celui qui collecte
+la donnée en soit aussi l'interprète
+([*Twelfthtide 24:12*](https://thecynefin.co/twelvetide-2412-scaffolding-for-serendipity/)). La
+littérature appelle cela une **ethnographie distribuée** : le travail d'interprétation est transféré du
+chercheur aux participants, ce qui « supprime le codage ethnographique et la ré-interprétation experte ».
+
+**Pourquoi c'est une contradiction, et non une complémentarité.** L'Alphabet repose sur l'opération
+inverse. A5–A7 exigent un lecteur **extérieur** à la situation, qui choisit 2 à 4 cartes candidates, dont
+une contre-candidate, remplit un marqueur, cite le passage qui le soutient, déclare une force F ou f, et
+scelle son dossier avant le calcul. Toute la théorie de la preuve du dépôt — les six pièces, la
+garantie de support, le passage, l'indépendance des sources, le κ entre codeurs — présuppose que le signe
+doit être assigné de l'extérieur, et que la fiabilité de cette assignation est le problème central.
+
+Les deux positions ne peuvent pas être vraies ensemble sur le même objet :
+
+- **Si SenseMaker a raison**, l'appareil A5–A7 de l'Alphabet mesure la fidélité d'une opération qui ne
+  devrait pas être confiée à un tiers. Un κ élevé dirait alors « deux étrangers s'accordent sur le sens
+  qu'ils projettent », pas « la lecture est fiable ». Le dossier scellé, le barreau, la contre-candidate :
+  autant de disciplines pour contrôler un interprète qu'il aurait fallu ne pas interposer.
+- **Si l'Alphabet a raison**, SenseMaker produit des **perceptions** et non des faits : ce que les gens
+  disent de leur expérience, avec la structure que le concepteur du cadre a choisie. Il ne peut pas
+  alimenter une base de cas, parce qu'il ne dit rien de l'état d'une situation — seulement de la façon
+  dont ses acteurs la racontent.
+
+**Le point qui fait mal : le repli ne protège pas.** La note principale conclut que le meilleur produit du
+dépôt n'est peut-être pas « prévoir », mais « caractériser des situations, estimer leur persistance, et
+savoir ce que le chiffre doit à quoi ». C'est un repositionnement raisonnable — et c'est exactement la
+position que SenseMaker attaque. Sur ce terrain, l'adversaire ne dit pas « votre probabilité est fausse » ;
+il dit « **la lecture n'est pas votre travail** : elle appartient à ceux qui vivent la situation, et votre
+interprétation experte est le biais principal ». Un outil qui renonce à prévoir pour se replier sur la
+lecture ne fuit pas le débat : il se place au centre.
+
+**L'objection qui sauve l'Alphabet, et elle est étroite.** SenseMaker ne produit que des récits **du
+présent et du passé proche** : des attitudes, des perceptions, des motivations. Il ne produit ni
+transition, ni issue, ni événement daté. Son usage revendiqué est exploratoire, abductif,
+« pré-hypothèse ». Il ne peut donc pas remplir la fonction qui fait la spécificité de l'Alphabet — écrire
+un état daté et parier sur un événement défini. Les deux instruments ne mesurent pas le même objet : l'un
+mesure ce que les gens pensent de leur situation, l'autre prétend dire ce qui va lui arriver.
+
+**Ce que l'Alphabet devrait lui emprunter, et c'est précis.** Une seule carte, et une seule : **INCERTITUDE**.
+Sa définition commence par « pour les **acteurs** de la situation, plusieurs états futurs ou cachés restent
+possibles, et cette indétermination **organise leurs conduites** ». Aucun autre instrument du corpus ne
+mesure systématiquement cela. L'Alphabet le code aujourd'hui de l'extérieur, en lisant des documents — donc
+en devinant ce que les acteurs croient possible. SenseMaker est l'instrument qui le demande directement.
+C'est le seul pont défendable, et il ne change aucune probabilité : il change la source d'un ancrage.
+
+**Ce qui est refusé, et pourquoi.** Trois choses, et aucune n'est négociable dans un dépôt qui publie un
+`SHA256SUMS` :
+
+- **Les triades comme champ de l'état.** Cela toucherait A1 (une carte, une définition) : un état dont une
+  composante vient d'un questionnaire n'est plus un état daté, c'est une enquête. Et la triade est
+  présentée par Cognitive Edge comme un **index breveté** : un dépôt MIT qui en dépendrait pour coder son
+  état principal perdrait l'indépendance qu'il revendique.
+- **Le remplacement du codeur externe par l'auto-signification.** Ce serait supprimer A5–A8, c'est-à-dire
+  la moitié du dépôt, sans rien mettre à la place pour la mesure de fiabilité : SenseMaker ne publie pas
+  d'équivalent du κ, et la stabilité d'une auto-signification à trente jours n'est pas documentée à ma
+  connaissance.
+- **« L'analyste voit le motif, pas son interprétation »** comme principe général. Appliqué à la lettre,
+  il interdit le marqueur local de SEUIL — « franchissement reconnu par les parties » — qui est pourtant
+  l'un des trois arguments les plus forts du dépôt (§3.10). Il faut choisir : ou le sens est aux acteurs,
+  ou il est au lecteur qui cite ses pièces. L'Alphabet a choisi ; il doit l'assumer comme un choix, pas
+  comme une évidence.
+
+**Les limites documentées de SenseMaker, à ne pas oublier.** La littérature évaluée par les pairs est
+sévère sur deux points précis, et il faut les citer avant d'en faire un étalon :
+
+- « analytiquement, SenseMaker est relativement faible pour qui cherche un fort support statistique, et
+  **ne fournit aucune capacité d'analyse des récits eux-mêmes** » ; les auteurs rapportent même que la
+  routine de test t de la version 2.5 ne fonctionnait pas et qu'ils ont dû refaire tous leurs tests à
+  l'extérieur ([*Ecology and Society* 20(1), 2015](https://doi.org/10.5751/ES-07410-200165)) ;
+- le risque de **scientisme** est nommé : les triades produisent « des diagrammes d'apparence quantitative
+  impressionnante », dont la force ne doit pas être surestimée, et les résultats doivent être « tenus
+  légèrement, vérifiés collectivement, testés par des expériences *safe-to-fail* »
+  ([Mager et al., 2019](https://doi.org/10.3390/systems7020025)).
+
+Autrement dit : SenseMaker conteste à l'Alphabet **le droit de lire**, mais il ne peut pas lui contester
+**le droit de compter**, faute d'un instrument de mesure de sa propre fiabilité. C'est un désaccord de
+légitimité, pas de performance — et sur ce terrain, aucun des deux ne peut trancher par un chiffre.
+
+**L'épreuve, et le dépôt l'avait déjà nommée.** Le §14.3 des apports théoriques propose une épreuve à
+« structure égale » : SenseMaker (signification par les acteurs) contre l'Alphabet (codeur extérieur),
+avec un avertissement que je reprends tel quel — « un κ sur cinq domaines exclusifs ne se compare pas à un
+κ sur ensembles de cartes ». C'est juste, et cela rend l'épreuve plus difficile qu'elle n'en a l'air. La
+seule version honnête est de comparer **deux quantités différentes**, et de le dire :
+
+| Question | Instrument | Ce qu'on mesure réellement |
+|---|---|---|
+| deux codeurs externes assignent-ils les mêmes cartes à la même situation ? | Alphabet, `moteur.py accord` | accord **inter-codeurs** sur une classification |
+| les acteurs reconnaissent-ils leur propre récit trente jours plus tard ? | SenseMaker, répétition | stabilité **intra-narrateur** d'une auto-interprétation |
+| l'état assigné de l'extérieur prédit-il mieux l'issue que le motif des récits ? | les deux, sur un journal | ce serait la seule comparaison de **performance** — et elle exige des cas, donc elle n'est pas disponible |
+
+Les deux premières lignes sont mesurables ; la troisième ne l'est pas encore. C'est la même impasse que
+partout dans ce document, et elle a la même cause : zéro cas actif.
+
 ---
 
 ## 6. Ce que l'Alphabet fait que les autres ne font pas — et l'inverse
@@ -627,6 +747,8 @@ créditer : peu de projets de cette taille corrigent un défaut de test en une v
 | **Pas de prescription** | Cynefin, MACTOR, scénarios | l'outil lit, il ne conseille pas — c'est un choix, mais un concurrent peut le reprocher |
 | **Pas d'échelle** | GDELT, POLECAT, ViEWS | quelques faits lus et cités, pas des millions d'événements |
 | **Pas de système publié de bout en bout** | les bots de FutureEval et de ForecastBench sont des systèmes complets, avec pipeline, recherche et agrégation | la comparabilité avec les bots est encore à construire |
+| **Le coût du codage interdit l'échelle** : douze distinctions évidentielles pour un seul ancrage, un codeur, zéro cas | SenseMaker recueille des milliers de micro-récits signifiés à faible coût unitaire | mais il code des **perceptions**, pas des états : le coût bas ne se transfère pas (§5.2) |
+| **La lecture est confiée à un tiers extérieur** | SenseMaker la rend aux acteurs eux-mêmes, par principe | désaccord de **légitimité**, pas de performance ; aucun des deux ne peut le trancher par un chiffre (§5.2) |
 
 ### 6.3 Trois supériorités que le dépôt n'énonçait pas
 
@@ -684,7 +806,7 @@ version de plus.
 
 ---
 
-## 7. Le banc d'essai : huit protocoles
+## 7. Le banc d'essai : neuf protocoles
 
 Les protocoles sont classés par coût. Aucun ne demande de changer une règle du dépôt ; tous
 produisent un chiffre comparable.
@@ -699,13 +821,17 @@ produisent un chiffre comparable.
 | 6 | **ViEWS / GDELT** | sur la strate 7, mêmes événements datés, comparer la couverture et la calibration | 2–3 jours | l'ontologie ajoute-t-elle quelque chose au flux ? |
 | **7** | **DoC vs Alphabet** | table de correspondance 16 cartes ↔ ~20 mécanismes de McAdam-Tarrow-Tilly, établie sur le texte, puis testée sur deux épisodes déjà codés | **1 heure** | redescription, ou apport de la strate — les deux résultats sont publiables |
 | **8** | **QCA vs Alphabet** | sur 20 cas codés, calculer consistance et couverture de chaque règle « état → événement » | ½ journée | des nombres que l'Alphabet ne sait pas produire aujourd'hui |
+| **9** | **SenseMaker vs Alphabet** | sur la carte INCERTITUDE seulement : même situation codée (a) par un lecteur extérieur selon A5–A7, (b) par 20 acteurs auto-signifiant leur récit ; puis répétition à 30 jours des deux côtés | 2 jours, dont la moitié de conception du cadre | deux fiabilités non comparables (inter-codeurs contre intra-narrateur), et le **désaccord de contenu** : le lecteur et les acteurs désignent-ils la même indétermination ? |
 
 Le protocole 1 est le moins cher et le seul qui mesure la **reproductibilité**, le terrain où
 l'Alphabet est structurellement mieux placé que ses rivaux — sceau, empreinte, journal non réécrit,
 κ publié — et qu'il n'a jamais revendiqué. Le protocole 5 est le seul qui mesure la **valeur
-ajoutée** ; c'est celui que le dépôt a outillé en 0.7.8 sans encore le jouer. Et le protocole 7 est
+ajoutée** ; c'est celui que le dépôt a outillé en 0.7.8 sans encore le jouer. Le protocole 7 est
 le meilleur rapport effet/coût de tout ce document : une heure de lecture pour savoir si l'Alphabet
-est une redescription de la sociologie relationnelle.
+est une redescription de la sociologie relationnelle. Le protocole 9 est le seul qui puisse trancher le
+désaccord de légitimité de §5.2 — et il ne le tranchera pas par un κ, puisque les deux instruments ne
+mesurent pas la même fiabilité : il le tranchera par la **divergence de contenu**, c'est-à-dire en
+montrant si le lecteur et les acteurs voient la même chose.
 
 **Sur la mesure elle-même.** Le protocole 5, comme V4, compare des scores **épisode après épisode** sur
 un journal croissant. Il faut donc une inférence valide à tout instant, pas un test à effectif fixe :
@@ -730,6 +856,11 @@ le défaut que l'audit de la 0.7.11 avait trouvé.
 - **Le compromis « tout est complémentaire ».** Sur P1 (Wardley) et sur la possibilité de prévoir
   dans le complexe (Cynefin), il y a contradiction, pas complémentarité. Un dépôt qui se dit
   falsifiable doit le dire.
+- **Le remplacement du codeur extérieur par l'auto-signification.** Ce serait supprimer A5–A8 pour
+  adopter un instrument qui ne mesure pas sa propre fiabilité. Le désaccord est réel (§5.2) ; il ne se
+  résout pas en supprimant un côté, et certainement pas en supprimant celui qui publie un κ.
+- **Les triades comme champ de l'état.** A1 interdit qu'une carte ait deux définitions, et un index
+  breveté rendrait un dépôt MIT dépendant d'un tiers pour coder son état principal.
 - **La théorie des catastrophes sans son correctif.** SEUIL peut emprunter sa forme à la fronce, mais
   pas sa méthode : sans marqueur local indépendant du modèle, le modèle s'ajuste après coup à toute
   discontinuité. C'est précisément ce que Sussmann et Zahler ont reproché à Isnard et Zeeman, et
@@ -750,6 +881,11 @@ le défaut que l'audit de la 0.7.11 avait trouvé.
   sources secondaires, des sites d'opérateurs, des articles évalués par les pairs et des chapitres
   d'ouvrage, listés en §10. Les appareils sont décrits de façon convergente par plusieurs sources ;
   les interprétations sont les miennes.
+- **Je n'ai pas utilisé SenseMaker.** Je n'ai pas conçu de cadre de signification, ni recueilli de
+  micro-récits, ni manipulé le logiciel. La description de §5.2 vient de la documentation de
+  Cognitive Edge et de trois textes évalués par les pairs ; les limites citées sont celles que ces
+  textes rapportent. Le désaccord de légitimité que j'y expose est une lecture, pas un résultat — et
+  c'est précisément pourquoi le protocole 9 existe.
 - **Les chiffres de performance ne sont pas comparables entre eux.** Ils portent sur des questions
   différentes, des horizons différents et des métriques différentes. Un Brier de 0,10 sur une
   question facile ne vaut pas un Brier de 0,10 sur une question difficile — et les auteurs de
@@ -874,6 +1010,25 @@ le défaut que l'audit de la 0.7.11 avait trouvé.
   [doi:10.1214/20-AOS1991](https://doi.org/10.1214/20-AOS1991).
 - « Comparing Sequential Forecasters », *Operations Research*, 2021 :
   [doi:10.1287/opre.2021.0792](https://doi.org/10.1287/opre.2021.0792).
+
+### Récits, signification et SenseMaker
+
+- Snowden, D. *Naturalising sense-making* (2011) :
+  [PDF](https://ttdr.net/wp-content/uploads/2020/12/Snowden-2011-Naturalising-sense-making.pdf).
+- Cognitive Edge. *Pulse Handbook, Introductory* — micro-récits, triades, dyades, jetons :
+  [PDF](https://cdn.cognitive-edge.com/wp-content/uploads/sites/7/2020/03/30092143/Pulse_Handbook_Introductory-1.pdf).
+- Mager, F. et al. « Making Sense of Complexity: Using SenseMaker as a Research Tool », *Systems* 7(2),
+  25, 2019 : [doi:10.3390/systems7020025](https://doi.org/10.3390/systems7020025).
+- « Sensemaking: a complexity perspective », *Ecology and Society* 20(1), 2015 — limites analytiques
+  documentées : [doi:10.5751/ES-07410-200165](https://doi.org/10.5751/ES-07410-200165).
+- Snowden, D. « Twelfthtide 24:12 — Scaffolding for serendipity » — « l'analyste voit le motif de
+  signification, non son interprétation de chacune » :
+  [thecynefin.co](https://thecynefin.co/twelvetide-2412-scaffolding-for-serendipity/).
+- *The Learning Power of Listening* — glossaire du cadre de signification (amorce, triade, dyade,
+  curseur, jetons) :
+  [PDF](https://www.voicesthatcount.net/_files/ugd/0079f8_a153a73fbb394a70a15b5d0e595dcbfe.pdf).
+- *SenseMaker* — notice du wiki Cynefin :
+  [cynefin.io](https://cynefin.io/wiki/SenseMaker).
 
 ### Cadres de calcul
 
