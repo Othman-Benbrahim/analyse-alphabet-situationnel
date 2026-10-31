@@ -25,6 +25,13 @@ Dépôt analysé : `Othman-Benbrahim/alphabet-situationnel` · version 0.7.15 ·
 > **sociologie relationnelle**, avec *Dynamics of Contention*. Quatre rivaux disciplinaires (cliodynamique,
 > panarchie, théorie des catastrophes, DoC) et deux instruments (QCA, inférence séquentielle) ont été
 > ajoutés en conséquence. Ce que l'audit établit et ce que le dépôt en a fait sont récapitulés en §6.4.
+>
+> **Une seconde révision, le même jour.** La lecture du wiki de Cynefin — page `Cases` et notice
+> `SenseMaker` — a corrigé deux formulations de §5.2 et ajouté §5.3 : SenseMaker n'a pas « une
+> littérature critique », il a **une trentaine d'applications évaluées par les pairs**, un **échec
+> documenté par ses praticiens**, et **aucune mesure publiée de sa propre fiabilité**. Les deux
+> instruments apparaissent alors comme des images miroir : SenseMaker a des cas sans base, l'Alphabet a
+> une base sans cas.
 
 ---
 
@@ -79,7 +86,7 @@ méthodes** — et un cercle d'alliés dont aucun ne prétend occuper la même p
 | ***Dynamics of Contention*** (McAdam, Tarrow, Tilly) | des **mécanismes transposables** entre épisodes | courtage, formation de catégories, défection des élites, etc. | 18 épisodes comparés ; communauté empirique large | l'Alphabet ajoute la **dimension de strate** et un chiffre ; DoC ajoute la comparabilité inter-épisodes |
 | **QCA** (Ragin) | la **consistance et la couverture** d'une règle configuration → issue | table de vérité, paramètres d'ajustement | méthode établie, logiciels mûrs | l'Alphabet a des configurations et des issues, mais aucun équivalent de *consistency* ni de *coverage* |
 | **Inférence séquentielle** (Howard, Ramdas) | des intervalles **valides à tout instant** | suites de confiance, e-processus, p-processus | statistique publiée, non asymptotique | l'Alphabet teste à effectif fixe sur un journal croissant : le remplacement est en place depuis 0.7.12 (`e_processus`) |
-| **SenseMaker** (Snowden, Cognitive Edge) | la **signification par les acteurs eux-mêmes** | micro-récits auto-signifiés, triades, dyades, amas de récits | pratique de terrain étendue ; littérature académique critique ; pas de mesure de fiabilité publiée | l'Alphabet fait coder par un **lecteur extérieur** et mesure son κ ; SenseMaker fait signifier par le **narrateur** et ne mesure rien de tel — désaccord sur l'autorité, pas sur la performance (§5.2) |
+| **SenseMaker** (Snowden, Cognitive Edge) | la **signification par les acteurs eux-mêmes** | micro-récits auto-signifiés, triades, dyades, amas de récits | **une trentaine d'articles évalués par les pairs** et une vingtaine de rapports (santé, développement, climat, gouvernance), plus un échec documenté ; pas de mesure publiée de la fiabilité de l'auto-signification | l'Alphabet fait coder par un **lecteur extérieur** et mesure son κ ; SenseMaker fait signifier par le **narrateur** et ne mesure rien de tel — désaccord sur l'autorité, pas sur la performance (§5.2) |
 | **PyCIB / FCMpy / pgmpy / EMA** | calculer les **conséquences** d'un modèle | scénarios cohérents, simulations, inférence | bibliothèques logicielles, tests, publications | ils ne disent rien de la vérité du modèle ; l'Alphabet est un modèle, pas un solveur |
 
 ---
@@ -667,6 +674,15 @@ transition, ni issue, ni événement daté. Son usage revendiqué est exploratoi
 un état daté et parier sur un événement défini. Les deux instruments ne mesurent pas le même objet : l'un
 mesure ce que les gens pensent de leur situation, l'autre prétend dire ce qui va lui arriver.
 
+**Et une nuance qui renforce l'objection plutôt que de l'affaiblir.** Le wiki de Cynefin présente
+lui-même SenseMaker comme propre à des usages **délibératifs** : cartographier le système avant une
+assemblée citoyenne, fixer les priorités, recueillir des témoignages à l'échelle, alimenter une
+délibération en temps réel, tirer au sort un panel représentatif. C'est un instrument de **décision
+collective**, pas de prévision. Il n'a donc pas à être comparé à un modèle de prévision sur le terrain
+de la prévision : il est en concurrence avec lui sur un autre marché, celui de « que faire de ce que les
+gens vivent ». Le dire ainsi est plus juste, et plus embarrassant pour l'Alphabet — parce que sur ce
+marché-là, c'est SenseMaker qui a des clients, des cas et des publications.
+
 **Ce que l'Alphabet devrait lui emprunter, et c'est précis.** Une seule carte, et une seule : **INCERTITUDE**.
 Sa définition commence par « pour les **acteurs** de la situation, plusieurs états futurs ou cachés restent
 possibles, et cette indétermination **organise leurs conduites** ». Aucun autre instrument du corpus ne
@@ -691,21 +707,115 @@ C'est le seul pont défendable, et il ne change aucune probabilité : il change 
   ou il est au lecteur qui cite ses pièces. L'Alphabet a choisi ; il doit l'assumer comme un choix, pas
   comme une évidence.
 
-**Les limites documentées de SenseMaker, à ne pas oublier.** La littérature évaluée par les pairs est
-sévère sur deux points précis, et il faut les citer avant d'en faire un étalon :
+**Les limites documentées de SenseMaker, à ne pas oublier.** Une première rédaction de ce document
+disait « pratique de terrain étendue ; littérature académique critique ». C'était **inexact dans les deux
+termes**, et le wiki de Cynefin le corrige : la bibliographie de référence compte une trentaine
+d'articles évalués par les pairs (§5.3), et la critique n'y tient qu'une place marginale. Ce qui reste
+vrai est plus précis, et plus intéressant.
 
-- « analytiquement, SenseMaker est relativement faible pour qui cherche un fort support statistique, et
-  **ne fournit aucune capacité d'analyse des récits eux-mêmes** » ; les auteurs rapportent même que la
-  routine de test t de la version 2.5 ne fonctionnait pas et qu'ils ont dû refaire tous leurs tests à
-  l'extérieur ([*Ecology and Society* 20(1), 2015](https://doi.org/10.5751/ES-07410-200165)) ;
-- le risque de **scientisme** est nommé : les triades produisent « des diagrammes d'apparence quantitative
-  impressionnante », dont la force ne doit pas être surestimée, et les résultats doivent être « tenus
-  légèrement, vérifiés collectivement, testés par des expériences *safe-to-fail* »
-  ([Mager et al., 2019](https://doi.org/10.3390/systems7020025)).
+*Ce qui n'est pas mesuré.* Je n'ai trouvé aucune publication qui mesure la **fiabilité de
+l'auto-signification** : ni accord entre narrateurs sur un même récit, ni test-retest à trente jours du
+placement dans une triade. Un article de développement d'instrument le dit à sa manière : concevoir le
+cadre de signification a pris **deux ans**, et sa validation s'est limitée à un groupe de huit personnes
+puis un pilote de dix étudiants, avant usage réel — et l'article discute explicitement les
+« affordances et limites » de l'approche
+([ASEE, *Using SenseMaker to Examine Student Experiences in Engineering*](https://doi.org/10.18260/1-2--35471)).
+Ce n'est pas un reproche : c'est le coût normal d'un instrument qualitatif. Mais c'est exactement la
+mesure que l'Alphabet publie avec `accord`, et que SenseMaker ne publie pas.
+
+*Ce que les praticiens disent eux-mêmes, et qui est plus dur que la critique externe.*
+
+- **Les triades ne supportent pas d'inférence statistique.** Le placement dans un triangle est une
+  donnée **compositionnelle** — les trois sommets somment à 100. Un point au centre vaut 33/33/33, ce
+  qui est indistinguable entre « les trois comptent autant » et « les trois comptent peu ». Un
+  praticien de SenseMaker l'écrit sans détour : « *you cannot use statistical inference with triads* »
+  ([Complexability, 2011](https://emergingoptions.wordpress.com/2011/07/11/triads-in-sensemaker/)), et
+  une série entière de billets est consacrée aux pièges du traitement statistique des triades
+  ([*Statistics in the Triad*, 2017](https://qedinsight.com/2017/07/28/the-story-as-unit-of-observation/)).
+  C'est une limite **structurelle**, pas un défaut d'implémentation.
+- **Le wiki lui-même met en garde contre la sur-lecture** : « la cartographie formelle des distributions
+  soulève des difficultés supplémentaires, en particulier là où ceux qui interprètent les motifs
+  pourraient être tentés de traiter tout ce qui émerge comme **plus qu'indicatif** d'une image plus
+  large » ([cynefin.io/wiki/SenseMaker](https://cynefin.io/wiki/SenseMaker)). Venant du promoteur de
+  l'outil, cet avertissement vaut plus que la critique d'un tiers — et il dit la même chose que le
+  drapeau `homologie_discernable` de l'Alphabet, dans un autre vocabulaire.
+- **Le risque de scientisme** est nommé par la littérature : les triades produisent « des diagrammes
+  d'apparence quantitative impressionnante », dont la force ne doit pas être surestimée, et les
+  résultats doivent être « tenus légèrement, vérifiés collectivement, testés par des expériences
+  *safe-to-fail* » ([Mager et al., 2019](https://doi.org/10.3390/systems7020025)).
+- **L'analyse des récits elle-même n'est pas outillée** : « analytiquement, SenseMaker est relativement
+  faible pour qui cherche un fort support statistique, et **ne fournit aucune capacité d'analyse des
+  récits eux-mêmes** » ; les auteurs rapportent que la routine de test t de la version 2.5 ne
+  fonctionnait pas et qu'ils ont dû refaire leurs tests à l'extérieur
+  ([*Ecology and Society* 20(1), 2015](https://doi.org/10.5751/ES-07410-200165)).
 
 Autrement dit : SenseMaker conteste à l'Alphabet **le droit de lire**, mais il ne peut pas lui contester
-**le droit de compter**, faute d'un instrument de mesure de sa propre fiabilité. C'est un désaccord de
-légitimité, pas de performance — et sur ce terrain, aucun des deux ne peut trancher par un chiffre.
+**le droit de compter**, faute d'un instrument de mesure de sa propre fiabilité et faute d'un usage
+statistique licite de son signifieur principal. C'est un désaccord de légitimité, pas de performance — et
+sur ce terrain, aucun des deux ne peut trancher par un chiffre.
+
+### 5.3 La bibliothèque de cas : ce qu'elle prouve, et ce qu'elle ne peut pas accumuler
+
+Le wiki de Cynefin tient une page **Cases** qui recense, à la date de consultation, une trentaine
+d'articles de revues et une vingtaine de rapports et documents gris
+([cynefin.io/wiki/Cases](https://cynefin.io/wiki/Cases)). Le volume est réel, et il faut le dire avant
+de comparer : santé publique (soins en maison de retraite pendant le covid, personnel soignant de
+l'Iowa, violences basées sur le genre au Liban), développement rural et agriculture (aspirations des
+ménages, chaînes de valeur agroalimentaires en Allemagne, genre et climat en Inde), gouvernance des
+ressources (aires protégées en Ouganda, justice de l'eau au Cap), action climatique, réfugiés syriens au
+Liban, crise ukrainienne en Moldavie, services d'urgence hospitaliers. Plus quelques usages en
+entreprise et en démocratie délibérative.
+
+**Ce que cette bibliothèque est.** Une collection d'**applications** : chaque article rapporte ce que
+SenseMaker a permis de voir dans un contexte donné. C'est une forme de preuve que l'Alphabet n'a pas du
+tout — lui qui n'a aucun cas réel actif. Sur ce seul critère, SenseMaker est très loin devant.
+
+**Ce que cette bibliothèque ne peut pas être, et c'est décisif.** Une base comparable. Chaque déploiement
+a **son propre cadre de signification**, conçu pour le contexte, avec ses triades, ses amorces et ses
+signifieurs. C'est un choix de conception assumé — « des métadonnées de haute abstraction délibérément
+conçues pour ne pas imposer une structure conceptuelle prédéterminée » — et c'est aussi ce qui interdit
+de comparer deux études entre elles : un placement dans une triade « charge de travail / autonomie /
+soutien » ne se transporte pas dans un triangle « vengeance / dissuasion / réparation ». La bibliothèque
+accumule des **récits de méthode**, pas des **états datés**.
+
+C'est le miroir exact de l'Alphabet, et c'est le point le plus utile de tout ce document :
+
+| | SenseMaker | Alphabet situationnel |
+|---|---|---|
+| Vocabulaire | **conçu pour chaque cas**, refus d'imposer une structure | **imposé d'avance** : 16 cartes, 13 strates, 208 cases |
+| Ce que cela permet | pertinence locale, pas de violence conceptuelle | **comparabilité entre cas et entre domaines** |
+| Ce que cela interdit | accumulation : deux études ne se comparent pas | pertinence locale : une carte peut ne pas convenir |
+| Nombre de cas | une trentaine d'applications publiées | **zéro cas réel actif** |
+| Ce qui manque | une base comparable, et la mesure de sa propre fiabilité | tout cas, et donc toute preuve |
+
+Les deux instruments ont fait le même pari, en sens inverse, et chacun a payé le prix de son choix.
+SenseMaker a acheté la pertinence et perdu l'accumulation ; l'Alphabet a acheté l'accumulation et n'a
+toujours rien accumulé. Si l'on devait formuler la comparaison en une phrase : **SenseMaker a des cas
+sans base, l'Alphabet a une base sans cas** — et aucun des deux ne peut prétendre que son choix est
+meilleur, parce qu'aucun n'a encore produit la chose qui le démontrerait.
+
+**Une honnêteté qui mérite d'être relevée.** SenseMaker a au moins une **publication d'échec**, et elle
+est accessible : le projet Triple-S (IRC, eau et assainissement, Ghana et Ouganda) a abandonné la méthode
+après dix-huit mois, deux cycles de collecte et plusieurs analyses, au motif qu'elle « n'a fourni aucun
+éclairage unique ou nouveau et n'a que confirmé l'état des choses » ; le rapport discute longuement les
+causes — absence de cadre d'échantillonnage, collecte trop peu massive et trop peu répétée, formation
+initiale insuffisante, sous-estimation du changement de posture exigé
+([IRC, *The Triple-S project SenseMaker experience*](https://www.ircwash.org/sites/default/files/workingpaper9sensemaker.pdf)).
+C'est rare, et cela vaut d'être dit : la littérature de SenseMaker contient un échec documenté par des
+praticiens du développement, pas par des adversaires. L'Alphabet n'a rien d'équivalent — mais il n'a rien
+non plus qui puisse échouer.
+
+**Ce que l'Alphabet devrait en retenir.** Deux choses, et la seconde est inconfortable.
+
+1. La documentation d'échec est un genre à part entière. Le dépôt consigne ses erreurs de méthode dans un
+   `CHANGELOG` et ses refus dans `apports-theoriques.md` §17–§18 ; il n'a pas d'équivalent d'un rapport
+   « nous avons essayé pendant dix-huit mois et abandonné ». Le jour où un cas réel existera, il faudra
+   écrire ce rapport-là aussi.
+2. Le wiki de Cynefin est **ouvert** — « que chacun se sente libre d'écrire une étude de cas » — sans
+   manifeste, sans empreinte, sans validation. C'est l'inverse du `SHA256SUMS` du dépôt. Mais un dépôt
+   qui a une empreinte et zéro cas a moins de matière à vérifier qu'un wiki qui a une trentaine de cas
+   et aucune empreinte. La traçabilité n'est pas une vertu en soi : c'est une vertu **de ce qu'elle
+   trace**.
 
 **L'épreuve, et le dépôt l'avait déjà nommée.** Le §14.3 des apports théoriques propose une épreuve à
 « structure égale » : SenseMaker (signification par les acteurs) contre l'Alphabet (codeur extérieur),
@@ -749,6 +859,8 @@ partout dans ce document, et elle a la même cause : zéro cas actif.
 | **Pas de système publié de bout en bout** | les bots de FutureEval et de ForecastBench sont des systèmes complets, avec pipeline, recherche et agrégation | la comparabilité avec les bots est encore à construire |
 | **Le coût du codage interdit l'échelle** : douze distinctions évidentielles pour un seul ancrage, un codeur, zéro cas | SenseMaker recueille des milliers de micro-récits signifiés à faible coût unitaire | mais il code des **perceptions**, pas des états : le coût bas ne se transfère pas (§5.2) |
 | **La lecture est confiée à un tiers extérieur** | SenseMaker la rend aux acteurs eux-mêmes, par principe | désaccord de **légitimité**, pas de performance ; aucun des deux ne peut le trancher par un chiffre (§5.2) |
+| **Aucun cas publié sous les règles courantes** | SenseMaker a une trentaine d'applications évaluées par les pairs et un échec documenté | l'Alphabet a une base sans cas ; SenseMaker a des cas sans base — deux impasses symétriques (§5.3) |
+| **Aucun usage délibératif** : l'outil lit, il ne fait rien décider | SenseMaker alimente des assemblées citoyennes, des panels tirés au sort, des ateliers | c'est un marché que l'Alphabet a explicitement refusé (`constitution.md` §5), et sur lequel il n'a rien à offrir |
 
 ### 6.3 Trois supériorités que le dépôt n'énonçait pas
 
@@ -886,6 +998,13 @@ le défaut que l'audit de la 0.7.11 avait trouvé.
   Cognitive Edge et de trois textes évalués par les pairs ; les limites citées sont celles que ces
   textes rapportent. Le désaccord de légitimité que j'y expose est une lecture, pas un résultat — et
   c'est précisément pourquoi le protocole 9 existe.
+- **Je n'ai pas lu les trente articles de la bibliothèque de cas.** J'ai consulté la page `Cases` du
+  wiki de Cynefin, qui les liste avec leurs références, et j'en ai tiré des titres, des revues et des
+  domaines — pas des contenus. Ce que §5.3 affirme porte donc sur la **nature** de cette bibliothèque
+  (des applications, chacune avec son propre cadre de signification), pas sur la qualité de chaque
+  étude. Une lecture des cinq ou six articles les plus proches du sujet — Lebanon 2019, Cape Town 2022,
+  Uganda 2020 — serait nécessaire pour dire quoi que ce soit de leur solidité méthodologique, et je ne
+  l'ai pas faite.
 - **Les chiffres de performance ne sont pas comparables entre eux.** Ils portent sur des questions
   différentes, des horizons différents et des métriques différentes. Un Brier de 0,10 sur une
   question facile ne vaut pas un Brier de 0,10 sur une question difficile — et les auteurs de
@@ -1029,6 +1148,17 @@ le défaut que l'audit de la 0.7.11 avait trouvé.
   [PDF](https://www.voicesthatcount.net/_files/ugd/0079f8_a153a73fbb394a70a15b5d0e595dcbfe.pdf).
 - *SenseMaker* — notice du wiki Cynefin :
   [cynefin.io](https://cynefin.io/wiki/SenseMaker).
+- *Cases* — bibliothèque de cas du wiki Cynefin, une trentaine d'articles de revues et une vingtaine de
+  documents gris : [cynefin.io/wiki/Cases](https://cynefin.io/wiki/Cases).
+- *Triads in SenseMaker* — « you cannot use statistical inference with triads » (donnée
+  compositionnelle) : [Complexability, 2011](https://emergingoptions.wordpress.com/2011/07/11/triads-in-sensemaker/).
+- *Statistics in the Triad, Part VI: The Story as Unit of Observation*, 2017 :
+  [qedinsight.com](https://qedinsight.com/2017/07/28/the-story-as-unit-of-observation/).
+- *The Triple-S project SenseMaker experience* — abandon après 18 mois, causes analysées par les
+  praticiens : [IRC](https://www.ircwash.org/sites/default/files/workingpaper9sensemaker.pdf).
+- *Using SenseMaker to Examine Student Experiences in Engineering: A Discussion of the Affordances and
+  Limitations* — deux ans de conception, validation sur 8 puis 10 personnes : ASEE,
+  [doi:10.18260/1-2--35471](https://doi.org/10.18260/1-2--35471).
 
 ### Cadres de calcul
 

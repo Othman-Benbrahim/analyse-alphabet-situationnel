@@ -991,7 +991,7 @@ l'on compare. Le dépôt est original sur les deux, et c'est précisément là q
 Ce tableau ne couvre que les concurrents de la **chaîne** de prévision. Les rivaux qui prétendent
 occuper la même place — une grammaire transversale pour lire une situation et en tirer une conséquence —
 sont traités dans un document séparé, [`concurrents-directs.md`](concurrents-directs.md), qui
-recense seize rivaux, neuf instruments et méthodes, et propose neuf protocoles de départage. Quatre de ses
+recense seize rivaux, neuf instruments et méthodes, et propose neuf protocoles de départage. Cinq de ses
 résultats méritent d'être ici parce qu'ils portent sur l'axiome :
 
 - **La cliodynamique a fait ce que le dépôt n'a pas fait.** Turchin a publié en 2010, dans *Nature*, une
@@ -1016,6 +1016,12 @@ résultats méritent d'être ici parce qu'ils portent sur l'axiome :
   mesure de sa propre fiabilité, aucun des deux ne peut trancher par un chiffre. Le dépôt l'avait
   repéré d'une ligne au §14.3 de ses apports théoriques ; cette note en fait la seule objection
   **de légitimité** de tout le corpus.
+- **Et les deux instruments sont des images miroir.** La bibliothèque de cas de Cynefin compte une
+  trentaine d'applications évaluées par les pairs — mais chaque déploiement a **son propre** cadre de
+  signification, conçu pour son contexte, ce qui interdit de comparer deux études entre elles. C'est le
+  prix exact du choix inverse de l'Alphabet, qui impose un vocabulaire unique pour rendre les cas
+  comparables. **SenseMaker a des cas sans base ; l'Alphabet a une base sans cas.** Aucun des deux ne
+  peut prétendre que son choix est meilleur, puisqu'aucun n'a produit la chose qui le démontrerait.
 
 ### 5.1 · Ce que chaque famille peut apporter
 

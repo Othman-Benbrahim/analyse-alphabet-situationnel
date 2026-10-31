@@ -13,8 +13,8 @@ Révision complète pour la version 0.7.15 du dépôt analysé, huit versions ap
 2 790 conséquences de la clôture donne **0 conséquence changée**, et aucun statut de case n'a bougé
 (181 Proposé, 14 Vide, 13 Documenté, 0 Attesté, identiques à la 0.7.7).
 
-**Nouveau document.** `concurrents-directs.md` — seize concurrents en quatre cercles, plus sept instruments de calcul, ce qu'ils
-promettent, ce qu'ils produisent, ce qui le prouve, l'écart décisif, et huit protocoles de départage.
+**Nouveau document.** `concurrents-directs.md` — seize concurrents en quatre cercles, plus neuf instruments et méthodes, ce qu'ils
+promettent, ce qu'ils produisent, ce qui le prouve, l'écart décisif, et neuf protocoles de départage.
 Deux ajouts de périmètre par rapport à la première rédaction, dus à un audit versé par l'auteur :
 
 - **quatre rivaux disciplinaires** que la note ne couvrait pas — cliodynamique (Turchin), panarchie
@@ -22,6 +22,43 @@ Deux ajouts de périmètre par rapport à la première rédaction, dus à un aud
   Tilly). Le concurrent le plus proche est en sociologie relationnelle, pas en stratégie d'entreprise ;
 - **deux instruments** — QCA (consistance et couverture, le déficit le plus net du dépôt) et
   l'inférence séquentielle (corrigée dans le dépôt en 0.7.12, après l'avoir été par l'audit).
+
+**Troisième ajout, §5.2 : SenseMaker, et c'est le cas d'espèce.** L'instrument de Snowden n'est pas un
+rival de même promesse : il ne produit ni probabilité ni transition, et il ne se score pas. Il conteste
+une chose plus grave — **qui a le droit de dire ce qu'un fait signifie**. Il fait signifier les acteurs
+eux-mêmes, par des micro-récits situés dans un cadre de signification, et refuse par principe que le
+collecteur soit aussi l'interprète. Contre l'Alphabet, l'objection n'est donc pas « votre probabilité est
+fausse » mais « la lecture n'est pas votre travail » — c'est-à-dire exactement la position de repli que la
+note recommandait (« caractériser des situations »). Le repli ne protège pas : il place le dépôt au centre
+du débat. Le dépôt avait repéré SenseMaker d'une ligne au §14.3 de ses apports théoriques
+(« signification par les acteurs contre codeur extérieur ») ; cette révision en fait la seule objection
+**de légitimité** du corpus. Et le seul cas où aucun des deux camps ne peut trancher par un chiffre,
+puisque SenseMaker ne publie aucune mesure de sa propre fiabilité. Ce qui en sort : un seul pont
+défendable, la carte INCERTITUDE, et un protocole de plus au banc d'essai (n° 9), qui ne compare pas deux
+κ mais une **divergence de contenu**.
+
+**Correction après lecture du wiki de Cynefin (page `Cases`, notice `SenseMaker`) — §5.3 ajouté.** Une
+première rédaction disait de SenseMaker : « pratique de terrain étendue ; littérature académique
+critique ». **Inexact dans les deux termes**, et corrigé :
+
+- la bibliographie de référence compte **une trentaine d'articles évalués par les pairs** (santé
+  publique, développement rural, climat, gouvernance, réfugiés, démocratie délibérative) — ce n'est pas
+  une littérature critique, c'est une littérature d'**applications** ;
+- il existe au moins un **échec documenté par ses propres praticiens** (projet Triple-S, IRC, Ghana et
+  Ouganda : abandon après 18 mois, « aucun éclairage unique ou nouveau »), ce que l'Alphabet n'a pas —
+  mais il n'a rien non plus qui puisse échouer ;
+- les praticiens eux-mêmes écrivent que **les triades ne supportent pas d'inférence statistique**
+  (donnée compositionnelle : 33/33/33 au centre ne distingue pas « tout compte autant » de « tout compte
+  peu ») ; et le wiki **met en garde contre la sur-lecture** des motifs émergents, « plus qu'indicatifs » ;
+- les articles de développement d'instrument rapportent des validations sur 8 puis 10 personnes, et
+  **aucune mesure de la fiabilité de l'auto-signification** (accord entre narrateurs, test-retest à
+  trente jours) n'a été trouvée.
+
+**Le résultat de cette correction, et c'est le point le plus utile de la révision.** Chaque déploiement a
+son **propre** cadre de signification, conçu pour son contexte : c'est le choix qui donne la pertinence
+locale et qui **interdit d'accumuler**. Les deux instruments sont donc des images miroir — SenseMaker a
+des cas sans base, l'Alphabet a une base sans cas — et chacun a payé le prix de son pari. Aucun ne peut
+revendiquer que son choix est meilleur, faute d'avoir produit la chose qui le démontrerait.
 
 **Ce que la note intègre de la période 0.7.8–0.7.15.**
 
