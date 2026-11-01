@@ -20,8 +20,15 @@ contient, créé après lui.
 | [`analyse-alphabet-situationnel.md`](analyse-alphabet-situationnel.md) | la note : état des lieux, fonctionnement, axiome, littérature, comparaison, bilan, ce qui reste |
 | [`concurrents-directs.md`](concurrents-directs.md) | les seize concurrents directs, ce qu'ils promettent, ce qu'ils prouvent, et huit protocoles de départage |
 | [`comprendre-l-alphabet-situationnel.md`](comprendre-l-alphabet-situationnel.md) | la vulgarisation : la moitié sémiotique, la moitié mathématique, et comment l'une conditionne l'autre |
+| [`protocole.md`](protocole.md) | le mode d'emploi : le protocole adopté, ce qui reste à faire, et l'étude d'accord détaillée pour les futurs collaborateurs |
 | [`CHANGELOG.md`](CHANGELOG.md) | le journal des versions de la note, révision par révision |
 | `SHA256SUMS` | l'empreinte des fichiers livrés |
+
+Les quatre documents d'analyse portent sur la version **0.7.15** du dépôt analysé.
+[`protocole.md`](protocole.md) est le seul aligné sur la **0.7.30** : il le déclare en tête, et l'écart ne
+porte sur aucune probabilité — entre les deux versions, le dépôt a fermé des marges de méthode et écrit
+les règles de décision du test final sans changer un seul `p`. Réviser la note à la 0.7.30 reste utile,
+mais c'est un travail documentaire, pas une remise en cause de ses conclusions.
 
 Il n'y a pas de code ici : le moteur, les références et les bases restent dans le dépôt analysé. Les
 chiffres cités sont tous reproductibles par ses commandes, et les commandes sont données.
@@ -95,6 +102,25 @@ lettre, pas d'état ; sans état, le moteur ne calcule qu'une fréquence par dé
 exemple complet et par les cinq confusions les plus fréquentes.
 
 ---
+
+## Ce que contient le document de protocole
+
+Un mode d'emploi pour ceux qui vont faire tourner l'instrument, écrit pour eux avant tout le reste.
+
+- **Le protocole adopté** : la chaîne en sept gestes, les huit règles qui portent l'engagement, l'état
+  mesuré au 1er novembre 2026 sur l'étiquette `v0.7.30` — 155 autotests, audit conforme, 0 cas actif.
+- **Ce qu'il reste à faire**, dans l'ordre, avec ce que chaque chantier débloque et ce qui le bloque.
+- **L'étude d'accord, en détail** : pourquoi elle bloque tout, ce qu'on mesure exactement (la décision,
+  pas le cas), les coefficients et les seuils, les six verdicts, le matériel, la procédure en onze étapes
+  datées, les deux accords à ne pas confondre, les six échecs prévisibles, et un gabarit de fiche d'étude.
+- **Le tiers nommé** et **la relecture par un méthodologue extérieur**, avec une grille de douze
+  questions à lui poser.
+- **La liste de contrôle de l'épisode 1**, en treize lignes, chacune avec la preuve qui la rend
+  vérifiable.
+- Deux annexes : les commandes citées, et un lexique pour un collaborateur qui n'est pas méthodologue.
+
+Le document distingue quatre fonctions — deux codeurs, un tiers, un méthodologue — que deux à quatre
+personnes peuvent tenir, chaque cumul retirant une garantie et se publiant.
 
 ## Ce que cette note n'est pas
 

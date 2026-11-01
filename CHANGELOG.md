@@ -6,6 +6,59 @@
 > Une entrée ne cite jamais le commit qui la contient, créé après elle : une version livrée se retrouve
 > par son étiquette `vX.Y.Z`. Les corrections conservent l'entrée fautive et nomment ce qui a changé.
 
+## Document ajouté · `protocole.md` — 2026-11-01 · le mode d'emploi, aligné sur la 0.7.30
+
+**La révision de la note reste 0.7.15 · révision 1**, et aucune de ses conclusions ne change : les quatre
+documents d'analyse n'ont pas été touchés. L'entrée est datée séparément parce qu'elle ajoute un document,
+non une révision — et parce que ce document porte sur une autre version du dépôt analysé.
+
+**Nouveau document.** [`protocole.md`](protocole.md) — le protocole adopté, ce qu'il reste à faire, et
+l'étude d'accord détaillée à l'intention des futurs collaborateurs. Aligné sur `alphabet-situationnel`
+**0.7.30** (`v0.7.30`), vérifié le 1er novembre 2026 sur un clone propre : `audit` conforme (47 fichiers
+au manifeste, 208 statuts, 350 renvois §), `autotest` 155 tests OK, `bilan` 0 cas actif. C'est le seul
+document du dépôt aligné sur la 0.7.30 ; l'écart avec la 0.7.15 ne porte sur aucun `p`.
+
+**Ce qu'il contient.**
+
+- le protocole adopté : la chaîne en sept gestes, les huit règles qui portent l'engagement (A1, A3, A4, A6,
+  A7, B3, B5, V4), l'état mesuré, et le protocole de cette note ;
+- ce qu'il reste à faire, ordonné, avec la dépendance qui rend l'ordre non négociable — l'étude d'accord
+  bloque V4, qui bloque toute conclusion ;
+- **l'étude d'accord en détail** : la décomposition de la phrase du programme en cinq conditions explicites
+  et une sortie implicite ; les quatre fonctions et le droit de les cumuler ; l'unité de mesure (la
+  décision carte × strate × état, pas le cas) ; les coefficients et les seuils ; les six verdicts ; le
+  matériel et le problème d'ordre (la base est vide, l'étude la crée) ; la procédure en onze étapes
+  datées ; les deux accords à ne pas confondre — initial et prospectif ; les six échecs prévisibles ; les
+  six limites ; et un gabarit de fiche d'étude ;
+- le tiers nommé : ce qu'il exécute, ce qu'il ne fait pas, ce que son indépendance doit être et comment
+  elle se publie, la limite que le protocole déclare lui-même (« le codeur ne lance jamais le calcul »
+  est invérifiable) ;
+- la relecture par un méthodologue extérieur : une grille de douze questions, ce qu'il ne fait pas, et les
+  trois issues d'un rapport — défaut de texte, valeur gelée avant l'épisode 1, valeur gelée après ;
+- la liste de contrôle de l'épisode 1, en treize lignes avec leur preuve ;
+- deux annexes : les commandes citées, et un lexique pour un collaborateur non méthodologue.
+
+**Une précision, parce qu'elle est le point le plus utile du document.** La consigne de l'auteur — « codés
+par deux personnes » — est plus stricte que la règle A4, qui autorise un modèle de langage comme l'un des
+deux codeurs. Le document retient la consigne, et donne la raison que A4 donne elle-même : un modèle
+anthropomimétique produit les produits observables de la lecture humaine que la lecture ait eu lieu ou
+non. Un accord humain–modèle se publie à part, jamais comme un κ.
+
+**Une correction de fait, constatée en passant.** Le manifeste publié `SHA256SUMS` **ne vérifiait pas**
+contre les fichiers livrés : trois documents que cette entrée n'a pas touchés
+(`analyse-alphabet-situationnel.md`, `concurrents-directs.md`, `comprendre-l-alphabet-situationnel.md`)
+portaient une empreinte différente de celle qui était publiée, et `sha256sum -c` les refusait. La cause la
+plus probable est une réédition par l'interface web de GitHub, qui réécrit les fins de ligne après
+l'établissement du manifeste. Le manifeste est régénéré et **vérifie** désormais, ses six fichiers
+compris. Aucune conclusion, aucun chiffre et aucun statut de case n'est en cause ; seule la prétention
+d'intégrité était fausse, et elle vaut d'être consignée parce que la note elle-même avertit qu'« un
+numéro identique ne garantit pas que le dépôt n'a pas changé sous le même numéro ». `protocole.md` §1.5
+en tire une règle : vérifier le manifeste **après** chaque envoi, pas seulement avant.
+
+**Fichiers touchés.** `protocole.md` (nouveau), `README.md` (table des fichiers, alignement déclaré,
+section de présentation du document), `CHANGELOG.md` (cette entrée), `SHA256SUMS` (régénéré et vérifié,
+six fichiers).
+
 ## 0.7.15 — révision 1 — 2026-10-31 · ce que le lecteur voit, et le concurrent nommé
 
 Révision complète pour la version 0.7.15 du dépôt analysé, huit versions après la dernière révision.
