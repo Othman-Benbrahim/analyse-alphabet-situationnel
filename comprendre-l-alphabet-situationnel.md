@@ -2,7 +2,7 @@
 
 ### Un mode d'emploi en deux moitiés — et le fil qui les noue
 
-**Document de vulgarisation · version 0.7.15 · révision 1 · 31 octobre 2026**
+**Document de vulgarisation · version 0.7.51 · révision 1 · 5 novembre 2026**
 
 Ce texte accompagne la note [`analyse-alphabet-situationnel.md`](analyse-alphabet-situationnel.md). Il
 ne la remplace pas : il explique, avec des mots ordinaires, ce que la note démontre avec des chiffres.
@@ -10,8 +10,9 @@ Il ne suppose aucune connaissance en mathématiques, en statistique ni en sémio
 
 Les concurrents directs de l'outil — Wardley, Cynefin, la panarchie, la théorie des catastrophes,
 *Dynamics of Contention*, les superforecasters, les modèles de langue — sont décrits dans
-[`concurrents-directs.md`](concurrents-directs.md). Ce document-ci ne les traite pas : il explique
-comment l'outil fonctionne, pas à qui il s'oppose.
+[`concurrents-directs.md`](concurrents-directs.md). Le dispositif qui produit les premiers épisodes
+prospectifs — le bot Metaculus, ses trois bras et son registre — est décrit dans
+[`bot-metaculus.md`](bot-metaculus.md).
 
 ---
 
@@ -228,6 +229,17 @@ la référence (vingt observations pondérées). En dessous, le chiffre est **pu
 mais il n'est pas **ancré** — on ne peut pas s'appuyer dessus. La distinction paraît technique ; elle
 ne l'est pas. Elle sépare « voici un nombre » de « voici un nombre qui vaut quelque chose ».
 
+**Mais le point le plus important n'est pas là.** Depuis novembre 2026, les tests du dépôt ont mesuré
+autre chose, et c'est plus dérangeant : ce qui décide du chiffre, ce n'est pas la finesse de la lecture,
+c'est **ce qu'on décide de compter**. Sur une même question (des expulsions de diplomates entre la
+France et la Russie), deux classes de référence également défendables donnent 0,04 de probabilité et
+0,0016 de Brier d'un côté, 0,50 et 0,25 de l'autre — un facteur **150** sur le score. Sur une autre
+question (un nouveau paquet de sanctions de l'UE), compter toutes les fenêtres de quatre mois donne
+0,87 ; ne compter que les fenêtres juillet–octobre donne 0,50. Le chiffre dépend donc plus de la classe
+que de la lecture. Ce n'est pas une raison d'abandonner : c'est une raison d'**écrire la classe avant
+de compter**, de la sourcer, et d'en sceller une seconde à côté, plausible et écartée (version 0.7.43).
+Un chiffre dont on ne peut pas dire quelle population il compte n'est pas un chiffre.
+
 ## 3. Les multiplicateurs : des paris, pas des mesures
 
 Chaque carte présente apporte un **multiplicateur** :
@@ -244,6 +256,14 @@ Le calcul combine ces multiplicateurs avec la fréquence de base pour obtenir un
 peut le voir comme une recette : plus de cartes actives, plus le a priori s'écarte de la fréquence
 générale — mais jamais au-delà d'un plafond (le produit des multiplicateurs est limité à 10). Ce
 plafond est une soupape : sans lui, cinq cartes suffiraient à produire une certitude.
+
+**Un défaut inscrit dans les nombres, et il faut le savoir.** Tous les multiplicateurs valent **au moins
+1** : une carte présente ne peut donc qu'**augmenter** la probabilité qu'un événement apparaisse. Sur un
+événement rare, l'outil est structurellement porté à surestimer. Ce n'est pas un bug : c'est la
+conséquence d'une décision d'auteur, et le premier test propre du dépôt l'a mesurée — sur une frappe
+Inde–Pakistan, `p` est passé de 0,05 sans cartes à 0,102 avec cartes, pour un événement qui n'a pas eu
+lieu. Corriger ce biais demanderait des multiplicateurs inférieurs à 1, donc des données réelles : c'est
+ce que l'énoncé C doit mesurer, pas ce qu'une version peut décider seule.
 
 ## 4. La révision par les cas : chaque homologue est un vote
 
@@ -340,8 +360,8 @@ sa question.
 écarts entre la probabilité annoncée et l'issue (0 = parfait, 0,25 = hasard sur une question binaire
 équilibrée). Un score logarithmique est publié en regard, plus sensible aux erreurs confiantes.
 
-Le jalon de validation, appelé **V4**, a changé de définition en 0.7.7. Il ne dit plus « 10 % de mieux
-sur 50 épisodes », mais :
+Le jalon de validation, appelé **V4**, a changé de définition en 0.7.7, puis de **barre** en 0.7.41. Il
+ne dit plus « 10 % de mieux sur 50 épisodes », mais :
 
 - la perte moyenne par épisode doit baisser d'au moins **2,5 points** ;
 - le **test du signe** doit être significatif à 5 % — autrement dit, les épisodes améliorés doivent
@@ -352,6 +372,20 @@ La dernière ligne est la plus importante. Cinquante épisodes ne suffisent que 
 ne dépasse pas 0,063. Au-delà, il en faut davantage — parfois beaucoup plus. Une règle qui calcule son
 propre effectif ne peut pas être franchie avec trois épisodes favorables : elle oblige à accumuler les
 cas avant de conclure.
+
+**Contre quoi on compare, et c'est la vraie question (0.7.41).** Jusqu'à la 0.7.40, V4 se lisait contre
+**l'inertie du moteur** — sa fréquence par défaut et ses inerties. Battre ce chiffre-là est une barre
+basse : c'est battre une construction posée à la main. Depuis la 0.7.41, V4 se lit contre la **vue
+extérieure** : le taux de base que l'analyste a déclaré, sourcé et scellé dans le dossier **avant** le
+calcul. C'est la barre que tout prévisionniste doit battre, et le premier test propre du dépôt l'a
+montrée du doigt : sur T6, la vue extérieure donnait 0,0004 de Brier, le moteur sans cartes 0,0025, le
+moteur avec cartes 0,0104. Le meilleur des trois n'était pas celui qu'on attendait.
+
+**Et depuis 0.7.51, le score sait ne pas conclure.** Il publie une **séquence de confiance** valable à
+tout instant — on peut lire le journal chaque semaine sans fausser la conclusion — et un verdict à trois
+valeurs : « meilleur que la référence (établi) », « moins bon (établi) », « **indéterminé** ». Le mot
+« indéterminé » est le plus important des trois : c'est celui qui empêche de lire un début de journal
+comme un résultat.
 
 **Et un défaut qu'il fallait corriger (0.7.12).** Un test du signe classique suppose qu'on décide **à
 l'avance** combien d'épisodes on va regarder. Or on regarde son journal tous les mois. Si l'on s'arrête
@@ -372,7 +406,11 @@ systématiquement fausse : elle ne se trompe pas au hasard, elle se trompe de fa
 quantité de données ne corrige un vocabulaire mal choisi.
 
 Elles ne remplacent pas la lecture. Sans état, sans événement défini, sans dossier, le calcul produit un
-chiffre sur du vide — et le drapeau le dit.
+chiffre sur du vide — et le drapeau le dit. Les tests de novembre 2026 l'ont mesuré : sans cas réel
+actif, l'écart entre « avec cartes » et « sans cartes » est **nul** sur cinq questions de la strate
+pilote, et le moteur rend une constante. Ce n'est pas une panne : c'est la preuve expérimentale que la
+moitié sémiotique porte la moitié mathématique. Un alphabet sans cas n'est pas un modèle pauvre ; c'est
+un modèle qui n'a rien à comparer.
 
 ---
 
@@ -582,7 +620,8 @@ justesse.
 
 ---
 
-*Document de vulgarisation de la note « Lire le langage, prévoir l'événement », version 0.7.15,
-révision 1, 31 octobre 2026. Les chiffres cités proviennent de la base de démonstration
-**entièrement fictive** du dépôt analysé : ils illustrent une mécanique, jamais une performance. Aucune
-performance prédictive n'est acquise.*
+*Document de vulgarisation de la note « Lire le langage, prévoir l'événement », version 0.7.51,
+révision 1, 5 novembre 2026. Les chiffres cités proviennent de la base de démonstration
+**entièrement fictive** du dépôt analysé : ils illustrent une mécanique, jamais une performance. Les
+chiffres des tests (série T1–T7, P-0001, FR-RU) sont des tests de fonctionnement, rétrospectifs, et ne
+valident rien. Aucune performance prédictive n'est acquise.*
