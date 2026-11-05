@@ -2,17 +2,18 @@
 
 ### Ce que la science a déjà essayé — et où se situe l'Alphabet situationnel
 
-**Note de synthèse · version 0.7.15 · révision 1 · 31 octobre 2026**
+**Note de synthèse · version 0.7.51 · révision 1 · 5 novembre 2026**
 
-Dépôt analysé : `Othman-Benbrahim/alphabet-situationnel` · version 0.7.15 · licence MIT
-Vérifications exécutées le 31/10/2026 : `audit` conforme · **149 autotests** · `bilan` de la feuille de route
+Dépôt analysé : `Othman-Benbrahim/alphabet-situationnel` · version 0.7.51 · licence MIT
+Vérifications exécutées le 05/11/2026 : `audit` conforme · **167 autotests** · `bilan` de la feuille de route
 
-> **Comment lire cette note.** Elle porte sur l'état du dépôt au 31 octobre 2026, après les versions
-> 0.7.3 à 0.7.15. Elle suit le plan de la note du 28 octobre (état des lieux, fonctionnement, axiome,
+> **Comment lire cette note.** Elle porte sur l'état du dépôt au 5 novembre 2026, après les versions
+> 0.7.3 à 0.7.51. Elle suit le plan de la note du 28 octobre (état des lieux, fonctionnement, axiome,
 > littérature, comparaison, bilan, recommandations) et signale en annexe B ce qui a changé depuis sa
-> révision du 30 octobre. Les chiffres de démonstration viennent d'une base **entièrement fictive** :
+> révision du 31 octobre. Les chiffres de démonstration viennent d'une base **entièrement fictive** :
 > ils illustrent une mécanique, jamais une performance. Aucune performance prédictive n'est acquise.
-> Les concurrents directs sont traités dans un document séparé, [`concurrents-directs.md`](concurrents-directs.md).
+> Les concurrents directs sont traités dans [`concurrents-directs.md`](concurrents-directs.md) ; le
+> dispositif qui produit les premiers épisodes prospectifs, dans [`bot-metaculus.md`](bot-metaculus.md).
 
 > **Versionnement.** La version de cette note suit celle du dépôt analysé ; la révision compte les
 > réécritures à version constante du dépôt. Les règles de numérotation, le journal des versions et les
@@ -24,20 +25,18 @@ Vérifications exécutées le 31/10/2026 : `audit` conforme · **149 autotests**
 ## L'essentiel en sept points
 
 1. **Un protocole complet, toujours zéro cas actif.** 16 cartes, 13 strates, 208 cases, 66 transitions,
-   51 fichiers suivis, 47 au manifeste. L'audit passe ; sur les 149 autotests, 143 passent sous ce bac
-   à sable et six échouent parce qu'il refuse l'écriture du dossier temporaire (annexe A). L'audit
-   vérifie la forme et le recoupement interne, pas la vérité du contenu. Le tableau des statuts n'a
-   pas bougé depuis la 0.7.7 : 181 « Proposé », 14 « Vide », 13 « Documenté », 0 « Attesté ».
-2. **Les treize dernières versions ont changé la nature de l'objet, sans changer un seul `p`.** 0.7.3
-   contrôle et scelle la lecture qui produit le chiffre ; 0.7.4 l'exige pour compter dans le jalon ;
-   0.7.5 confronte la matrice aux observations ; 0.7.6 sonde les paramètres ; 0.7.7 sépare publication
-   et ancrage, rend V4 absolu et son effectif calculé ; 0.7.8 ajoute le comparateur externe aveugle ;
-   0.7.9 l'accord entre codeurs, les rejets et les concessions ; 0.7.10 la garantie de support et la
-   procédure de jugement ; 0.7.11 la preuve par clôture ; 0.7.12 la paire de résultats, la bande
-   d'horizon et l'homologie indiscernable ; 0.7.13 les variantes de codage et l'écart aux marginales ;
-   0.7.14 l'objet calculé et le noyau joint ; 0.7.15 corrige le manifeste du skill. Ce n'est pas une
-   fonctionnalité de plus : c'est la théorie de la preuve du dépôt qui devient exécutable, mesurable,
-   puis paramétrée avant les données, puis **opposable à un autre instrument**.
+   49 fichiers au manifeste. L'audit passe ; sur les 167 autotests, 160 passent sous ce bac à sable et
+   sept échouent parce qu'il refuse l'écriture du dossier temporaire (annexe A). L'audit vérifie la
+   forme et le recoupement interne, pas la vérité du contenu. Le tableau des statuts n'a pas bougé
+   depuis la 0.7.7 : 181 « Proposé », 14 « Vide », 13 « Documenté », 0 « Attesté ».
+2. **Quarante-neuf versions ont changé la nature de l'objet sans changer un seul `p`.** 0.7.3 à 0.7.15
+   rendent la théorie de la preuve exécutable et opposable : dossier scellé, placebo, clôture,
+   comparateur externe. 0.7.16 à 0.7.30 ferment les marges de lecture et écrivent, avant les données,
+   les règles de décision du test final. 0.7.31 à 0.7.51 changent autre chose : **les tests sont
+   joués**. Neuf tests rétrospectifs sur la strate 7, un banc de tests du codeur, des contrôles de
+   fuite temporelle, un critère de levée de L7 fixé d'avance, une inférence séquentielle dans le score,
+   et un bot Metaculus qui produit des épisodes prospectifs scellés. Ce n'est plus seulement la théorie
+   de la preuve qui devient exécutable : c'est l'instrument qui commence à rencontrer des questions.
 3. **L'axiome reste plus fort que celui de CAMEO.** CAMEO dit « les actes se suivent » ; l'alphabet dit
    « les structures se ressemblent, donc les avenirs se ressemblent ». C'est une hypothèse d'homologie,
    pas une chaîne de Markov.
@@ -48,23 +47,24 @@ Vérifications exécutées le 31/10/2026 : `audit` conforme · **149 autotests**
 5. **Les deux résultats les plus proches de la méthode sont ambigus.** La similarité de séquences
    distingue bien la paix, mal l'escalade (D'Orazio & Yonamine, 2015) ; l'autorégression égale ou bat
    souvent les modèles structurels (Chadefaux & Schincariol, 2025).
-6. **Le dépôt peut désormais mesurer sa propre hypothèse, et le résultat est plus dur qu'avant.** Un
-   placebo d'homologie tire au hasard autant de cas que la classe retenue et refait le calcul ; une
-   sonde remplace les arêtes ou les intensités par des tirages et compare ; `confronter` classe chaque
-   apparition observée selon la règle même du moteur ; `conservativite` calcule les 2 790 conséquences
-   à un pas des 111 états de la base. Sur la base de démonstration — fictive — le placebo donne
-   **+1,8 point** d'apport à l'homologie, la matrice réelle se situe au **98ᵉ centile** de 200 matrices
-   tirées au hasard (+3,2 points aux cas, médiane des sondes +0,0), et le noyau joint d'un pas donne
-   **65 % aucun événement, 32 % exactement un, 4 % deux ou plus**. Mais 0.7.12 a ajouté le drapeau qui
-   manquait : `homologie_discernable = false`, parce que `p` (22 %) tombe dans la plage à 90 % du
-   placebo (10–34 %). La sélection des homologues ne fait pas mieux que des cas tirés au hasard. Ce
-   ne sont pas des résultats sur le monde : c'est un instrument qui fonctionne, et qui, pour la
-   première fois, contredit franchement l'axiome sur sa propre démonstration.
-7. **Le prochain pas n'est pas une 17<sup>e</sup> carte.** C'est un second codeur, vingt cas, et un test
-   contre l'inertie. Le dépôt en a désormais l'outillage — `export-codeur`, `accord`, `rejets`,
-   `sceller-comparateur` — mais aucun de ces instruments n'a encore été joué faute de données. Le
-   jalon V4 reste à 0/50, et son effectif dépend toujours de σ̂(d) : 50 épisodes ne suffisent que si
-   σ̂(d) ne dépasse pas 0,063.
+6. **Le dépôt a mesuré sa propre hypothèse, et le résultat est plus dur qu'avant.** Sans cas réel
+   actif, le moteur rend une constante : sur cinq tests rétrospectifs, l'écart entre « avec cartes » et
+   « sans cartes » est nul, sauf +0,9 point sur un cas. Quand les cartes bougent, elles montent : sur
+   T6, `p` passe de 0,05 à 0,102 pour un événement qui ne s'est pas produit. Un composé ne passe pas
+   par les cartes : T7 donne 0,861 avec et sans. Et le choix de la classe de référence pèse plus que
+   tout le reste : sur FR-RU, 0,0016 de Brier pour la vue extérieure contre 0,25 pour une classe
+   alternative, soit un facteur 150. Ce ne sont pas des résultats sur le monde : c'est un instrument
+   dont on sait désormais **où** il ne mesure rien. Le placebo d'homologie reste indiscernable du
+   hasard sur sa propre démonstration (`homologie_discernable = false`), et le noyau joint d'un pas
+   donne, pour la paire SEUIL + TRACE, 77 % aucun événement, 23 % exactement un, 0,4 % deux ou plus.
+7. **Le prochain pas n'est plus un instrument, c'est un cas.** Le premier cas réel actif, un second
+   codeur, et un test contre le taux de base. Le bot Metaculus fournit l'autre moitié du dispositif —
+   des épisodes prospectifs scellés, trois bras, un registre daté — mais il a produit **trois questions,
+   onze passages, zéro question résolue et zéro `C`** au 5 novembre 2026 : deux questions sur trois
+   relèvent de la strate 6, que L7 refuse, et la première résolution n'arrive pas avant janvier 2027.
+   Ses épisodes ne compteront d'ailleurs dans V4 qu'une fois la **liste des cartes admises** publiée —
+   aucune carte n'a d'accord mesuré. Le jalon V4 reste à 0/50, et son effectif dépend toujours de σ̂(d) :
+   50 épisodes ne suffisent que si σ̂(d) ne dépasse pas 0,063.
 
 ---
 
@@ -76,18 +76,18 @@ Vérifications exécutées le 31/10/2026 : `audit` conforme · **149 autotests**
 
 L'Alphabet situationnel n'est ni un modèle statistique ni un essai : c'est un **protocole de lecture et
 de prévision**, écrit comme un skill pour modèle de langue, doublé d'un moteur Python autonome
-(bibliothèque standard seulement, 372 Ko, 4 571 lignes). Le paquet compte 51 fichiers suivis : le
+(bibliothèque standard seulement, 480 Ko, 6 253 lignes). Le paquet compte 49 fichiers au manifeste : le
 moteur, 20 références principales, 13 fichiers d'équivalents (un par strate), des bases JSONL, un
-journal d'exemple, un dossier de lecture d'exemple, un manifeste SHA-256 de 47 fichiers livrés et une
-intégration continue qui rejoue l'audit et les tests à chaque push. Le manifeste exclut désormais les
+journal d'exemple, un dossier de lecture d'exemple, un manifeste SHA-256 et une
+intégration continue qui rejoue l'audit et les tests à chaque push. Le manifeste exclut les
 fichiers cachés du dépôt (`.gitattributes`, `.gitignore`, `.github/`), que certains canaux
 d'installation ne transmettent pas ; c'est la correction de la 0.7.15.
 
 ```
 moteur.py audit    → conforme — 208 statuts, paramètres exhaustifs (chacun référencé par le code),
-                      JSONL et dossier d'exemple validés, manifeste 47 fichiers, matrice et inerties,
-                      248 renvois §, voisines A6, incompatibilités G6, schéma de fiche validé
-moteur.py autotest → 149 tests (143 passent sous ce bac à sable ; 6 exigent le dossier temporaire)
+                      JSONL et dossier d'exemple validés, manifeste 49 fichiers, matrice et inerties,
+                      393 renvois §, voisines A6, incompatibilités G6, schéma de fiche validé
+moteur.py autotest → 167 tests (160 passent sous ce bac à sable ; 7 exigent le dossier temporaire)
 moteur.py bilan    → 0 cas actif · 13/16 Documentés en strate 7, 1/14 cases Vides closes · V4 non commencé
 ```
 
@@ -116,12 +116,12 @@ appliquée.
 
 Ce que les versions récentes ont déplacé, mode par mode :
 
-| Mode | Avant 0.7.3 | Depuis 0.7.15 |
+| Mode | Avant 0.7.3 | Depuis 0.7.51 |
 |---|---|---|
 | LIRE | sortie libre, contrôlée par relecture humaine | inchangé — le mode reste sans calcul ; il produit un état daté, des preuves, des alternatives et des questions qui départagent |
-| PRÉVOIR | A6, A7, garantie, passage, questions : obligations **narratives**, sans contrôle ni trace | dossier de lecture validé **avant** le chiffre, sceau publié, placebo, deux bandes de sensibilité, sources du calcul, distinction entre **publier** un comparateur et dire l'a priori **ancré**, **comparateur externe aveugle** (0.7.8), **bande d'horizon** et drapeau d'homologie indiscernable (0.7.12), **variantes de codage** (0.7.13), bloc **`modele`** qui déclare l'estimande et le quotient (0.7.14) |
-| CODER | fiche validée par `valider_base` | idem, plus `usage_fige_le`, `codage.debut`, `classe_source`, un registre daté, le recoupement `valider --registre`, `signe_suffisant` daté avant le codage, `garantie.support` (0.7.10), `independance` {origine, producteur, transmission} (0.7.11), `procedure` de jugement (0.7.10), journal des **rejets** et des **concessions** (0.7.9) |
-| SCORER | Brier, comparateurs, abstentions, difficulté | idem, plus `p_placebo`, `apport_homologie`, tests exacts du signe et de Wilcoxon, score logarithmique, `v4_discriminant`, l'exigence de `preuve_dossier` pour compter dans V4, `comparateur_externe` et `v4_comparateur` (0.7.8), `e_processus` et `v4.sequentiel` (0.7.12), `accord` κ/PABAK et `jugements.par_procedure` (0.7.9–0.7.10) |
+| PRÉVOIR | A6, A7, garantie, passage, questions : obligations **narratives**, sans contrôle ni trace | dossier de lecture validé **avant** le chiffre, sceau publié, placebo, deux bandes de sensibilité, sources du calcul, distinction entre **publier** un comparateur et dire l'a priori **ancré**, **comparateur externe aveugle** (0.7.8), **bande d'horizon** et drapeau d'homologie indiscernable (0.7.12), **variantes de codage** (0.7.13), bloc **`modele`** qui déclare l'estimande et le quotient (0.7.14), **vue extérieure obligatoire** avec sa classe alternative (0.7.35, 0.7.43), **dossier obligatoire hors démonstration** (0.7.39), **source de résolution nommée** (0.7.39, 0.7.44) |
+| CODER | fiche validée par `valider_base` | idem, plus `usage_fige_le`, `codage.debut`, `classe_source`, un registre daté, le recoupement `valider --registre`, `signe_suffisant` daté avant le codage, `garantie.support` (0.7.10), `independance` {origine, producteur, transmission} (0.7.11), `procedure` de jugement (0.7.10), journal des **rejets** et des **concessions** (0.7.9), `mode_test` prospectif ou régressif (0.7.45), **attestation par deux cas distincts** (0.7.46) |
+| SCORER | Brier, comparateurs, abstentions, difficulté | idem, plus `p_placebo`, `apport_homologie`, tests exacts du signe et de Wilcoxon, score logarithmique, `v4_discriminant`, l'exigence de `preuve_dossier` pour compter dans V4, `comparateur_externe` et `v4_comparateur` (0.7.8), `e_processus` et `v4.sequentiel` (0.7.12), `accord` κ/PABAK et `jugements.par_procedure` (0.7.9–0.7.10), **vue extérieure scorée** (0.7.40), **référence V4 = vue extérieure** (0.7.41), **classe alternative et robustesse de classe** (0.7.43), **résolutions par absence ou hors source** (0.7.44), **séquence de confiance et verdict à trois valeurs** (0.7.51) |
 
 ### 1.3 · Seize cartes, treize strates
 
@@ -257,8 +257,8 @@ publiée qui ne se reproduit pas, probablement parce qu'elle a été calculée s
 résultat ou de la base. C'est un défaut de manifeste, pas de calcul — mais un dépôt qui fait de
 l'empreinte un argument doit le corriger. La note le consigne plutôt que de le taire (annexe A).
 
-**Le noyau joint (0.7.14).** Sur la démonstration, deux événements à la frontière donnent : aucun
-65 %, exactement un 32 %, deux ou plus 4 %. Les marginales du noyau égalent `calculer` à 10⁻¹², et
+**Le noyau joint (0.7.14).** Sur la démonstration, la paire SEUIL@7 et TRACE@7 donne : aucun
+77 %, exactement un 23 %, deux ou plus 0,4 %. Les marginales du noyau égalent `calculer` à 10⁻¹², et
 aucune dépendance n'est estimée : le noyau est à entropie maximale sous les marginales, hors exclusions
 déclarées. C'est un second modèle, à côté du premier, pas à sa place ; la sortie dit lequel répond à
 quoi.
@@ -272,6 +272,27 @@ significatif à 5 %, et le nombre d'épisodes doit atteindre **max(50, ⌈((z₁
 titre descriptif seulement. Le plancher de 50 a été conservé parce que, sans lui, un σ̂ sous-estimé sur
 quelques épisodes suffisait à déclarer le jalon franchi — le genre de correction qui distingue une règle
 d'une envie.
+
+**La barre de V4 a changé, et c'est la décision la plus lourde de la période (0.7.41).** Jusqu'à la
+0.7.40, le statut V4 se lisait contre l'inertie du moteur (`frequence_de_base`). Depuis la 0.7.41,
+`v4_reference = vue_exterieure` : il se lit contre le Brier du taux de base que l'analyste a déclaré
+dans le dossier **avant** le calcul. La raison est difficile à contester : battre sa propre fréquence
+par défaut est une barre basse, construite par le moteur lui-même ; le taux de base d'une classe
+sourcée est la barre que tout prévisionniste doit battre. T6 l'a illustré avant la décision — vue
+extérieure 0,0004, moteur sans cartes 0,0025, moteur avec cartes 0,0104. Trois conséquences : une
+question sans vue extérieure ne compte pas dans V4 ; la vue extérieure devient un bras qu'on peut
+manipuler, et trois garde-fous existent (écrite et scellée avant le calcul, avec sa classe et sa
+source ; contrôle a priori à un facteur 10) plus un quatrième, humain — une vue extérieure se source
+dans une base publique, jamais de mémoire ; et les énoncés C et A gardent leurs propres bras, parce
+qu'ils répondent à d'autres questions.
+
+**L'inférence valide à tout instant descend dans le score (0.7.51).** Le processus e existait depuis la
+0.7.12 à côté du statut V4. La 0.7.51 lève le gel pour **un seul outil** : `scorer` publie désormais,
+pour chaque différentiel par épisode, une **séquence de confiance** à 1 − α et un verdict à trois
+valeurs — « meilleur que la référence (établi) », « moins bon (établi) », « indéterminé ». La raison
+est la cohérence entre deux juges : si seul le bot portait une inférence valide à tout moment, le bot
+et le skill pourraient conclure différemment sur la même décision. Rien d'autre ne change : ni les
+paramètres, ni les règles de V4, ni le critère de levée de L7.
 
 **Les questions discriminantes (0.7.7).** Une question est dite discriminante si son `p` s'écarte d'au
 moins 2 points de probabilité de `p_sans_cartes` ou de `p_placebo`, **calculé avant l'issue**. `scorer`
@@ -328,12 +349,15 @@ bouger le tableau pour la première fois depuis longtemps : CROISSANCE@7 est pas
 lectures (Choucri, Altman), RÉSONANCE@7 a été close au terme d'une troisième recherche faite sur
 résumés consultés, non de mémoire, et PÉRIODICITÉ@7 garde « Cycles électoraux ». La strate pilote
 compte donc 13 Documentés, 1 Proposé, 2 Vides — 14 cases traitées sur 16. **Les versions 0.7.8 à
-0.7.15 n'ont ajouté aucun cas et n'ont changé aucun statut** : elles ont outillé la mesure, pas
-peuplé la base. Le bilan reste sans ambiguïté :
+0.7.51 n'ont ajouté aucun cas et n'ont changé aucun statut** : elles ont outillé la mesure, pas
+peuplé la base. La 0.7.46 a même durci la porte : une attestation exige **deux cas réels d'événements
+distincts**, chacun ancrant la carte sur un fait corroboré par des sources indépendantes ; une source
+unique ne la fonde pas. Le déplacement va donc dans le sens d'une base plus difficile à remplir, pas
+plus facile. Le bilan reste sans ambiguïté :
 
 ```
 Étape 2 · cas réels          : 0 actifs · 0 propositions · 4 archives
-Étape 3 · strate pilote      : 13/16 Documentés · 0 strate complète · 1/14 cases Vides closes
+Étape 3 · strate pilote      : 13/16 Documentés ou Attestés · 0 strate complète · 1/14 cases Vides closes
 Étape 4 · références externes: aucun fichier fourni
 Étape 5 · base réelle        : aucun cas actif · κ non calculé
 Test à l'aveugle             : aucun journal fourni (0/50)
@@ -342,6 +366,12 @@ Test à l'aveugle             : aucun journal fourni (0/50)
 C'est l'état exact : un cadre complet, une base vide. Les quatre cas réels existants ont été archivés
 (décision d'auteur, 0.6.8) parce qu'ils avaient été codés après leur issue, sous des règles antérieures.
 Ils restent comme trace, exclus de tout calcul.
+
+**Le registre du bot ne change pas ce compte, et il faut le dire nettement.** Le bot a enregistré trois
+questions réelles, en strate 6 ou sans carte ancrée, et onze passages scellés ; ce sont des **épisodes
+de prévision**, pas des cas codés. Ils n'entrent ni dans la base de cas, ni dans le calcul des
+homologues, ni dans κ. Le bot établit le fondement empirique de la revendication de prévision — C
+bat-il B ? —, pas celui de la base de cas. Voir [`bot-metaculus.md`](bot-metaculus.md) §5.1.
 
 ### 1.6 · Ce que dit la matrice
 
@@ -395,13 +425,14 @@ matrice ne peut en revanche qu'**augmenter** une apparition : λ = 3, 1,8 et 1,2
 
 | Étape | Objet | État mesuré |
 |---|---|---|
-| 0 | Installer la version courante | **fait** — 0.7.15 |
+| 0 | Installer la version courante | **fait** — 0.7.51 |
 | 1 | Trois décisions d'auteur | **prises** — strate 12 conservée · cartes à agents universelles · MIT |
 | 2 | Premiers cas réels sous les règles courantes | **0 actif** — 4 archives exclues |
 | 3 | Sourcer une strate pilote | **14/16 traitées** — strate 7, 1 Vide close, 0 strate complète |
 | 4 | Bibliothèque de fréquences externes | **aucune** |
 | 5 | Base réelle et second codeur | **aucune** — κ non calculé, outillage `accord`/`export-codeur` prêt |
-| — | Test à l'aveugle (jalon V4) | **non commencé** — 0/50, cible recalculée par σ̂(d) |
+| — | Épisodes prospectifs (bot Metaculus) | **3 questions · 11 passages · 0 résolue · 0 `C`** |
+| — | Test à l'aveugle (jalon V4) | **non commencé** — 0/50, référence désormais la vue extérieure |
 
 Depuis le 29 octobre 2026, quatre décisions d'auteur sont appliquées (sceau de dossier exigé pour V4,
 partage apprentissage/test daté, placebo d'homologie, plancher de recherche A7). La cinquième —
@@ -411,17 +442,25 @@ supplémentaires, toutes sans effet sur un `p`, ont été appliquées en 0.7.7 :
 V4 absolu et testé, effectif calculé avec plancher, questions discriminantes, seuil de niveau séparé,
 âge mesuré dans `confronter`.
 
-Les versions 0.7.8 à 0.7.15 ajoutent une seconde couche, également sans effet sur un `p` : un
-**comparateur externe** scellé (0.7.8), l'**accord entre codeurs** et les rejets (0.7.9), la garantie
-de support et la procédure de jugement (0.7.10), la **preuve par clôture** (0.7.11), la paire de
-résultats et l'homologie discernable (0.7.12), les variantes de codage (0.7.13), l'objet calculé et le
-noyau joint (0.7.14), le manifeste corrigé (0.7.15). Le diagnostic du dépôt reste donc juste, et il
-faut lui rendre cet hommage : le cadre est complet, ce qui manque est empirique ou relève de l'auteur.
-La différence avec la 0.7.7 est que le dépôt possède désormais **tous les instruments pour se
-comparer à autre chose qu'à lui-même** — il ne lui manque que de les jouer.
+Les versions 0.7.8 à 0.7.51 ajoutent trois couches, toujours sans effet sur un `p`. D'abord des
+**instruments de comparaison** : comparateur externe scellé (0.7.8), accord entre codeurs et rejets
+(0.7.9), garantie de support et procédure de jugement (0.7.10), preuve par clôture (0.7.11), paire de
+résultats et homologie discernable (0.7.12), variantes de codage (0.7.13), objet calculé et noyau joint
+(0.7.14). Ensuite des **règles de lecture et de mesure** : vue extérieure obligatoire puis référence de
+V4 (0.7.35, 0.7.41), classe alternative scellée (0.7.43), source de résolution nommée et résolutions
+fragiles comptées (0.7.44), mode test (0.7.45), fuites temporelles (0.7.48), critère de levée de L7
+(0.7.49). Enfin des **tests réellement joués** : neuf tests rétrospectifs sur la strate 7, le test des
+noms neutres et du recouvrement lexical, et le bot Metaculus. Le diagnostic du dépôt reste donc juste,
+et il faut lui rendre cet hommage : le cadre est complet, ce qui manque est empirique ou relève de
+l'auteur. La différence avec la 0.7.15 est que le dépôt ne se contente plus d'avoir **tous les
+instruments pour se comparer à autre chose qu'à lui-même** : il les a joués, et les résultats sont
+consignés — y compris ceux qui lui sont défavorables.
 
-Le risque n'est pas l'erreur ; c'est que le protocole reste indéfiniment un chef-d'œuvre de méthode sans
-jamais rencontrer un cas.
+Le risque a changé de forme. Il n'est plus que le protocole reste un chef-d'œuvre de méthode sans
+jamais rencontrer un cas : il a rencontré des questions, et il en a tiré des constats. Le risque est
+désormais que ces constats restent **des constats de fonctionnement** — le moteur rend une constante,
+les cartes ne peuvent que monter, la classe décide du chiffre — sans qu'un seul cas réel actif ne
+vienne dire si les cartes sont bien codées.
 
 ---
 
@@ -506,18 +545,20 @@ depuis 0.7.3 et qui relève de « À vérifier ».
 > « Un pari non scoré n'est pas un risque, c'est une affirmation. »
 > — Constitution, P6 · Falsifiabilité
 
-**Ce que les versions 0.7.5 à 0.7.15 ne changent pas.** Aucun des sept gestes de lecture n'a bougé : on
-lit, on ancre, on cherche la contradiction, on écrit l'état, on scelle, on calcule, on score comme en
-0.7.4. Les onze dernières versions ont ajouté des instruments de mesure **après** le geste, ou changé ce
-que la sortie montre en premier — jamais une règle de lecture. C'est un point d'axiome, pas un détail de
-version : le dépôt paramètre désormais la manière de juger sa lecture, sans toucher à la manière de lire.
-Une théorie qui modifierait ses règles de lecture en même temps que ses seuils de preuve rendrait tout
-résultat ininterprétable ; celle-ci évite soigneusement ce mélange, et le revendique comme une contrainte.
+**Ce que les versions 0.7.5 à 0.7.51 ne changent pas.** Aucun des sept gestes de lecture n'a changé de
+définition : on lit, on ancre, on cherche la contradiction, on écrit l'état, on scelle, on calcule, on
+score comme en 0.7.4. Des **obligations** s'y sont ajoutées — dossier de lecture obligatoire hors
+démonstration (0.7.39), source de résolution nommée (0.7.44) — et des instruments de mesure se sont
+placés **après** le geste, ou ont changé ce que la sortie montre en premier, jamais la manière de lire.
+C'est un point d'axiome, pas un détail de version : le dépôt paramètre désormais la manière de juger sa
+lecture, sans toucher à la manière de lire. Une théorie qui modifierait ses règles de lecture en même
+temps que ses seuils de preuve rendrait tout résultat ininterprétable ; celle-ci évite soigneusement ce
+mélange, et le revendique comme une contrainte.
 
 C'est aussi ce qui rend le reproche le plus sérieux qu'on puisse lui faire recevable et précis : à force
 d'ajouter des instruments de mesure autour d'une lecture inchangée, on peut finir par mesurer très bien
-une lecture qu'on n'a jamais éprouvée. Le seul remède est un cas. Onze versions d'instruments ne le
-remplacent pas.
+une lecture qu'on n'a jamais éprouvée. Le seul remède est un cas. Des dizaines de versions d'instruments
+ne le remplacent pas.
 
 ### 2.3 · Le lexique minimum
 
@@ -650,9 +691,9 @@ Trois conséquences, déjà identifiables avant toute donnée :
 3. **Les dimensions omises peuvent être exactement celles qui comptent** : qui est l'acteur, quelle est
    la position de chacun, quel lien unit les cartes.
 
-**Ce que les versions 0.7.3 à 0.7.15 changent ici — et c'est le cœur de cette note.** Le problème de la
+**Ce que les versions 0.7.3 à 0.7.51 changent ici — et c'est le cœur de cette note.** Le problème de la
 classe de référence cesse d'être une objection de principe : il devient mesuré à chaque calcul, par
-sept instruments distincts.
+neuf instruments distincts.
 
 | Instrument | Ce qu'il fait varier | Ce qu'il révèle |
 |---|---|---|
@@ -664,14 +705,20 @@ sept instruments distincts.
 | Clôture (0.7.11) | **tous** les états et tous les événements à un pas de la base | ce qui change, et ce qui ne change pas, hors des calculs témoins |
 | Homologie discernable (0.7.12) | la position de `p` dans la plage du placebo | si la sélection des cas fait mieux que le hasard, avec un drapeau |
 | Variantes de codage (0.7.13) | chaque mot `f`, puis tous, absents | ce que coûte un ancrage incertain, sans changer le `p` par défaut |
+| **Vue extérieure et classe alternative** (0.7.35, 0.7.43) | le taux de base **déclaré avant le calcul**, et une seconde classe plausible | ce que le **choix de la classe** décide — et il décide plus que tout le reste |
 
-Les quatre premiers mesurent la robustesse du réglage et du choix des cas. Les deux suivants mesurent
-le contenu de la matrice et la sélection des cas contre le hasard. La clôture mesure la **stabilité de
-l'ensemble** : elle ne dit pas si le modèle est vrai, elle dit si une version a changé une conséquence
-quelque part. Les variantes de codage mesurent, elles, la sensibilité au **travail de lecture** — et
-elles montrent que F et f ont le même effet numérique sur les multiplicateurs : sans base, 10,2079 %
-dans les deux cas. C'est une information désagréable pour une théorie qui fait de la force de l'ancrage
-une qualité, et le dépôt la publie.
+Les quatre premiers mesurent la robustesse du réglage et du choix des cas. La **sonde** mesure le
+contenu propre de la matrice contre le hasard : sur 200 tirages, la matrice réelle se situe au
+98ᵉ centile. La **clôture** mesure la **stabilité de l'ensemble** : elle ne dit pas si le modèle est
+vrai, elle dit si une version a changé une conséquence quelque part. L'**homologie discernable** place
+`p` dans la plage du placebo, et c'est elle qui a rendu le résultat le plus dur de la période
+0.7.8–0.7.15 : la sélection des cas ne fait pas mieux que le hasard. Les variantes de codage mesurent,
+elles, la sensibilité au **travail de lecture** — et elles montrent que F et f ont le même effet
+numérique sur les multiplicateurs : sans base, 10,2079 % dans les deux cas. C'est une information
+désagréable pour une théorie qui fait de la force de l'ancrage une qualité, et le dépôt la publie. Le
+neuvième instrument est le plus récent, et c'est celui qui a le plus déplacé la lecture : depuis la
+0.7.41, V4 se lit **contre la vue extérieure**, pas contre l'inertie du moteur, et depuis la 0.7.43 la
+classe alternative est scellée avec la classe retenue.
 
 **Ce que la démonstration montre, et ce qu'elle ne montre pas.** Sur la base fictive du dépôt, pour
 l'événement phare : `p = 22,0 %`, sans cartes `12,1 %`, placebo `20,2 %`. Le choix des cas apporte donc
@@ -686,6 +733,18 @@ homologues ne fait pas mieux que des cas tirés au hasard dans la même strate**
 publié, mais il ne soutient plus l'axiome : il dit que le moteur ne distingue pas, sur cette
 démonstration, le choix structural du hasard. C'est le résultat le plus important de la période
 0.7.8–0.7.15, et il est négatif.
+
+**Ce que les tests de novembre ajoutent, et c'est plus dur encore.** Le choix de la classe de référence
+n'est pas un paramètre parmi d'autres : c'est celui qui pèse le plus. Sur FR-RU (0.7.45), la vue
+extérieure retenue donne 0,04 de probabilité et 0,0016 de Brier ; une classe alternative également
+défendable — un autre couple d'États, une autre façon de compter un événement voisin — donne 0,50 et
+0,25. Un facteur **150** sur le Brier, pour la même question. Sur T7 (0.7.42), toutes les fenêtres de
+quatre mois donnent 0,87 ; les seules fenêtres juillet–octobre donnent 0,50. Sur P-0001 (0.7.44), la
+classe retenue comptait un événement plus étroit que le critère de résolution, et la classe alternative
+a gagné contre le moteur (0,0009 contre 0,0075). La conséquence est directe : **une comparaison C contre
+B ne vaut que si la classe de B est définie, sourcée et scellée avant le calcul** ; sinon elle mesure le
+choix de l'analyste. C'est pourquoi la 0.7.43 exige une classe alternative scellée avec la classe
+retenue, et publie `v4_robustesse_classe` — un verdict V4 qui dépend de la classe se publie comme tel.
 
 La sonde complète ce tableau. Sur 200 tirages d'arêtes, la matrice réelle se situe au **98ᵉ centile** ;
 elle ajoute **+3,2 points** aux cas, la sonde médiane **+0,0**, et la révision par les cas +6,8. Autrement
@@ -711,7 +770,7 @@ une loi jointe. Le noyau joint de 0.7.14 est un second modèle, à côté, qui n
 estimée. Tout cela ne change pas le chiffre ; cela change ce qu'on a le droit d'en dire.
 
 Les mesures sur cinq événements, faites en 0.7.4 et non recalculées depuis (les probabilités sont
-identiques de 0.7.4 à 0.7.15, vérifié par la clôture), donnaient +0,9 point pour les cartes et +0,7 pour
+identiques de 0.7.4 à 0.7.51, vérifié par la clôture), donnaient +0,9 point pour les cartes et +0,7 pour
 l'homologie. Le rapport s'inversait parce que l'effet des cartes était très hétérogène : fortement
 positif sur un événement, légèrement négatif sur les quatre autres. La moyenne écrase le premier et
 laisse l'homologie seule, faiblement, en positif. Avec la règle de 0.7.7, il faudrait d'abord vérifier
@@ -930,6 +989,17 @@ humaine. Le gain vient de la récupération et de l'agrégation, pas d'une « co
 
 **Ce que ça ne prouve pas.** Que le modèle n'ait pas déjà vu la réponse — la contamination est un
 confond majeur — ni que la foule humaine ne reste pas la référence la plus forte.
+
+**Depuis 2026, ce confond a un chiffre.** El Lahib et al. (arXiv:2602.00758) examinent 393 questions
+Metaculus évaluées rétrospectivement : pour **71 %** d'entre elles, une recherche filtrée par date ramène
+au moins une page contenant une information postérieure à la date d'information, et pour **41 %** une
+page qui donne l'issue. Un modèle qui prévoit avec ces pages obtient un Brier de **0,10**, contre **0,24**
+avec des pages propres. Paleka et al. (ICLR 2026) classent les pièges correspondants : page mise à jour,
+encadrés chargés plus tard, horodatage faux, absence parlante, et fuite par le classement du moteur de
+recherche. Ce n'est pas une objection de principe : c'est la raison pour laquelle le skill traite depuis
+0.7.48 les tests rétrospectifs comme des **bornes hautes**, exige des instantanés datés et une note de
+fuite, et pourquoi le bot ne peut apprendre son décalage correctif que sur des questions dont le modèle
+ne connaît pas déjà l'issue.
 
 **Leçon pour l'alphabet.** Ne pas utiliser le LLM comme oracle : comme second codeur et comme
 comparateur. Depuis 0.7.3, le dossier de lecture scellé est précisément la pièce qu'un second codeur peut
@@ -1177,16 +1247,26 @@ close après trois recherches. Deux cases la séparent de l'objectif, et elles s
 | **La matrice ne se distingue du hasard que sur un événement** (sonde, 0.7.6) | 98ᵉ centile de 200 tirages, +3,2 points aux cas : le contenu structurel existe. Sur un seul état et une seule cible, cela ne prouve ni sa vérité ni sa généralité. Le test doit être répété avant d'être cité. |
 | **L'homologie est indiscernable du hasard sur sa propre démonstration** (0.7.12) | `p` = 22,0 % tombe dans la plage à 90 % du placebo (9,8–34,3 %). Le drapeau `homologie_discernable = false` est posé. C'est le résultat le plus dur de la période 0.7.8–0.7.15, et il vient de l'intérieur. |
 | **Un rival a une prédiction datée et résolue, pas le dépôt** (cliodynamique, 2010–2020) | Turchin a publié dans *Nature* une prédiction d'instabilité pour les années 2020, réévaluée en 2020 — par ses auteurs, sur des indicateurs choisis — avec une hausse d'un ordre de grandeur des manifestations et des émeutes. L'Alphabet est mieux construit et n'a rien d'équivalent. Ce n'est pas une comparaison de théories, c'est une comparaison de statuts. |
+| **Sans cas actif, le moteur rend une constante** (cinq tests rétrospectifs, 0.7.39) | Sur cinq questions de strate 7, l'écart entre « avec cartes » et « sans cartes » est nul, sauf +0,009 sur un cas. Le moteur rend une inertie, un taux par défaut ou la référence fournie. Ce n'est pas un défaut à corriger : c'est ce que l'énoncé C doit mesurer, et il le mesure sur zéro donnée. |
+| **Les cartes ne peuvent que monter** (T6, 0.7.40) | `p` passe de 0,05 à 0,102 pour un événement qui ne s'est pas produit ; Brier 0,0104 contre 0,0025 sans cartes et 0,0004 pour la vue extérieure. Tous les λ étant ≥ 1, toute carte présente augmente une probabilité d'apparition : sur des événements rares, le biais est structurel, et il est dans le mauvais sens. |
+| **Un composé ne passe pas par les cartes** (T7, 0.7.42) | `p` vaut 0,861 avec et sans cartes, par construction : « s'intensifie » vaut P(persiste) × P(hausse \| persiste), deux références externes. La forme rend la question exprimable, mais elle ne mesure que la classe de référence. Une série de questions de nouvelle occurrence n'apportera aucune donnée à l'énoncé C. |
+| **La classe de référence pèse plus que tout le reste** (P-0001 et FR-RU, 0.7.44–0.7.45) | Sur FR-RU, 0,0016 de Brier pour la vue extérieure contre 0,25 pour une classe alternative — un facteur 150, pour la même question. Sur P-0001, la classe alternative gagne contre le moteur (0,0009 contre 0,0075), parce que la classe retenue comptait un événement plus étroit que le critère de résolution. Le point le plus manipulable du dispositif est le choix de la classe, et c'est désormais mesuré. |
+| **Le bot ne produit pas encore de C** (registre du 4 novembre 2026) | Trois questions, onze passages scellés, zéro résolue, zéro `C`. Deux questions sur trois relèvent de la strate 6, que L7 refuse ; la troisième ne s'ancre sur aucune carte. Le dispositif prospectif existe, et il n'a encore rien mesuré. |
 
-Les trois dernières lignes sont nouvelles, et de nature différente des trois premières : ce n'est pas un
-résultat de la littérature, c'est le dépôt qui se mesure. Il faut les traiter avec la même prudence — les
-unes portent sur une base fictive, l'autre sur des archives codées hors règles — mais avec le même
-sérieux, parce qu'elles portent directement sur l'axiome et qu'elles viennent de l'intérieur.
+Les lignes qui suivent les trois premières ne sont pas des résultats de la littérature : c'est le dépôt
+qui se mesure — sur sa démonstration fictive pour les instruments, sur des questions réelles pour les
+tests et le bot. Il faut les traiter avec la même prudence que les autres
+(un test rétrospectif n'est pas une validation, un registre non résolu n'est pas un score), mais avec
+le même sérieux, parce qu'elles portent directement sur l'axiome et qu'elles viennent de l'intérieur.
+La différence avec la révision précédente est de nature : le mur n'était qu'une prévision tirée de la
+littérature et de l'absence de cas ; il est maintenant **mesuré**, et il a une forme précise. Sans base,
+le moteur est une constante. Avec une base, les cartes ne peuvent que monter. Et quelle que soit la
+base, la classe de référence décide du chiffre plus que les cartes.
 
-La dernière ligne est d'une autre nature encore, et c'est la plus dérangeante : elle ne dit pas que le
-dépôt se trompe, elle dit qu'un concurrent a **fait** ce que le dépôt ne fait pas. Un instrument peut être
-meilleur sur tous les critères de méthode et perdre la comparaison par le seul fait d'avoir un résultat
-publié.
+La ligne sur la cliodynamique est d'une autre nature encore, et c'est la plus dérangeante : elle ne dit
+pas que le dépôt se trompe, elle dit qu'un concurrent a **fait** ce que le dépôt ne fait pas. Un
+instrument peut être meilleur sur tous les critères de méthode et perdre la comparaison par le seul fait
+d'avoir un résultat publié.
 
 **La conclusion honnête.** Le meilleur produit du dépôt n'est peut-être pas « prévoir des événements »,
 mais « caractériser des situations, estimer leur persistance, et savoir ce que le chiffre doit à quoi ».
@@ -1206,6 +1286,14 @@ strate 7 » est un résultat utile, publiable, et parfaitement cohérent avec P8
 une défaite : c'est un résultat. Le dépôt est désormais outillé pour le produire proprement — ce qui est
 exactement ce qu'on demande à un protocole.
 
+**Un article de test prospectif, et il ne coûte plus rien à instrumenter.** Le bot Metaculus enregistre
+trois bras scellés par question, avec le dossier de lecture et la classe de référence, et les score
+selon la règle du tournoi et selon celle du skill. Le dispositif est en place ; ce qui manque n'est plus
+l'instrumentation, c'est le **temps** : la première question du registre ne se résout pas avant janvier
+2027, et vingt questions résolues en strate 7 demandent des mois. Un article qui annoncerait le
+protocole et son plan de mesure, sans résultat, serait honnête ; un article qui annoncerait un résultat
+avant cette échéance ne le serait pas.
+
 **Un article de transfert.** La revendication trans-domaines (13 strates) doit être un test séparé, plus
 tard, avec les mêmes cartes dans deux strates éloignées. Si les dynamiques ne se transportent pas,
 l'hypothèse d'universalité est falsifiée — et c'est encore un résultat.
@@ -1222,7 +1310,7 @@ dans le dépôt depuis la 0.7.12.
 
 > Douze actions, classées par priorité. La première vaut plus que les onze autres réunies.
 
-### 7.1 · Ce que les versions 0.7.3 à 0.7.15 ont fermé
+### 7.1 · Ce que les versions 0.7.3 à 0.7.51 ont fermé
 
 | Point | État |
 |---|---|
@@ -1255,6 +1343,18 @@ dans le dépôt depuis la 0.7.12.
 | F et f semblaient avoir des effets différents sur λ | **mesuré** — `variantes_codage` ; ils ont le même effet numérique (10,2079 % dans les deux cas) (0.7.13) |
 | L'objet calculé n'était pas déclaré | **fermé** — bloc `modele` : estimande, pseudo-vraisemblance, quotient, produit des λ (0.7.14) |
 | Le manifeste dépendait du canal d'installation | **fermé** — les fichiers cachés du dépôt sortent de `SHA256SUMS` (0.7.15) |
+| La vue extérieure n'était pas exigée avant le calcul | **fermé** — `vue_exterieure` obligatoire, affichée avant les cartes, contrôle a priori à un facteur 10 (0.7.35) |
+| V4 se lisait contre l'inertie du moteur | **changé** — `v4_reference = vue_exterieure`, la barre est le taux de base déclaré (0.7.41) |
+| Le choix de la classe de référence n'était pas opposable | **fermé** — classe alternative scellée avec la classe retenue, `v4_robustesse_classe` (0.7.43) |
+| Une résolution par absence ou hors source passait sans bruit | **fermé** — `source_resolution` obligatoire, `ecart_critere`, résolutions fragiles comptées (0.7.39, 0.7.44) |
+| Un test régressif se confondait avec une prévision non publiée | **fermé** — `mode_test` prospectif ou régressif, bilan séparé (0.7.45) |
+| Les fuites temporelles des tests rétrospectifs n'étaient pas traitées | **fermé** — instantanés Wayback, note de fuite 0–4, questions listées avant recherche, aucune cote avant scellement (0.7.48) |
+| Le critère de levée de L7 n'était pas écrit | **fermé** — 20 questions résolues, C − B ≤ 0, plus A4 et équivalents Documentés (0.7.49) |
+| Deux juges pouvaient conclure différemment sur la même décision | **fermé** — séquence de confiance et verdict à trois valeurs dans `scorer` (0.7.51) |
+| Un cas pouvait être codé sans dossier | **fermé** — dossier obligatoire hors démonstration (0.7.39) |
+| `persiste` et `disparait` se chiffraient sans référence de l'objet | **fermé** — non estimé hors démonstration (0.7.39) |
+| Une attestation pouvait tenir à une source unique | **fermé** — deux cas réels distincts, sources indépendantes (0.7.46) |
+| Le codeur pouvait suivre le nom d'une carte plutôt que sa fiche | **outillé** — test des noms neutres et recouvrement lexical (0.7.47), non encore joué sur un cas réel |
 
 Trois écarts à la lettre des décisions valent d'être notés, parce qu'ils sont bien motivés et qu'ils
 disent quelque chose de la maturité du projet : le partage se compare à `codage.debut` et non au premier
@@ -1269,11 +1369,14 @@ L'auteur ne l'a pas appliquée et l'a renvoyée à une version dédiée, alors q
 C'est le comportement qu'on demande à un paramétrage : non pas d'avoir raison, mais de ne pas passer en
 force quand la vérification contredit la fiche.
 
-**Ce que cette liste ne dit pas.** Trente-deux points fermés, et un seul cas réel. La liste est longue
-parce qu'elle mesure des **contrôles**, pas des **résultats**. Un instrument qui ferme trente-deux
-défauts de méthode et zéro défaut empirique est un instrument qui a fait son travail de méthode — et qui
-n'a pas commencé son travail de mesure. Il ne faut pas confondre les deux, et la longueur de ce tableau
-est précisément ce qui rend la confusion facile.
+**Ce que cette liste ne dit pas.** Elle est longue, et elle ne contient **aucun résultat** : elle mesure
+des **contrôles**, pas des **issues**. Un instrument qui ferme des dizaines de défauts de méthode et
+zéro défaut empirique a fait son travail de méthode — et il n'a pas commencé son travail de mesure. Il
+ne faut pas confondre les deux, et la longueur de ce tableau est précisément ce qui rend la confusion
+facile. Les tests de la période 0.7.38–0.7.51 la rendent, eux, difficile à entretenir : sur les points
+où ils pouvaient mesurer quelque chose, ils sont **nuls ou défavorables** — cartes sans effet, cartes
+qui montent dans le mauvais sens, classe qui décide du chiffre. C'est plus utile qu'un tableau de
+contrôles, et c'est plus dur à lire.
 
 ### 7.2 · Ce qui reste
 
@@ -1288,19 +1391,25 @@ cas ; 20 cas peuvent suffire ou non selon leur densité, et 0.7.5 montre qu'avec
 prévoit (`role: modele`) — mais il faut au moins un humain. C'est ce qui débloque A4, la base, et la
 crédibilité de tout le reste. **Le dossier scellé de 0.7.3 est exactement la pièce dont ce second
 codeur a besoin** : il peut relire une lecture complète sans avoir assisté au calcul. C'est le meilleur
-retour sur investissement des quatre décisions prises, et il était gratuit.
+retour sur investissement des quatre décisions prises, et il était gratuit. **Le bot ne le remplace
+pas** : il n'y a pas d'humain dans sa boucle, et deux passes du même modèle ne font pas deux codeurs.
 
 **P0 · Trois comparateurs dans chaque prévision.** L'inertie existe (`p_sans_cartes`). Le placebo existe
-depuis 0.7.4. Le troisième, le comparateur externe, existe depuis 0.7.8 (`sceller-comparateur`) et n'a
-jamais été joué. Publier les trois écarts pour chaque question. Une prévision qui ne bat pas le meilleur
-comparateur est un comparateur, pas un résultat.
+depuis 0.7.4. Le troisième, la vue extérieure, est désormais **joué** : scoré depuis 0.7.40
+(`brier_vue_exterieure`), et référence de V4 depuis 0.7.41. Ce qui reste n'est plus de l'outillage mais
+une discipline de lecture : publier les trois écarts à chaque question, et ne pas présenter un gain
+contre l'inertie comme un résultat quand la vue extérieure fait mieux. T6 l'a montré : 0,0004 pour la
+vue extérieure, 0,0025 pour le moteur sans cartes, 0,0104 avec cartes — le meilleur des trois n'est pas
+celui qu'on attendait.
 
-**P0 · Le test à trois bras, et il ne demande aucune théorie.** Cent questions de type ForecastBench,
-préenregistrées, trois bras scellés : modèle seul, modèle + inertie (`p_sans_cartes`), modèle + alphabet
-complet. Le dispositif existe — `sceller-comparateur`, `--dossier`, `conservativite`. C'est le seul geste
-qui change le **statut** de l'artefact, et un résultat nul est publiable : personne n'a mesuré si un
-alphabet structurel ajoute quoi que ce soit à un modèle agentique. La mesure doit être séquentielle
-(`e_processus`), sous peine de reproduire le défaut corrigé en 0.7.12.
+**P0 · Le test à trois bras, et il ne demande aucune théorie.** Il existe et il tourne : c'est le bot
+Metaculus, avec ses bras A, B et C scellés avant l'issue, son dossier et son registre. Ce qui manque
+n'est plus le dispositif, c'est le **volume et le temps** : trois questions, onze passages, zéro
+résolue, zéro `C` au 5 novembre 2026, et une première résolution en janvier 2027. La mesure est
+séquentielle par construction (`e_processus`, séquence de confiance), sous peine de reproduire le défaut
+corrigé en 0.7.12. Le geste qui reste est de **laisser tourner**, de publier la **liste des cartes
+admises** — sans elle, ces épisodes ne compteront pas dans V4 — et de ne pas conclure avant les seuils
+du §27. C'est plus difficile qu'il n'y paraît.
 
 **P1 · La table *Dynamics of Contention*, et elle coûte une heure.** Associer les 16 cartes aux ~20
 mécanismes de McAdam, Tarrow et Tilly, sur le texte, puis tester la correspondance sur deux épisodes déjà
@@ -1405,7 +1514,9 @@ Le dépôt a maintenant tout ce qu'il faut pour que ce travail soit **opposable*
 que le second codeur lise la même chose que le premier, un registre daté pour que le partage
 apprentissage/test ne soit pas négociable, un placebo pour que l'apport de l'analogie ne soit pas
 confondu avec celui du prior, un plancher de recherche pour que « j'ai cherché » soit constatable. Ce
-qui manque n'est plus de la méthode. Ce sont des faits, un deuxième lecteur et une issue.
+qui manque n'est plus de la méthode, et ce n'est même plus l'issue : le bot en produira, à sa cadence.
+Ce sont **des faits et un deuxième lecteur** — les deux choses que le bot ne fournit pas, parce qu'il
+n'a pas d'humain dans sa boucle et qu'il ne code aucun cas.
 
 **Et une objection qu'il faut avoir entendue.** Ce second codeur, c'est un **étranger à la situation**
 qu'on charge de dire ce qu'elle signifie. SenseMaker, l'instrument de Snowden, soutient que c'est
@@ -1423,17 +1534,17 @@ considérait comme acquise.
 
 ### Le dépôt et ses vérifications
 
-`Othman-Benbrahim/alphabet-situationnel`, version 0.7.15, licence MIT. Fichiers lus : `README.md`,
+`Othman-Benbrahim/alphabet-situationnel`, version 0.7.51, licence MIT. Fichiers lus : `README.md`,
 `SKILL.md`, `references/` (constitution, protocole, grammaire, graphe, dynamiques, validation,
 feuille-de-route, glossaire, angles-morts, apports-théoriques, 13 fichiers d'équivalents),
 `assets/parametres.json`, `assets/base-de-cas.exemple.jsonl`, `assets/cas-reels.jsonl`,
 `assets/dossier.exemple.json`, `CHANGELOG.md`, `scripts/moteur.py`.
 
-Commandes exécutées le 31/10/2026, sous Windows, Python 3.14.3 :
+Commandes exécutées le 05/11/2026, sous Windows, Python 3.14.3 :
 
 ```
-python scripts/moteur.py audit      → conforme — 248 renvois §, 47 fichiers au manifeste
-python scripts/moteur.py autotest   → 149 tests (143 passent sous ce bac à sable ; 6 refus d'écriture)
+python scripts/moteur.py audit      → conforme — 393 renvois §, 49 fichiers au manifeste
+python scripts/moteur.py autotest   → 167 tests (160 passent sous ce bac à sable ; 7 refus d'écriture)
 python scripts/moteur.py bilan      → 0 cas actif · 13/16 en strate 7 · 1/14 Vides closes · aucun journal
 python scripts/moteur.py calculer … --demo     → p 22,0 % [5,2–43,1] · sans cartes 12,1 %
                                                  placebo 20,2 % (90 % : 9,8–34,3 %) · homologie +1,8 pt
@@ -1446,7 +1557,7 @@ python scripts/moteur.py sonde … --demo --tirages 200
 python scripts/moteur.py confronter assets/cas-reels.jsonl
                                      → 3 apparitions · 1 atteignable · 2 non atteignables
                                        25/66 arêtes éprouvées au moins une fois
-python scripts/moteur.py noyau … (2 événements) → aucun 65 % · exactement un 32 % · deux ou plus 4 %
+python scripts/moteur.py noyau … (SEUIL + TRACE) → aucun 77 % · exactement un 23 % · deux ou plus 0,4 %
 python scripts/moteur.py conservativite --base assets/base-de-cas.exemple.jsonl
                                      → 2 790 conséquences sur 111 états, 0 désarmée,
                                        empreinte b8d346ea… (voir annexe A, réserve sur le manifeste)
@@ -1460,6 +1571,18 @@ Deux vérifications supplémentaires, faites hors des commandes standard :
 - **comparaison 0.7.7 / 0.7.15** : les deux moteurs, appliqués aux mêmes 2 790 conséquences de la même
   base, donnent **0 conséquence changée**. C'est la vérification la plus forte disponible que la promesse
   « aucune probabilité ne change » est tenue sur tout le vocabulaire, et non sur des témoins.
+
+### Le bot Metaculus
+
+`Othman-Benbrahim/metac-bot-template`, version **0.5.1** (bot), skill embarqué 0.7.51 ; fichiers lus :
+`README-alphabet.md`, `ABSTRACT-alphabet.md`, `alphabet_bot.py`, `alphabet_pipeline.py`,
+`score_registre.py`, `tests/`, workflows `*alphabet*`, et le registre `registre/journal-bot.jsonl`
+(11 lignes), `registre/journal-autres.jsonl` (13 lignes), `registre/dossiers/` (6 dossiers), au
+5 novembre 2026. Le document [`bot-metaculus.md`](bot-metaculus.md) en donne la lecture détaillée.
+
+Ce que le registre comptait à cette date : **3 questions binaires distinctes**, **11 passages scellés**,
+**0 question résolue**, **0 `C`**, et **13 lignes non binaires** sur 7 questions, toutes au bras A. Les
+lignes portent les versions 0.1.1 à 0.1.6 du bot et 0.7.48 à 0.7.49 du skill.
 
 ### Concurrents
 
@@ -1528,6 +1651,23 @@ critique », *Synthese* 37, 1978 ; McAdam, Tarrow & Tilly, *Dynamics of Contenti
 - Snowden, D. « Twelfthtide 24:12 — Scaffolding for serendipity » :
   [thecynefin.co](https://thecynefin.co/twelvetide-2412-scaffolding-for-serendipity/).
 
+### Évaluation rétrospective, codeurs et inférence séquentielle
+
+- El Lahib, M. et al. (2026). *Temporal leakage in retrospective forecasting benchmarks*, arXiv:2602.00758
+  — 393 questions Metaculus : 71 % ramènent au moins une page postérieure à la date d'information, 41 %
+  une page qui donne l'issue ; Brier 0,10 avec ces pages contre 0,24 sans.
+- Paleka, D. et al. (2026). *Evaluating language models on retrospective forecasting*, ICLR,
+  arXiv:2506.00723 — taxonomie des pièges de l'évaluation rétrospective.
+- Halterman, A., Keith, K. (2025). *Code in Place: How language models follow category names rather
+  than definitions*, *Political Analysis*, arXiv:2407.10747.
+- Balestriero, R., LeCun, Y. (2026). arXiv:2610.39302 — indépendance des observations et nuisance
+  propre à une variante (analogie reprise au §24 du skill, sans dépendance).
+- Hájek, A. (2007). « The reference class problem is your problem too », *Synthese* 156.
+- Waudby-Smith, I., Ramdas, A. (2024). « Estimating means of bounded random variables by betting »,
+  *JRSS-B* 86(1).
+- Choe, Y., Ramdas, A. (2024). « Combining Evidence Across Filtrations Using Adjustably Truncated
+  Online e-Statistics », *Operations Research*.
+
 ### Analogies, cas et limites
 
 - Green, K., Armstrong, J. S. (2007). *Structured Analogies for Forecasting.* IJF 23(3).
@@ -1544,12 +1684,15 @@ critique », *Synthese* 37, 1978 ; McAdam, Tarrow & Tilly, *Dynamics of Contenti
   nonasymptotic confidence sequences.* Annals of Statistics 49(2) :
   [doi:10.1214/20-AOS1991](https://doi.org/10.1214/20-AOS1991).
 
-*Note préparée le 29 octobre 2026, révisée pour la version 0.7.7 le 30 octobre 2026, puis pour la
-version 0.7.15 le 31 octobre 2026. Les chiffres de la démonstration proviennent d'une base entièrement
-fictive (`--demo`) : ils illustrent la mécanique, pas une performance. Les axiomes sont des
-reformulations vulgarisées, pas des citations des auteurs. Les positions et les nombres de la matrice
-sont lus directement dans `assets/parametres.json` ; la matrice est identique de 0.7.4 à 0.7.15, ce que
-la clôture de 0.7.11 a permis de vérifier sur 2 790 conséquences et non sur des témoins.*
+*Note préparée le 29 octobre 2026, révisée pour la version 0.7.7 le 30 octobre 2026, pour la version
+0.7.15 le 31 octobre 2026, puis pour la version 0.7.51 le 5 novembre 2026. Les chiffres de la
+démonstration proviennent d'une base entièrement fictive (`--demo`) : ils illustrent la mécanique, pas
+une performance. Les axiomes sont des reformulations vulgarisées, pas des citations des auteurs. Les
+positions et les nombres de la matrice sont lus directement dans `assets/parametres.json` ; la matrice
+est identique de 0.7.4 à 0.7.51, ce que la clôture de 0.7.11 a permis de vérifier sur 2 790 conséquences
+et non sur des témoins. Les tests rétrospectifs de 0.7.38 à 0.7.48 sont des tests de **fonctionnement** :
+ils ne valident ni ne réfutent l'alphabet, et leurs scores se lisent comme des bornes hautes, jamais
+comme des mesures.*
 
 ---
 
@@ -1557,8 +1700,8 @@ la clôture de 0.7.11 a permis de vérifier sur 2 790 conséquences et non sur d
 
 | Vérification | Commande | Résultat |
 |---|---|---|
-| Intégrité | `moteur.py audit` | conforme — 208 statuts, 47 fichiers au manifeste, 248 renvois §, matrice et inerties |
-| Régressions | `moteur.py autotest` | 149 tests — 143 passent, 6 échouent sur refus d'écriture du dossier temporaire |
+| Intégrité | `moteur.py audit` | conforme — 208 statuts, 49 fichiers au manifeste, 393 renvois §, matrice et inerties |
+| Régressions | `moteur.py autotest` | 167 tests — 160 passent, 7 échouent sur refus d'écriture du dossier temporaire |
 | Avancement | `moteur.py bilan` | 0 cas actif, 13/16 en strate 7, 1/14 cases Vides closes, aucun journal |
 | Statuts | lecture des 13 fichiers d'équivalents | 181 Proposé · 14 Vide · 13 Documenté · 0 Attesté |
 | Placebo, événement phare | `calculer … --demo` | `p` 22,0 % · sans cartes 12,1 % · placebo 20,2 % · homologie +1,8 pt |
@@ -1571,64 +1714,80 @@ la clôture de 0.7.11 a permis de vérifier sur 2 790 conséquences et non sur d
 | Sonde de force | `calculer … --demo` | F → f : +0,7 pt, par la seule sélection des homologues |
 | Sonde de paramètres | `sonde … --demo --tirages 200` | matrice réelle 98ᵉ centile · +3,2 pt aux cas · médiane +0,0 · révision par les cas +6,8 |
 | Confrontation | `confronter assets/cas-reels.jsonl` | 3 apparitions · 1 atteignable · 2 non atteignables · 25/66 arêtes éprouvées · maintien 12/12 à l'âge 0 |
-| Noyau joint | `noyau … (2 événements)` | marginales = `calculer` · aucun 65 % · un 32 % · deux ou plus 4 % |
+| Noyau joint | `noyau …` (SEUIL + TRACE) | marginales = `calculer` · aucun 77 % · un 23 % · deux ou plus 0,4 % |
 | Clôture | `conservativite --base assets/base-de-cas.exemple.jsonl` | 2 790 conséquences · 111 états · 0 désarmée · empreinte `b8d346ea…` |
 | Déterminisme | deux exécutions de `conservativite` | même empreinte, fichiers au SHA-256 identique |
-| Conservation 0.7.7 → 0.7.15 | comparaison directe des deux moteurs sur les 2 790 conséquences | **0 conséquence changée** |
+| Conservation 0.7.15 → 0.7.51 | `conservativite` sur la même base, empreinte comparée | **0 conséquence changée** — 2 790 conséquences, même empreinte `b8d346ea…` qu'en 0.7.15 |
+| Tests rétrospectifs (0.7.38–0.7.45) | `validation.md` §16–§23 | cinq tests sans effet des cartes · T6 +0,052 de `p` (mauvais sens) · T7 composé sans cartes · P-0001 et FR-RU : la classe décide (facteur 150) |
+| Fuites temporelles | `validation.md` §26 ; El Lahib et al. 2026 | 71 % des questions ramènent une page postérieure, 41 % une page qui donne l'issue ; protocole d'instantané et note de fuite 0–4 |
+| Critère de levée de L7 | `validation.md` §27 | 20 questions résolues, B et C présents, C − B ≤ 0 ; fixé avant les données |
+| Registre du bot | lecture de `registre/` au 5 novembre 2026 | 3 questions · 11 passages · 0 résolue · 0 `C` · 13 lignes non binaires |
 | Matrice | lecture de `parametres.json` | 66/240 liens · 3 F · 27 M · 36 f · SEUIL 14 entrants, poids 21,6 · réciprocité 12/8/46 |
 | Kish | `calculer … --demo` | 9,3 pour 10 cas · cas le plus lourd 16 % |
 | Accord (exemple) | `accord --a 10 --b 2 --c 3 --d 5` | prévalence 62,5 % · pₒ 0,750 · κ 0,468 · PABAK 0,500 · verdict « insuffisant » (manque > 20 %) |
 
 **Une réserve, et elle n'est pas cosmétique.** Le journal du dépôt annonce depuis la 0.7.9 une empreinte
 de clôture `b1a592c8184d505becf216d07b83a2b5545e08527c4c67f2311b20b5530fdade`, « identique à la 0.7.9 ».
-La 0.7.15 rend `b8d346ea7f0b1ac11b884aa80b99a56cfaed591c8cf7d481b5fd143227af4431`. La clôture est
-déterministe (deux exécutions, même empreinte) et la comparaison directe des moteurs 0.7.7 et 0.7.15
-donne **0 conséquence changée** : le calcul est stable, c'est l'empreinte publiée qui ne se reproduit pas.
-L'explication la plus probable est datable : la 0.7.5 annonce un changement de **libellé de l'intervalle
-dans le JSON du calcul**. Si la structure du résultat a changé de forme à ce moment-là, l'empreinte — qui
-hache la structure entière — change sans qu'une seule probabilité bouge ; une empreinte calculée avant ce
-changement ne se reproduit plus. Un dépôt qui fait de l'empreinte un argument de traçabilité doit soit la
-recalculer et publier la nouvelle, soit préciser qu'elle couvre une forme de sortie datée. En attendant,
-la promesse « aucune probabilité ne change » est vérifiée **par comparaison directe**, ce qui est de toute
-façon plus fort que par empreinte.
+La 0.7.15 rend `b8d346ea7f0b1ac11b884aa80b99a56cfaed591c8cf7d481b5fd143227af4431`, et la 0.7.51 rend
+**la même empreinte** : entre les deux, aucune des 2 790 conséquences n'a changé. La clôture est
+déterministe (deux exécutions, même empreinte), et la comparaison directe des moteurs 0.7.7 et 0.7.15
+donnait déjà **0 conséquence changée** : le calcul est stable, c'est l'empreinte publiée qui ne se
+reproduit pas. L'explication la plus probable est datable : la 0.7.5 annonce un changement de **libellé
+de l'intervalle dans le JSON du calcul**. Si la structure du résultat a changé de forme à ce moment-là,
+l'empreinte — qui hache la structure entière — change sans qu'une seule probabilité bouge ; une empreinte
+calculée avant ce changement ne se reproduit plus. Un dépôt qui fait de l'empreinte un argument de
+traçabilité doit soit la recalculer et publier la nouvelle, soit préciser qu'elle couvre une forme de
+sortie datée. En attendant, la promesse « aucune probabilité ne change » est vérifiée **par comparaison
+directe** et par l'identité d'empreinte depuis la 0.7.15, ce qui est de toute façon plus fort que par
+une empreinte ancienne.
 
 *Les tests de fichiers temporaires (`test_repetitions`, `test_renvoi_detection`, `test_scorer_csv`,
-`test_dossier_calculer`, `test_compose_sans_semantique`, `test_partage_date`) échouent sous un bac à sable
-qui refuse l'écriture et le `chmod` dans le dossier temporaire du système. Ils n'échouent pas sur un
-environnement non confiné ; ce n'est pas un défaut du code. Le sixième, `test_partage_date`, échoue en
-outre sur une assertion (2 ≠ 0) : il attend un registre absent, conséquence du même refus d'écriture.
-Les 143 autres passent, y compris les tests qui ont été ajoutés de 0.7.8 à 0.7.15.*
+`test_dossier_calculer`, `test_compose_sans_semantique`, `test_partage_date`, `test_t7_corrections`)
+échouent sous un bac à sable qui refuse l'écriture et le `chmod` dans le dossier temporaire du système.
+Ils n'échouent pas sur un environnement non confiné ; ce n'est pas un défaut du code. `test_partage_date`
+échoue en outre sur une assertion (2 ≠ 0) : il attend un registre absent, conséquence du même refus
+d'écriture. Les 160 autres passent, y compris les tests ajoutés de 0.7.8 à 0.7.51 — dont ceux du dossier
+obligatoire, de la vue extérieure, du mode test et de la séquence de confiance.*
 
-## Annexe B · Ce qui a changé depuis la note du 30 octobre
+## Annexe B · Ce qui a changé depuis la note du 31 octobre
 
-| Point de la note du 30 octobre (version 0.7.7) | État au 31 octobre 2026 (version 0.7.15) |
+| Point de la note du 31 octobre (version 0.7.15) | État au 5 novembre 2026 (version 0.7.51) |
 |---|---|
-| « 126 autotests » | **149** |
-| « manifeste 49 fichiers, 50 suivis » | **47 au manifeste, 51 suivis** — les fichiers cachés du dépôt sortent du manifeste (0.7.15) |
-| « 176 renvois § » | **248** |
-| « 4 052 lignes, 296 Ko » | **4 571 lignes, 372 Ko** |
-| « 181 Proposé, 14 Vide, 13 Documenté » | **inchangé** — aucune case n'a bougé ; les huit versions ont outillé la mesure, pas peuplé la base |
+| « 149 autotests » | **167** |
+| « manifeste 47 fichiers, 51 suivis » | **49 au manifeste** — la structure du paquet s'est simplifiée (README d'une page, `CONTRIBUER.md`, `.openscience`) |
+| « 248 renvois § » | **393** |
+| « 4 571 lignes, 372 Ko » | **6 253 lignes, 480 Ko** |
+| « 181 Proposé, 14 Vide, 13 Documenté » | **inchangé** — aucune case n'a bougé ; 0 Attesté, et A3 est devenu plus exigeant (0.7.46) |
 | « 66 liens, 3 F, 27 M, 36 f » | inchangé (matrice identique, vérifié par clôture) |
-| « l'écart au placebo est +1,8 » | inchangé, mais **désormais accompagné du drapeau** `homologie_discernable = false` (0.7.12) |
-| « six instruments autour du calcul » | **quatorze** — comparateur externe, accord, rejets, garantie, clôture, bande d'horizon, variantes de codage, noyau joint s'y ajoutent |
-| « V4 : test du signe à effectif fixe » | **complété** — `e_processus`, valide à tout instant, dans chaque différentiel (0.7.12) |
-| « `p` en tête de sortie » | **remplacé** — la paire (sans cartes, avec cartes) est imprimée d'abord tant qu'aucun cas n'est actif (0.7.12) |
-| « la fenêtre est hors des bandes » | **corrigé** — `bande_horizon` publie p à 1, 3 et 6 fenêtres (0.7.12) |
-| « le produit des λ est une hypothèse » | **précisé** — pseudo-vraisemblance, matrice asymétrique 12/8/46, aucune loi jointe garantie (0.7.14) |
-| « l'objet calculé n'est pas nommé » | **corrigé** — bloc `modele` : estimande, quotient, liaisons sans effet (0.7.14) |
-| « le troisième comparateur manque » | **outillé** — `sceller-comparateur`, `v4_comparateur` (0.7.8) ; **non joué** |
-| « κ absent » | **inchangé — la dette principale** ; `accord` existe depuis 0.7.9 et n'a pas servi |
+| « l'écart au placebo est +1,8 » | inchangé, mais ce n'est plus le résultat principal : les tests rétrospectifs de 0.7.38–0.7.45 sont **nuls ou défavorables** |
+| « quatorze instruments autour du calcul » | **inchangé** — le gel de la 0.7.34 interdit tout outil nouveau ; la 0.7.51 ne lève le gel que pour la séquence de confiance de `scorer` |
+| « le troisième comparateur n'a jamais été joué » | **joué** — la vue extérieure est un bras scoré (0.7.40) et la référence de V4 (0.7.41) |
+| « V4 : test du signe + e_processus » | **complété** — séquence de confiance et verdict à trois valeurs dans `scorer` (0.7.51) |
+| « les instruments n'ont jamais été joués » | **faux depuis le 3 novembre** — neuf tests rétrospectifs, un banc de tests du codeur, un registre prospectif |
+| « le mur est une prévision » | **mesuré** — moteur constant sans cas, cartes qui ne peuvent que monter, classe de référence dominante |
 | « 0 cas actif » | **inchangé — la dette principale** |
-| « les concurrents sont ceux de la stratégie » | **corrigé** — quatre rivaux disciplinaires ajoutés (cliodynamique, panarchie, catastrophes, DoC), deux instruments (QCA, inférence séquentielle) et **SenseMaker**, dont l'objection porte sur la légitimité du codeur extérieur ; voir `concurrents-directs.md` |
+| « κ absent » | **inchangé — la dette principale** ; `accord` existe depuis 0.7.9 et n'a pas servi |
+| « le bot n'existe pas dans la note » | **documenté** — [`bot-metaculus.md`](bot-metaculus.md) ; 3 questions, 11 passages, 0 résolue, 0 `C` |
+| « noyau 65/32/4, sans paire consignée » | **corrigé** — 77/23/0,4 pour la paire SEUIL + TRACE, reproductible par la commande citée |
+| « le manifeste de clôture ne se reproduit pas » | **précisé** — l'empreinte `b8d346ea…` est identique de 0.7.15 à 0.7.51 : 0 conséquence changée depuis la 0.7.15 |
+| « les concurrents sont ceux de la stratégie » | inchangé ; le protocole 5 du banc d'essai n'est plus inédit — le bot le fait tourner |
 
 **Historique des versions de cette note.** 0.7.2 (27 octobre, note initiale) · 0.7.3 (29 octobre,
 lecture contrôlée) · 0.7.4 (29 octobre, version de preuve) · 0.7.7 (30 octobre, paramétrage avant
-mesure) · **0.7.15 (31 octobre, ce que le lecteur voit, et le concurrent nommé)**. Les règles de
-numérotation et le détail des révisions sont dans `CHANGELOG.md`.
+mesure) · 0.7.15 (31 octobre, ce que le lecteur voit, et le concurrent nommé) · **0.7.51 (5 novembre,
+les tests joués, et le fondement empirique)**. Les règles de numérotation et le détail des révisions
+sont dans `CHANGELOG.md`.
 
-**Ce que cette révision ne prétend pas.** Les versions 0.7.8 à 0.7.15 n'ont changé aucun `p` et aucun
-statut. La note les couvre parce qu'elles ont changé ce qu'un lecteur peut **voir** et **opposer** —
-la paire de résultats, la bande d'horizon, le drapeau de placebo, la clôture, l'objet déclaré, le
-comparateur externe, l'accord entre codeurs. Elles n'ont pas changé ce que le dépôt **sait** du monde :
-toujours rien, faute d'un seul cas actif. Et elles n'ont pas testé la revendication trans-domaines :
-c'est toujours P2.
+**Ce que cette révision change, et ce qu'elle ne change pas.** Les versions 0.7.16 à 0.7.51 n'ont changé
+aucun `p` et aucun statut de case : la clôture le vérifie, même empreinte sur 2 790 conséquences. Mais
+elles ont changé trois choses que la note doit dire.
+
+D'abord, **le dépôt a joué ses instruments** : neuf tests rétrospectifs sur la strate 7, un test du
+codeur, des contrôles de fuite. Ensuite, **il en a tiré des constats défavorables** : sans cas actif, le
+moteur rend une constante ; avec des cartes, la probabilité ne peut que monter ; et la classe de
+référence pèse plus que tout le reste. Enfin, **il s'est donné un dispositif prospectif** — le bot —
+qui produit des épisodes scellés mais n'a encore produit aucune prévision `C`.
+
+Ce que la révision ne prétend pas : que ces constats mesurent l'alphabet. Ils mesurent son
+**fonctionnement en l'absence de cas**, et c'est précisément pourquoi la première action reste le
+premier cas réel actif. La revendication trans-domaines n'est toujours pas testée : c'est toujours P2.

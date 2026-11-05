@@ -1,10 +1,79 @@
 # Analyse de l'Alphabet situationnel — Journal des versions
 
-> Version : 0.7.15 · révision 1
+> Version : 0.7.51 · révision 1
 
 > La version suit celle du dépôt analysé ; la révision compte les réécritures à version constante.
 > Une entrée ne cite jamais le commit qui la contient, créé après elle : une version livrée se retrouve
 > par son étiquette `vX.Y.Z`. Les corrections conservent l'entrée fautive et nomment ce qui a changé.
+
+## 0.7.51 — révision 1 — 2026-11-05 · les tests joués, et le fondement empirique
+
+Révision complète pour la version 0.7.51 du dépôt analysé, vingt et une versions après la 0.7.30 et
+quarante-huit après la 0.7.3. **Aucune probabilité du dépôt ne change** : la clôture rend la même empreinte
+que la 0.7.15 (`b8d346ea…`) sur les 2 790 conséquences, et aucun statut de case n'a bougé (181 Proposé,
+14 Vide, 13 Documenté, 0 Attesté). Ce qui change, c'est ce que le dépôt **sait de lui-même**.
+
+**Nouveau document.** [`bot-metaculus.md`](bot-metaculus.md) — le bot Metaculus, version 0.5.1, skill
+0.7.51. Le document décrit les trois bras (modèle seul, taux de base, alphabet), le déroulé d'une
+question, la règle de postage, les quatre apports à l'Alphabet, et l'état du registre au 5 novembre 2026 :
+**3 questions binaires, 11 passages scellés, 0 question résolue, 0 `C`**, plus 13 lignes non binaires.
+Deux défauts de traçabilité des lignes 0.1.x y sont déclarés : le champ `mode` absent, et une adresse
+`url` qui ne désigne pas la question (43329 et 43330 pointent vers `/questions/43325`).
+
+**Ce que la révision change dans la note.**
+
+- **L'essentiel, points 2, 6 et 7.** Le point 2 distingue trois mouvements (0.7.3–0.7.15, 0.7.16–0.7.30,
+  0.7.31–0.7.51) et nomme le troisième : les tests sont joués. Le point 6 remplace la description des
+  instruments de démonstration par leurs résultats mesurés. Le point 7 ajoute le bot et la limite
+  d'admission dans V4.
+- **§1.1, §1.2, §1.4, §1.5, §1.7** : compteurs (49 fichiers, 393 renvois, 167 tests, 6 253 lignes,
+  480 Ko), tableau des modes mis à jour, barre de V4 (vue extérieure), séquence de confiance de
+  `scorer`, et une distinction explicite entre **cas codés** et **questions enregistrées**.
+- **§3.3** : la classe de référence passe de sept à neuf instruments, avec la vue extérieure et la
+  classe alternative ; le résultat de FR-RU est cité (0,0016 contre 0,25, facteur 150).
+- **§4.6** : ajout des fuites temporelles mesurées en 2026 (71 % / 41 %, Brier 0,10 contre 0,24) et de
+  leur conséquence sur la lecture des tests rétrospectifs.
+- **§6.3** : cinq lignes nouvelles au tableau du mur — moteur constant sans cas, cartes qui ne peuvent
+  que monter (T6, 0,05 → 0,102), composé sans cartes (T7, 0,861), classe dominante (P-0001, FR-RU),
+  bot sans `C`. Le commentaire qui suivait « les trois dernières lignes » est réécrit.
+- **§7.1 à §7.4** : douze points fermés ajoutés (vue extérieure, référence V4, classe alternative,
+  source de résolution, mode test, fuites, critère L7, séquence de confiance, dossier obligatoire,
+  inertie de l'objet, attestation à deux cas, test du codeur) ; les trois P0 sont réécrits pour dire ce
+  qui existe désormais (le comparateur joué, le bot qui tourne) et ce qui manque encore (un cas, un
+  second codeur, la liste des cartes admises).
+- **Annexes A et B** : journal des vérifications rejoué, tableau des changements depuis la 0.7.15.
+
+**Une correction de la révision précédente.** Le noyau joint était cité « 65 % aucun, 32 % exactement
+un, 4 % deux ou plus », sans la paire d'événements qui le produit : le chiffre n'était donc pas
+rejouable. Il est remplacé par **77 % / 23 % / 0,4 %** pour la paire SEUIL + TRACE, avec la commande en
+annexe A. C'est exactement le défaut que la note reproche aux autres : un chiffre sans sa construction.
+
+**Deux corrections de fait, constatées en passant.**
+
+- Le README affirmait que la licence du texte restait « à trancher », alors que le dépôt porte un
+  fichier `LICENSE` GPL-3.0 depuis sa publication. La section est corrigée : GPL-3.0, avec la remarque
+  que CC BY 4.0 serait plus simple pour des textes.
+- Le README et `protocole.md` présentaient `protocole.md` comme « le seul document aligné sur la
+  0.7.30 ». Les cinq documents sont désormais alignés sur la 0.7.51, et le disent.
+
+**Chiffres relevés le 5 novembre 2026**, sous Windows, Python 3.14.3, sur un clone propre de
+l'étiquette `v0.7.51` : `audit` conforme (49 fichiers, 208 statuts, 393 renvois §) ; `autotest`
+167 tests, **160 passent, 7 échouent** sur `PermissionError` dans le dossier temporaire du bac à sable
+(le septième est `test_t7_corrections`, ajouté depuis la révision précédente) ; `bilan` 0 cas actif,
+13/16 en strate 7, 1/14 Vides closes ; `conservativite` 2 790 conséquences, 111 états, même empreinte
+qu'en 0.7.15 ; `confronter` 3 apparitions, 1 atteignable, 25/66 arêtes éprouvées ; `calculer --demo`
+inchangé (22,0 %, sans cartes 12,1 %, placebo 20,2 %, homologie +1,8 point, `homologie_discernable =
+false`).
+
+**Ce que cette révision ne prétend pas.** Les tests de 0.7.38 à 0.7.48 sont rétrospectifs, non
+préenregistrés et exposés aux fuites temporelles : ils mesurent le **fonctionnement**, pas la justesse.
+Les trois questions du bot viennent de la zone de test et ne sont pas résolues : elles ne mesurent rien
+non plus. Aucune conclusion de performance n'est tirée, et la dette principale — 0 cas actif, κ non
+mesuré — est inchangée.
+
+**Fichiers touchés.** `bot-metaculus.md` (nouveau), `analyse-alphabet-situationnel.md`,
+`comprendre-l-alphabet-situationnel.md`, `concurrents-directs.md`, `protocole.md`, `README.md`,
+`CHANGELOG.md` (cette entrée), `SHA256SUMS` (régénéré et vérifié, sept fichiers).
 
 ## Document ajouté · `protocole.md` — 2026-11-01 · le mode d'emploi, aligné sur la 0.7.30
 

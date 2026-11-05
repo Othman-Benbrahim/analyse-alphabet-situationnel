@@ -1,25 +1,27 @@
 # Protocole adopté, et ce qu'il reste à faire
 
-> **Version du document : 1 · 1er novembre 2026.**
-> Protocole aligné sur la version **0.7.30** du dépôt
+> **Version du document : 0.7.51 · révision 1 · 5 novembre 2026.**
+> Protocole aligné sur la version **0.7.51** du dépôt
 > [`Othman-Benbrahim/alphabet-situationnel`](https://github.com/Othman-Benbrahim/alphabet-situationnel)
-> (licence MIT), étiquette `v0.7.30`, vérifiée le 1er novembre 2026.
+> (licence MIT), étiquette `v0.7.51`, vérifiée le 5 novembre 2026.
 >
-> Les quatre documents d'analyse de ce dépôt portent sur la version 0.7.15 ; celui-ci est le seul aligné
-> sur la 0.7.30, et il le dit en tête plutôt que de le laisser deviner. L'écart ne porte sur aucun `p` :
-> entre 0.7.15 et 0.7.30, le dépôt a fermé des marges de méthode et écrit les règles de décision du test
-> final, sans changer une seule probabilité.
+> Les cinq documents d'analyse de ce dépôt portent la même version. Le dispositif qui produit les
+> premiers épisodes prospectifs — le bot Metaculus — est décrit dans [`bot-metaculus.md`](bot-metaculus.md) ;
+> il ne change aucune règle de ce document, mais il change l'ordre pratique des chantiers, et le §2 le
+> dit.
 
 ---
 
 ## 0 · Ce que ce document est, et à qui il s'adresse
 
-Trois documents cohabitent ici et ne jouent pas le même rôle.
+Cinq documents cohabitent ici et ne jouent pas le même rôle.
 
 | Document | Rôle | Autorité |
 |---|---|---|
 | [`analyse-alphabet-situationnel.md`](analyse-alphabet-situationnel.md) | **juge** : ce que le dépôt vaut, ce qu'il prouve, ce qu'il ne prouve pas | une lecture critique, datée |
 | [`concurrents-directs.md`](concurrents-directs.md) | **situe** : ce que les seize rivaux font mieux ou moins bien | une comparaison, datée |
+| [`comprendre-l-alphabet-situationnel.md`](comprendre-l-alphabet-situationnel.md) | **explique** : la moitié sémiotique, la moitié mathématique, et leur couture | une vulgarisation, datée |
+| [`bot-metaculus.md`](bot-metaculus.md) | **mesure** : le dispositif à trois bras, son registre, ce qu'il a produit | un relevé daté |
 | ce document | **prescrit** : ce que le protocole engage, ce qui reste, comment un collaborateur s'y insère | un mode d'emploi, révisable |
 
 Ce document ne fait pas autorité sur les règles. En cas de désaccord, le dépôt fait foi, et dans l'ordre :
@@ -112,17 +114,17 @@ pour détecter de **grands** effets, et le dépôt publie d'avance le tableau de
 apport vrai de 2 à 4,5 points finira le plus souvent « non établi ». Ce n'est pas un défaut du test : c'est
 son domaine de validité, écrit avant la mesure.
 
-### 1.4 · L'état mesuré au 1er novembre 2026
+### 1.4 · L'état mesuré au 5 novembre 2026
 
-Relevé sur un clone propre de l'étiquette `v0.7.30`, sans fichier local ajouté.
+Relevé sur un clone propre de l'étiquette `v0.7.51`, sans fichier local ajouté.
 
 ```
 python scripts/moteur.py audit
-  → conforme — 47 fichiers au manifeste, 208 statuts, 350 renvois §,
+  → conforme — 49 fichiers au manifeste, 208 statuts, 393 renvois §,
     paramètres exhaustifs, matrice et inerties, schéma de fiche validé
 
 python scripts/moteur.py autotest
-  → 155 tests, OK
+  → 167 tests (160 passent sous un bac à sable qui refuse le dossier temporaire ; 7 refus d'écriture)
 
 python scripts/moteur.py bilan
   → Étape 2 · 0 cas actif · 0 proposition · 4 archives
@@ -134,10 +136,11 @@ python scripts/moteur.py bilan
 
 | Jalon | État | Ce que cela signifie |
 |---|---|---|
-| Cadre et moteur | **complet** | 155 autotests, audit conforme, paramètres exhaustifs |
+| Cadre et moteur | **complet** | 167 autotests, audit conforme, paramètres exhaustifs |
 | Cas réels actifs | **0** | la base est vide ; les quatre premiers cas sont archivés, exclus de tout calcul |
 | Équivalents sourcés | **13 / 208** | tous en strate 7 ; l'emprunt entre strates (T4) reste fermé |
 | Accord entre codeurs | **non mesuré** | aucune carte n'a de table 2×2 : c'est le verrou du §3 |
+| Épisodes prospectifs (bot) | **3 questions · 11 passages · 0 résolue** | aucun `C` ; non admissibles dans V4 sans la liste des cartes admises |
 | Test final (V4) | **non commencé** | 0 / 171 épisodes, et il ne peut pas commencer |
 | Performance prédictive | **aucune** | rien n'a été démontré, et le dépôt ne le prétend pas |
 
@@ -162,7 +165,9 @@ Il est plus léger, et il doit rester vérifiable.
 4. **Une version livrée se retrouve par son étiquette** `vX.Y.Z`, jamais par la lecture d'un fichier.
 5. **La troisième personne.** Ces documents parlent du dépôt et de son auteur à la troisième personne,
    pour rester lisibles hors du dialogue qui les a produits.
-6. **Un document qui change d'alignement le déclare** en tête, comme celui-ci.
+6. **Un document qui change d'alignement le déclare** en tête. Depuis la 0.7.51, les cinq documents
+   d'analyse sont alignés sur la même version du dépôt, et le disent ; il n'y a plus de document en
+   avance sur les autres.
 
 ---
 
@@ -183,6 +188,10 @@ Il est plus léger, et il doit rester vérifiable.
                                                                                     │
                                                                                     ▼
                                                                      V4 · 171 épisodes, 2 énoncés
+                                                                      ▲
+   bot Metaculus (en parallèle) : questions → 3 bras scellés → issues ─┘
+     · critère de levée de L7 (§27) : évaluable dès 20 questions résolues
+     · V4 : seulement une fois la liste des cartes admises publiée
 ```
 
 La chaîne n'est pas un ordre de préférence, c'est une dépendance logique, et le dépôt l'écrit sans
@@ -190,6 +199,12 @@ détour : « Aujourd'hui aucune carte n'a d'accord mesuré : **V4 ne peut pas co
 étude. » La raison est simple. Un épisode de V4 n'est admis que si les cartes qu'il ancre sont sur une
 liste dont l'accord a été vérifié ; sans liste, il n'y a pas d'épisode admissible ; sans épisode, pas de
 score ; sans score, pas d'énoncé.
+
+**Le bot ne change pas cette dépendance, et il faut le dire nettement.** Il produit dès maintenant des
+épisodes préenregistrés, et le **critère de levée de L7** (§27) peut être évalué sans la liste : vingt
+questions géopolitiques résolues, B et C présents, C − B ≤ 0. Mais un épisode n'entre dans V4 que si ses
+cartes sont sur la liste admise. Le bot remplit donc le pipeline ; il ne le débloque pas. La distinction
+compte, parce qu'elle sépare deux échéances : L7 peut être tranché avant l'étude d'accord, V4 non.
 
 ### 2.2 · Le tableau des restes
 
@@ -200,7 +215,9 @@ score ; sans score, pas d'énoncé.
 | **P0** | **Tiers nommé**, publié avant l'épisode 1 (§4) | le droit de publier un résultat non « exécuté par l'auteur » | le choix d'une personne |
 | **P0** | **Relecture par un méthodologue extérieur** (§5) | la validité de la fiche d'étude et du §11 | la fiche écrite |
 | **P0** | Fiche d'étude horodatée chez un tiers (§3.12, §6) | l'épisode 1 | les quatre lignes ci-dessus |
-| **P1** | V4 : 171 épisodes, deux énoncés séparés (C et A) | la seule conclusion confirmatoire possible | la porte du §6 |
+| **P0** | Évaluer le critère de levée de L7 sur les 20 premières questions résolues (§27 du skill) | le chiffre dans une seconde strate | les questions et le temps — le bot les produit |
+| **P1** | V4 : 171 épisodes, deux énoncés séparés (C et A) | la seule conclusion confirmatoire possible | la porte du §6, **et la liste des cartes admises** |
+| **P1** | Laisser tourner le bot et scorer le registre | les épisodes préenregistrés de V4 | le temps ; 3 questions et 0 résolue au 5 novembre 2026 |
 | **P1** | Test de leurres : 40 situations, 26 reconnues sur 40 | le mode LIRE publié, ou publié « non distingué d'un leurre » | des juges étrangers au projet |
 | **P2** | Compléter la strate 7 (1 Proposé, 2 Vides) | l'emprunt T4, l'étape 0.8 | du temps de lecture, pas des données |
 | **P2** | Bibliothèque de fréquences externes (étape 4) | le passage de ρ4 à ρ3 | des sources publiées |
@@ -212,16 +229,16 @@ Ce dépôt-ci a ses propres restes, qui ne sont pas ceux du protocole.
 
 | Reste du protocole | Reste de cette note |
 |---|---|
-| l'étude d'accord, le tiers, la relecture externe | réviser la note de 0.7.15 à 0.7.30 |
-| les 20 cas réels de strate 7 | rejouer l'annexe A sur la 0.7.30 |
+| l'étude d'accord, le tiers, la relecture externe | étiqueter `v0.7.51` et publier `SHA256SUMS` |
+| les 20 cas réels de strate 7 | vérifier le manifeste **après** l'envoi |
 | V4 et les leurres | trancher la licence du texte (CC BY 4.0 proposé) |
 | la complétion de la strate pilote | — |
 
-Le second point mérite une phrase. Entre 0.7.16 et 0.7.30, le dépôt a changé **ce qu'un lecteur peut
-voir et opposer**, pas ce qu'il sait du monde : aucune probabilité n'a bougé, vérifié par clôture à
-chaque version. La note de 0.7.15 reste donc juste dans ses conclusions et fausse dans ses compteurs —
-248 renvois § contre 350, 149 autotests contre 155, et quatorze instruments là où elle en décrit six.
-Une révision purement documentaire la remettrait d'aplomb sans prétendre mesurer autre chose.
+Le second point mérite une phrase. La présente révision est celle qui remet la note d'aplomb : elle
+passe de 149 à 167 autotests, de 47 à 49 fichiers au manifeste, de 248 à 393 renvois §, et elle ajoute
+le document sur le bot. Elle ne prétend pas mesurer autre chose : la clôture donne la même empreinte
+qu'en 0.7.15 sur les 2 790 conséquences, donc aucune probabilité n'a bougé. Ce qui a bougé, c'est ce
+que le dépôt **sait de lui-même** — ses tests, ses limites, son registre.
 
 ---
 
@@ -817,8 +834,8 @@ Dans l'ordre, et sans détailler — ce document s'arrête là où le protocole 
 5. **Les fréquences externes** (étape 4), qui font passer les prévisions de ρ4 à ρ3.
 6. **Les versions 0.8, 0.9, 1.0** du dépôt analysé : structure, épreuve, grammaire. La dernière attend un
    rédacteur indépendant de la matrice.
-7. **La révision de cette note** à la 0.7.30, purement documentaire : compteurs, instruments, annexe A
-   rejouée.
+7. **L'étiquetage de cette révision** (`v0.7.51`) et la vérification du manifeste après envoi — puis
+   la prochaine révision, quand un premier cas réel sera actif.
 
 ---
 

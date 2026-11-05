@@ -2,9 +2,9 @@
 
 ### Ce qui occupe la même place — et ce que cela oblige à prouver
 
-**Document de comparaison · version 0.7.15 · révision 1 · 31 octobre 2026**
+**Document de comparaison · version 0.7.51 · révision 1 · 5 novembre 2026**
 
-Dépôt analysé : `Othman-Benbrahim/alphabet-situationnel` · version 0.7.15 · licence MIT
+Dépôt analysé : `Othman-Benbrahim/alphabet-situationnel` · version 0.7.51 · licence MIT
 
 > **Objet.** Ce document répond à une question que la note principale laissait ouverte : à quoi
 > l'Alphabet situationnel est-il **directement** comparable ? Il distingue les rivaux qui prétendent
@@ -519,6 +519,12 @@ d'échelle. Le test décisif n'est pas « l'LLM est-il meilleur ? » mais « l'o
 quelque chose à un LLM qui lit le même dossier ? ». C'est exactement le **bras externe** que le
 dépôt a ajouté en 0.7.8 (`sceller-comparateur`).
 
+Le bot Metaculus sépare deux questions que ce paragraphe confondait. **C − B** isole l'effet des cartes
+à classe de référence égale ; **C − A** mesure l'apport du dispositif entier — lecture, moteur, classe —
+sur un modèle seul. Aucune des deux ne teste l'ontologie **à dossier égal**, qui serait un quatrième
+bras : même dossier, même modèle, avec et sans les seize cartes. C'est le seul protocole qui répondrait
+à la question posée ici, et il n'est pas instrumenté.
+
 ### 4.6 Quelle barre ? Le chiffre contesté, et ce qu'il vaut vraiment
 
 Le dépôt cite parfois « les meilleurs modèles au niveau des superprévisionnistes en 2026 ». Un audit
@@ -945,6 +951,14 @@ désaccord de légitimité de §5.2 — et il ne le tranchera pas par un κ, pui
 mesurent pas la même fiabilité : il le tranchera par la **divergence de contenu**, c'est-à-dire en
 montrant si le lecteur et les acteurs voient la même chose.
 
+**Le protocole 5 n'est plus tout à fait inédit.** Depuis le 4 novembre 2026, le bot Metaculus
+([`bot-metaculus.md`](bot-metaculus.md)) fait tourner exactement ce dispositif : trois bras scellés —
+modèle seul, taux de base, alphabet — sur des questions réelles, avec un registre daté et un score
+séquentiel. Il ne remplace pas le protocole 5 au sens strict, parce que son bras « modèle + alphabet »
+n'est pas un modèle agentique lisant le même dossier, et parce qu'il n'a encore produit aucune
+prévision `C`. Mais la partie du coût qui était de l'instrumentation est payée : le protocole 5 est
+désormais une question de **volume et de temps**, pas de construction.
+
 **Sur la mesure elle-même.** Le protocole 5, comme V4, compare des scores **épisode après épisode** sur
 un journal croissant. Il faut donc une inférence valide à tout instant, pas un test à effectif fixe :
 suites de confiance ou p-processus, comme le fait déjà `e_processus` depuis 0.7.12. Comparer deux
@@ -1173,7 +1187,7 @@ le défaut que l'audit de la 0.7.11 avait trouvé.
 
 ### Le dépôt analysé
 
-- `Othman-Benbrahim/alphabet-situationnel`, version 0.7.15, licence MIT. Fichiers lus :
+- `Othman-Benbrahim/alphabet-situationnel`, version 0.7.51, licence MIT. Fichiers lus :
   `README.md`, `SKILL.md`, `references/apports-theoriques.md` §16–§18, `references/validation.md`,
   `references/graphe.md`, `references/simulation.md`, `references/feuille-de-route.md`,
   `scripts/moteur.py`, `CHANGELOG.md`.
@@ -1184,6 +1198,7 @@ le défaut que l'audit de la 0.7.11 avait trouvé.
 
 ---
 
-*Document préparé le 31 octobre 2026 pour la version 0.7.15 du dépôt analysé. Les positions des
+*Document préparé le 31 octobre 2026 pour la version 0.7.15 du dépôt analysé, révisé le 5 novembre
+2026 pour la version 0.7.51 (protocole 5 désormais instrumenté par le bot Metaculus). Les positions des
 concurrents sont des reformulations, pas des citations ; les chiffres de performance sont datés et
 sourcés. Aucun de ces concurrents n'est utilisé comme source de données dans le dépôt analysé.*

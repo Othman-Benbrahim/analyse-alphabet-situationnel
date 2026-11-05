@@ -2,10 +2,10 @@
 
 Note de synthèse critique sur le protocole **Alphabet situationnel** (dépôt
 [`Othman-Benbrahim/alphabet-situationnel`](https://github.com/Othman-Benbrahim/alphabet-situationnel),
-licence MIT), version **0.7.15**, au 31 octobre 2026.
+licence MIT), version **0.7.51**, au 5 novembre 2026.
 
-**Version de la note : 0.7.15 · révision 1 · 31 octobre 2026.**
-Les quatre documents d'analyse portent la même version ; la révision compte les réécritures à version
+**Version de la note : 0.7.51 · révision 1 · 5 novembre 2026.**
+Les cinq documents d'analyse portent la même version ; la révision compte les réécritures à version
 constante du dépôt analysé. **Intégrité** : `SHA256SUMS` donne l'empreinte de chaque fichier livré ;
 `sha256sum -c SHA256SUMS` (ou `Get-FileHash` sous Windows) refuse un fichier modifié, ajouté ou retiré.
 Une version livrée se retrouve par son étiquette `vX.Y.Z` ; aucun document ne cite le commit qui le
@@ -18,20 +18,19 @@ contient, créé après lui.
 | Fichier | Objet |
 |---|---|
 | [`analyse-alphabet-situationnel.md`](analyse-alphabet-situationnel.md) | la note : état des lieux, fonctionnement, axiome, littérature, comparaison, bilan, ce qui reste |
-| [`concurrents-directs.md`](concurrents-directs.md) | les seize concurrents directs, ce qu'ils promettent, ce qu'ils prouvent, et huit protocoles de départage |
+| [`concurrents-directs.md`](concurrents-directs.md) | les seize concurrents directs, ce qu'ils promettent, ce qu'ils prouvent, et neuf protocoles de départage |
 | [`comprendre-l-alphabet-situationnel.md`](comprendre-l-alphabet-situationnel.md) | la vulgarisation : la moitié sémiotique, la moitié mathématique, et comment l'une conditionne l'autre |
 | [`protocole.md`](protocole.md) | le mode d'emploi : le protocole adopté, ce qui reste à faire, et l'étude d'accord détaillée pour les futurs collaborateurs |
+| [`bot-metaculus.md`](bot-metaculus.md) | le fondement empirique : le dispositif à trois bras, son registre, ce qu'il a produit et ce qu'il n'a pas encore mesuré |
 | [`CHANGELOG.md`](CHANGELOG.md) | le journal des versions de la note, révision par révision |
 | `SHA256SUMS` | l'empreinte des fichiers livrés |
 
-Les quatre documents d'analyse portent sur la version **0.7.15** du dépôt analysé.
-[`protocole.md`](protocole.md) est le seul aligné sur la **0.7.30** : il le déclare en tête, et l'écart ne
-porte sur aucune probabilité — entre les deux versions, le dépôt a fermé des marges de méthode et écrit
-les règles de décision du test final sans changer un seul `p`. Réviser la note à la 0.7.30 reste utile,
-mais c'est un travail documentaire, pas une remise en cause de ses conclusions.
+Les cinq documents d'analyse portent sur la version **0.7.51** du dépôt analysé. Ils sont alignés :
+il n'y a plus de document en avance sur les autres.
 
-Il n'y a pas de code ici : le moteur, les références et les bases restent dans le dépôt analysé. Les
-chiffres cités sont tous reproductibles par ses commandes, et les commandes sont données.
+Il n'y a pas de code ici : le moteur, les références et les bases restent dans le dépôt analysé ; le
+bot et son registre restent dans `Othman-Benbrahim/metac-bot-template`. Les chiffres cités sont tous
+reproductibles par leurs commandes, et les commandes sont données.
 
 ---
 
@@ -42,8 +41,8 @@ plutôt que d'inventer une numérotation concurrente. Trois règles suffisent :
 
 | Changement | Effet sur la note | Exemple |
 |---|---|---|
-| **Correctif** — un chiffre, une coquille, une référence corrigés sans changer une conclusion | révision +1, version inchangée | 0.7.15 · révision 1 → 0.7.15 · révision 2 |
-| **Mineur** — le dépôt analysé change de version mineure | version alignée, révision remise à 1 | 0.7.7 → 0.7.15 |
+| **Correctif** — un chiffre, une coquille, une référence corrigés sans changer une conclusion | révision +1, version inchangée | 0.7.51 · révision 1 → 0.7.51 · révision 2 |
+| **Mineur** — le dépôt analysé change de version mineure | version alignée, révision remise à 1 | 0.7.15 → 0.7.51 |
 | **Majeur** — le plan, le verdict ou la thèse de la note changent | version majeure de la note, indépendante du dépôt | 1.0.0 |
 
 Deux conséquences pratiques. D'abord, une note ne peut pas être « à jour » d'une version qu'elle ne
@@ -55,8 +54,13 @@ le journal du dépôt analysé conserve ses propres erreurs.
 le franchissement du jalon V4, ou une décision d'auteur qui change un `p`. En dehors de ces cas, les
 chiffres de structure — 208 cases, 66 transitions, 181 « Proposé » — changent peu et la note reste
 valable. Une révision purement documentaire reste possible, mais elle ne prétend pas mesurer autre chose.
-La révision 0.7.15 en est une : elle met à jour huit versions d'instruments sans qu'un seul `p` ni un
-seul statut de case ait bougé, et elle ajoute le document sur les concurrents.
+
+La révision 0.7.51 n'est pas purement documentaire, et c'est ce qui la distingue de la précédente. Elle
+couvre vingt et une versions (0.7.31 à 0.7.51) pendant lesquelles le dépôt a **joué ses instruments** :
+neuf tests rétrospectifs sur la strate 7, un banc de tests du codeur, des contrôles de fuite temporelle,
+un critère de levée de L7 écrit avant les données, et un bot Metaculus qui produit des épisodes
+prospectifs scellés. Aucun `p` n'a changé — la clôture donne la même empreinte qu'en 0.7.15 — mais les
+conclusions de la note sont désormais **mesurées** et non plus seulement prévues.
 
 ---
 
@@ -65,18 +69,18 @@ seul statut de case ait bougé, et elle ajoute le document sur les concurrents.
 1. **État des lieux** — ce que le dépôt est, ce qu'il contient, ce qu'il sait faire, ce qu'il ne sait pas.
 2. **Fonctionnement** — sept gestes, un exemple fil rouge, un lexique, ce que l'outil ne fait pas.
 3. **L'axiome** — les quatre sous-axiomes, leur origine dans la littérature, et le problème central de la
-   classe de référence, instrumenté depuis 0.7.3 et mesuré sur sept instruments.
+   classe de référence, instrumenté depuis 0.7.3 et mesuré sur neuf instruments.
 4. **Dix expériences abouties** — du codage des actes au modèle de langue, avec ce que chacune prouve et
-   ne prouve pas.
+   ne prouve pas, et ce que 2026 a ajouté sur les fuites temporelles.
 5. **Comparaison** — même chaîne, deux ontologies ; ce que chaque famille peut apporter.
-6. **Ce que ça dit du dépôt** — six forces, quatre faiblesses, un mur.
-7. **Ce qui reste** — ce que les versions 0.7.3 à 0.7.15 ont fermé, ce qui reste ouvert, par priorité.
+6. **Ce que ça dit du dépôt** — six forces, quatre faiblesses, et un mur désormais mesuré.
+7. **Ce qui reste** — ce que les versions 0.7.3 à 0.7.51 ont fermé, ce qui reste ouvert, par priorité.
 8. **Sources**, puis deux annexes : le journal des vérifications exécutées, et le tableau des changements
    depuis la révision précédente.
 
 ## Ce que contient le document sur les concurrents
 
-Seize rivaux et sept instruments, en quatre cercles, et pour chacun : ce qu'il promet, ce qu'il produit, ce qui le prouve,
+Seize rivaux et neuf instruments, en quatre cercles, et pour chacun : ce qu'il promet, ce qu'il produit, ce qui le prouve,
 et l'écart décisif avec l'Alphabet.
 
 - **Rivaux de même promesse** — Wardley, Cynefin, MACTOR, ACH, analyse morphologique, scénarios,
@@ -89,8 +93,9 @@ et l'écart décisif avec l'Alphabet.
 - **Cadres de calcul et instruments** — PyCIB, CIB, FCMpy, pgmpy, EMA Workbench, QCA, inférence
   séquentielle.
 
-Il se termine par huit protocoles de départage, classés par coût, dont deux qui coûtent moins d'une
-journée et n'ont jamais été joués.
+Il se termine par neuf protocoles de départage, classés par coût. Deux coûtaient moins d'une journée et
+n'avaient jamais été joués ; l'un d'eux — le bras externe — est désormais instrumenté par le bot, et
+attend des questions résolues plutôt que du code.
 
 ## Ce que contient la vulgarisation
 
@@ -101,6 +106,11 @@ garanties —, et enfin le **conditionnement de l'une par l'autre** : sans signe
 lettre, pas d'état ; sans état, le moteur ne calcule qu'une fréquence par défaut. Il termine par un
 exemple complet et par les cinq confusions les plus fréquentes.
 
+Depuis cette révision, il porte aussi les trois résultats que les tests ont établis et qu'un lecteur non
+technicien doit connaître : la classe de référence pèse plus que la lecture (facteur 150 sur un cas), les
+multiplicateurs ne peuvent que faire monter une probabilité d'apparition, et « indéterminé » est un
+verdict, pas un échec.
+
 ---
 
 ## Ce que contient le document de protocole
@@ -108,8 +118,9 @@ exemple complet et par les cinq confusions les plus fréquentes.
 Un mode d'emploi pour ceux qui vont faire tourner l'instrument, écrit pour eux avant tout le reste.
 
 - **Le protocole adopté** : la chaîne en sept gestes, les huit règles qui portent l'engagement, l'état
-  mesuré au 1er novembre 2026 sur l'étiquette `v0.7.30` — 155 autotests, audit conforme, 0 cas actif.
-- **Ce qu'il reste à faire**, dans l'ordre, avec ce que chaque chantier débloque et ce qui le bloque.
+  mesuré au 5 novembre 2026 sur l'étiquette `v0.7.51` — 167 autotests, audit conforme, 0 cas actif.
+- **Ce qu'il reste à faire**, dans l'ordre, avec ce que chaque chantier débloque et ce qui le bloque —
+  et la distinction entre les deux échéances : L7 peut être tranché avant l'étude d'accord, V4 non.
 - **L'étude d'accord, en détail** : pourquoi elle bloque tout, ce qu'on mesure exactement (la décision,
   pas le cas), les coefficients et les seuils, les six verdicts, le matériel, la procédure en onze étapes
   datées, les deux accords à ne pas confondre, les six échecs prévisibles, et un gabarit de fiche d'étude.
@@ -122,10 +133,26 @@ Un mode d'emploi pour ceux qui vont faire tourner l'instrument, écrit pour eux 
 Le document distingue quatre fonctions — deux codeurs, un tiers, un méthodologue — que deux à quatre
 personnes peuvent tenir, chaque cumul retirant une garantie et se publiant.
 
+## Ce que contient le document sur le bot
+
+Le seul document du dépôt qui décrive un dispositif **en production**, et non un protocole.
+
+- **Le dispositif** : trois bras scellés avant l'issue — modèle seul (A), taux de base (B), alphabet (C) —
+  sur des questions réelles du tournoi FutureEval, avec dossier de lecture et registre SHA-256.
+- **Les règles de mesure** que le bot a fait entrer dans le skill en 0.7.50 : classe définie avant
+  comptage, vue médiane, strate à l'aveugle, état nul qualifié, score logarithmique contre Brier,
+  inférence séquentielle valide à tout instant, biais de C mesuré et corrigé en ombre.
+- **Le registre au 5 novembre 2026** : 3 questions binaires, 11 passages scellés, 0 résolue, 0 `C`,
+  13 lignes non binaires — et deux défauts de traçabilité déclarés (champ `mode` absent, adresse `url`
+  erronée sur les lignes 0.1.x).
+- **Ce qu'il faudra pour conclure** : 20 questions résolues en strate 7 pour L7, une liste de cartes
+  admises pour V4, 180 questions appariées pour détecter 10 points. Des mois, pas des semaines.
+
 ## Ce que cette note n'est pas
 
 - **Ce n'est pas une validation.** Aucune performance prédictive n'est acquise, et la note le répète
-  chaque fois que le sujet risque de prêter à confusion.
+  chaque fois que le sujet risque de prêter à confusion. Les tests de novembre 2026 sont des tests de
+  **fonctionnement**, pas des mesures de justesse.
 - **Ce n'est pas un audit d'intégrité.** L'audit et les autotests du dépôt vérifient la forme et le
   recoupement interne ; ils ne certifient ni la vérité des faits ni l'utilité scientifique de l'alphabet.
 - **Ce n'est pas une revue de littérature exhaustive.** Les dix expériences citées sont celles qui
@@ -133,6 +160,8 @@ personnes peuvent tenir, chaque cumul retirant une garantie et se publiant.
   qui prétendent occuper la même place, pas tous ceux qui touchent à la prévision.
 - **Les chiffres de démonstration ne mesurent rien.** Ils proviennent d'une base **entièrement fictive**
   (`--demo`) : ils illustrent une mécanique de calcul, jamais une performance.
+- **Le registre du bot n'est pas un score.** À la date de cette note, aucune question n'est résolue et
+  aucun `C` n'a été calculé ; les chiffres cités sont des comptes de lignes, pas des résultats.
 - **Le versionnement n'est pas une preuve de fraîcheur.** Un numéro identique ne garantit pas que le
   dépôt n'a pas changé sous le même numéro ; `SHA256SUMS` et l'étiquette de version le garantissent,
   pas la lecture de ce fichier.
@@ -143,11 +172,11 @@ personnes peuvent tenir, chaque cumul retirant une garantie et se publiant.
 
 ## Comment les chiffres ont été obtenus
 
-Toutes les valeurs citées ont été produites par le moteur du dépôt, à sa version 0.7.15 :
+Toutes les valeurs citées ont été produites par le moteur du dépôt, à sa version 0.7.51 :
 
 ```
-python scripts/moteur.py audit      # intégrité du paquet — 47 fichiers, 248 renvois §
-python scripts/moteur.py autotest   # 149 tests de régression
+python scripts/moteur.py audit      # intégrité du paquet — 49 fichiers, 393 renvois §
+python scripts/moteur.py autotest   # 167 tests de régression
 python scripts/moteur.py bilan      # avancement mesuré sur la feuille de route
 python scripts/moteur.py calculer … --demo   # démonstration, base fictive
 python scripts/moteur.py sonde … --demo --tirages 200   # paramètres contre le hasard
@@ -161,18 +190,19 @@ direct des fonctions publiques du moteur ou par comparaison de deux versions : l
 l'homologie sur cinq événements de démonstration (mesuré en 0.7.4, probabilités inchangées depuis), la
 fragilité de niveau sur une base synthétique de deux cas stricts et trois cas larges, le déterminisme de
 la clôture (deux exécutions, même empreinte), et la conservation des 2 790 conséquences entre les moteurs
-0.7.7 et 0.7.15 (0 conséquence changée). Les valeurs figurent en annexe A de la note, avec la commande
-ou la construction correspondante.
+0.7.15 et 0.7.51 (0 conséquence changée, même empreinte). Les valeurs figurent en annexe A de la note,
+avec la commande ou la construction correspondante.
 
-Une réserve d'environnement : six autotests du dépôt écrivent dans le dossier temporaire du système. Sous
-un bac à sable qui refuse l'écriture et le `chmod` à cet endroit, ils échouent ; ils ne signalent pas un
-défaut du code. C'est le cas de l'exécution qui a produit cette révision : 143 tests passent, 6 échouent
-sur `PermissionError`. La note le précise en annexe A plutôt que de le taire.
+Une réserve d'environnement : sept autotests du dépôt écrivent dans le dossier temporaire du système.
+Sous un bac à sable qui refuse l'écriture et le `chmod` à cet endroit, ils échouent ; ils ne signalent
+pas un défaut du code. C'est le cas de l'exécution qui a produit cette révision : 160 tests passent,
+7 échouent sur `PermissionError`. La note le précise en annexe A plutôt que de le taire.
 
-Une réserve de traçabilité, ajoutée par cette révision : l'empreinte de clôture publiée dans le journal du
-dépôt depuis la 0.7.9 (`b1a592c8…`) ne se reproduit pas avec la 0.7.15 (`b8d346ea…`), alors que le
-calcul est déterministe et qu'aucune conséquence n'a changé. L'annexe A le dit et explique pourquoi la
-vérification par comparaison directe est plus forte que la vérification par empreinte.
+Une réserve de traçabilité, conservée : l'empreinte de clôture publiée dans le journal du dépôt depuis
+la 0.7.9 (`b1a592c8…`) ne se reproduit pas (`b8d346ea…`), alors que le calcul est déterministe et
+qu'aucune conséquence n'a changé — et la 0.7.51 rend la même empreinte que la 0.7.15. L'annexe A
+l'explique et montre pourquoi la vérification par comparaison directe, et par identité d'empreinte depuis
+la 0.7.15, est plus forte que la vérification par une empreinte ancienne.
 
 ---
 
@@ -184,17 +214,23 @@ vérification par comparaison directe est plus forte que la vérification par em
 | 0.7.3 | 29 octobre 2026 | 111 | 1 | audit d'ingénierie : la lecture contrôlée avant le chiffre |
 | 0.7.4 | 29 octobre 2026 | 115 | 1 | version de preuve : sceau de dossier, partage daté, placebo, plancher A7 |
 | 0.7.7 | 30 octobre 2026 | 126 | 1 | paramétrer avant de mesurer : seuils séparés, V4 absolu et testé, confrontation et sonde |
-| **0.7.15** | **31 octobre 2026** | **149** | **1** | ce que le lecteur voit, et le concurrent nommé : paire de résultats, bande d'horizon, homologie indiscernable, clôture, noyau joint, comparateur externe |
+| 0.7.15 | 31 octobre 2026 | 149 | 1 | ce que le lecteur voit, et le concurrent nommé |
+| 0.7.30 | 1er novembre 2026 | 155 | — | document `protocole.md` ajouté, aligné sur cette version |
+| **0.7.51** | **5 novembre 2026** | **167** | **1** | les tests joués, et le fondement empirique : vue extérieure pour V4, classe alternative, fuites temporelles, critère L7, bot Metaculus |
 
-Les versions 0.7.5 et 0.7.6 sont traitées avec la 0.7.7 : elles ne changent aucune probabilité et leurs
-apports se lisent mieux comme un seul mouvement. Les versions 0.7.8 à 0.7.15 sont traitées ensemble par
-la présente révision, pour la même raison, et parce qu'elles partagent un effet unique : elles changent ce
-qu'un lecteur peut voir et opposer, pas ce que le dépôt sait du monde. Le détail figure au
-`CHANGELOG.md`.
+Les versions 0.7.5 et 0.7.6 sont traitées avec la 0.7.7, et les versions 0.7.8 à 0.7.15 le sont par la
+révision 0.7.15, pour la même raison : elles ne changent aucune probabilité et leurs apports se lisent
+mieux comme un seul mouvement. Les versions 0.7.16 à 0.7.30 sont documentaires — marges de lecture et
+règles de décision — et n'ont pas eu de révision propre. Les versions 0.7.31 à 0.7.51 sont traitées
+ensemble par la présente révision : elles ne changent aucun `p`, mais elles changent ce que le dépôt
+**sait de lui-même**. Le détail figure au `CHANGELOG.md` et, version par version, dans le journal du
+dépôt analysé.
 
-**Ce que la 0.7.15 ne change pas.** Aucun `p`, aucun statut de case, aucune entrée de la matrice. Les
-181 « Proposé », 14 « Vide », 13 « Documenté », 0 « Attesté » sont identiques à la 0.7.7. Le dépôt a
-fermé trente-deux défauts de méthode et zéro défaut empirique.
+**Ce que la 0.7.51 ne change pas.** Aucun `p`, aucun statut de case, aucune entrée de la matrice. Les
+181 « Proposé », 14 « Vide », 13 « Documenté », 0 « Attesté » sont identiques à la 0.7.7. La clôture
+donne la même empreinte qu'en 0.7.15 sur 2 790 conséquences. Le dépôt a fermé des défauts de méthode et
+zéro défaut empirique — et il a, pour la première fois, mesuré que son moteur rend une constante en
+l'absence de cas.
 
 ---
 
@@ -202,7 +238,7 @@ fermé trente-deux défauts de méthode et zéro défaut empirique.
 
 Cinq gestes, dans cet ordre, pour que la livraison soit vérifiable comme celle du dépôt analysé :
 
-1. **Mettre à jour les en-têtes** des quatre documents : version, révision, date.
+1. **Mettre à jour les en-têtes** des cinq documents : version, révision, date.
 2. **Rejouer les commandes** de la section précédente et reporter les valeurs obtenues en annexe A ;
    aucune valeur n'est recopiée d'une révision antérieure sans être marquée comme telle.
 3. **Ajouter l'entrée** correspondante dans `CHANGELOG.md`, sans réécrire les entrées passées.
@@ -229,15 +265,18 @@ d'assurance est celui du compte qui publie.
   n'est pas une coquetterie de vocabulaire.
 - Les concurrents sont cités par leur nom d'usage, avec une source datée en §10 du document de
   comparaison. Aucun de leurs chiffres n'entre dans les références du dépôt analysé.
+- **Un test rétrospectif n'est pas une validation.** Ses scores se lisent comme des bornes hautes, à
+  cause des fuites temporelles documentées en 2026 et mesurées au §26 du skill.
 
 ---
 
 ## Licence
 
-Le dépôt analysé est distribué sous licence MIT. Le présent texte est un document distinct : sa licence
-reste à trancher par son auteur — CC BY 4.0 est la suggestion la plus simple si l'objection et la
-réutilisation avec attribution sont souhaitées.
+Le dépôt analysé est distribué sous licence MIT. Les documents de ce dépôt-ci sont couverts par la
+licence **GPL-3.0** du fichier `LICENSE` ; c'est une licence de logiciel appliquée à des textes, et
+CC BY 4.0 serait plus simple si l'objection et la réutilisation avec attribution étaient le seul objet.
+Le choix reste à l'auteur ; il est signalé ici plutôt que laissé implicite.
 
 ## Citation
 
-> Analyse de l'Alphabet situationnel, version 0.7.15, révision 1, 31 octobre 2026.
+> Analyse de l'Alphabet situationnel, version 0.7.51, révision 1, 5 novembre 2026.
